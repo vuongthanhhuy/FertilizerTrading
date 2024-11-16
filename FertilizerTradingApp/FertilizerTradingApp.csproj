@@ -94,11 +94,17 @@
     <Compile Include="GUI\Forms\PurcherBill.Designer.cs">
       <DependentUpon>PurcherBill.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\List\ListItemStore.cs">
+    <Compile Include="GUI\List\ItemBasket.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\List\ListItemStore.Designer.cs">
-      <DependentUpon>ListItemStore.cs</DependentUpon>
+    <Compile Include="GUI\List\ItemBasket.Designer.cs">
+      <DependentUpon>ItemBasket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\List\ItemStore.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\List\ItemStore.Designer.cs">
+      <DependentUpon>ItemStore.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\UserForms\CategoryControl.cs">
       <SubType>UserControl</SubType>
@@ -155,8 +161,11 @@
     <EmbeddedResource Include="GUI\Forms\PurcherBill.resx">
       <DependentUpon>PurcherBill.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\List\ListItemStore.resx">
-      <DependentUpon>ListItemStore.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\List\ItemBasket.resx">
+      <DependentUpon>ItemBasket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\List\ItemStore.resx">
+      <DependentUpon>ItemStore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\UserForms\CategoryControl.resx">
       <DependentUpon>CategoryControl.cs</DependentUpon>

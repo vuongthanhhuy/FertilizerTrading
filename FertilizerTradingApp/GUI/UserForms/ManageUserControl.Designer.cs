@@ -59,7 +59,6 @@
 			this.panel12 = new System.Windows.Forms.Panel();
 			this.dataGridView1 = new System.Windows.Forms.DataGridView();
 			this.panel11 = new System.Windows.Forms.Panel();
-			this.cbbSearch = new System.Windows.Forms.ComboBox();
 			this.txbSearch = new System.Windows.Forms.TextBox();
 			this.btnExportExcel = new System.Windows.Forms.Button();
 			this.btnFind = new System.Windows.Forms.Button();
@@ -68,10 +67,11 @@
 			this.panel8 = new System.Windows.Forms.Panel();
 			this.panel10 = new System.Windows.Forms.Panel();
 			this.panel9 = new System.Windows.Forms.Panel();
+			this.label2 = new System.Windows.Forms.Label();
+			this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
 			this.panel13 = new System.Windows.Forms.Panel();
 			this.lbName = new System.Windows.Forms.Label();
-			this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-			this.label2 = new System.Windows.Forms.Label();
+			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.panel1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel5.SuspendLayout();
@@ -350,10 +350,10 @@
 			// 
 			this.button1.AutoSize = true;
 			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.Location = new System.Drawing.Point(41, 5);
+			this.button1.Location = new System.Drawing.Point(3, 4);
 			this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(231, 50);
+			this.button1.Size = new System.Drawing.Size(173, 50);
 			this.button1.TabIndex = 10;
 			this.button1.Text = "Tìm hóa đơn";
 			this.button1.UseVisualStyleBackColor = true;
@@ -362,7 +362,7 @@
 			// dateTimePicker1
 			// 
 			this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dateTimePicker1.Location = new System.Drawing.Point(314, 10);
+			this.dateTimePicker1.Location = new System.Drawing.Point(395, 9);
 			this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.dateTimePicker1.Name = "dateTimePicker1";
 			this.dateTimePicker1.Size = new System.Drawing.Size(426, 37);
@@ -430,7 +430,6 @@
 			// 
 			// panel11
 			// 
-			this.panel11.Controls.Add(this.cbbSearch);
 			this.panel11.Controls.Add(this.txbSearch);
 			this.panel11.Controls.Add(this.btnExportExcel);
 			this.panel11.Controls.Add(this.btnFind);
@@ -440,16 +439,6 @@
 			this.panel11.Name = "panel11";
 			this.panel11.Size = new System.Drawing.Size(1199, 85);
 			this.panel11.TabIndex = 9;
-			// 
-			// cbbSearch
-			// 
-			this.cbbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.cbbSearch.FormattingEnabled = true;
-			this.cbbSearch.Location = new System.Drawing.Point(467, 22);
-			this.cbbSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.cbbSearch.Name = "cbbSearch";
-			this.cbbSearch.Size = new System.Drawing.Size(264, 38);
-			this.cbbSearch.TabIndex = 8;
 			// 
 			// txbSearch
 			// 
@@ -474,13 +463,14 @@
 			// btnFind
 			// 
 			this.btnFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnFind.Location = new System.Drawing.Point(737, 26);
+			this.btnFind.Location = new System.Drawing.Point(502, 23);
 			this.btnFind.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnFind.Name = "btnFind";
 			this.btnFind.Size = new System.Drawing.Size(133, 37);
 			this.btnFind.TabIndex = 4;
 			this.btnFind.Text = "Tìm kiếm";
 			this.btnFind.UseVisualStyleBackColor = true;
+			this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
 			// 
 			// dataGridView2
 			// 
@@ -517,7 +507,7 @@
 			this.dataGridView2.RowHeadersVisible = false;
 			this.dataGridView2.RowHeadersWidth = 51;
 			this.dataGridView2.RowTemplate.Height = 24;
-			this.dataGridView2.Size = new System.Drawing.Size(1286, 507);
+			this.dataGridView2.Size = new System.Drawing.Size(1286, 508);
 			this.dataGridView2.TabIndex = 4;
 			// 
 			// panel7
@@ -547,15 +537,16 @@
 			// 
 			this.panel10.Controls.Add(this.dataGridView2);
 			this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel10.Location = new System.Drawing.Point(0, 553);
+			this.panel10.Location = new System.Drawing.Point(0, 552);
 			this.panel10.Margin = new System.Windows.Forms.Padding(4);
 			this.panel10.Name = "panel10";
-			this.panel10.Size = new System.Drawing.Size(1286, 507);
+			this.panel10.Size = new System.Drawing.Size(1286, 508);
 			this.panel10.TabIndex = 9;
 			// 
 			// panel9
 			// 
 			this.panel9.AutoSize = true;
+			this.panel9.Controls.Add(this.textBox1);
 			this.panel9.Controls.Add(this.label2);
 			this.panel9.Controls.Add(this.dateTimePicker2);
 			this.panel9.Controls.Add(this.dateTimePicker1);
@@ -564,8 +555,27 @@
 			this.panel9.Location = new System.Drawing.Point(0, 496);
 			this.panel9.Margin = new System.Windows.Forms.Padding(4);
 			this.panel9.Name = "panel9";
-			this.panel9.Size = new System.Drawing.Size(1286, 57);
+			this.panel9.Size = new System.Drawing.Size(1286, 56);
 			this.panel9.TabIndex = 8;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.Location = new System.Drawing.Point(827, 10);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(24, 32);
+			this.label2.TabIndex = 11;
+			this.label2.Text = "-";
+			// 
+			// dateTimePicker2
+			// 
+			this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.dateTimePicker2.Location = new System.Drawing.Point(857, 9);
+			this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.dateTimePicker2.Name = "dateTimePicker2";
+			this.dateTimePicker2.Size = new System.Drawing.Size(426, 37);
+			this.dateTimePicker2.TabIndex = 9;
 			// 
 			// panel13
 			// 
@@ -588,24 +598,13 @@
 			this.lbName.Text = "Thông tin chi tiết";
 			this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 			// 
-			// dateTimePicker2
+			// textBox1
 			// 
-			this.dateTimePicker2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.dateTimePicker2.Location = new System.Drawing.Point(812, 10);
-			this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.dateTimePicker2.Name = "dateTimePicker2";
-			this.dateTimePicker2.Size = new System.Drawing.Size(426, 37);
-			this.dateTimePicker2.TabIndex = 9;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(764, 13);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(24, 32);
-			this.label2.TabIndex = 11;
-			this.label2.Text = "-";
+			this.textBox1.Location = new System.Drawing.Point(182, 12);
+			this.textBox1.Multiline = true;
+			this.textBox1.Name = "textBox1";
+			this.textBox1.Size = new System.Drawing.Size(207, 30);
+			this.textBox1.TabIndex = 12;
 			// 
 			// ManageUserControl
 			// 
@@ -674,7 +673,6 @@
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.ComboBox cbbSearch;
 		private System.Windows.Forms.DataGridView dataGridView1;
 		private System.Windows.Forms.Label label14;
 		private System.Windows.Forms.Label label12;
@@ -682,5 +680,6 @@
 		private System.Windows.Forms.Label label8;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.DateTimePicker dateTimePicker2;
+		private System.Windows.Forms.TextBox textBox1;
 	}
 }

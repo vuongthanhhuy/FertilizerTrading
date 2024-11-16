@@ -16,11 +16,13 @@ namespace FertilizerTradingApp.GUI.UserForms
     public partial class ManageUserControl : UserControl
     {
         private CustomerController _customerController;
+		private OrderController _orderController;
 		private Customer _customerSelected;
         public ManageUserControl()
         {
             InitializeComponent();
 			_customerController = new CustomerController();
+			_orderController = new OrderController();
 			_customerSelected = null;
 			this.Load += CustomerControl_Load;
 		}
@@ -68,7 +70,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 					dataGridView2.Columns["OrderId"].HeaderText = "Mã Đơn";
 					dataGridView2.Columns["TotalPrice"].HeaderText = "Tổng hóa đơn";
 					dataGridView2.Columns["Date"].HeaderText = "Ngày Mua";
-					dataGridView2.Columns["CustomerPhone"].Visible = false;
+					dataGridView2.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
 					dataGridView2.Columns["AccountId"].HeaderText = "Người Phụ Trách";
 					dataGridView2.Columns["TotalPayment"].HeaderText = "Đã Trả";
 				}
@@ -77,33 +79,66 @@ namespace FertilizerTradingApp.GUI.UserForms
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-			if(_customerSelected != null)
+			
+			if(IsDateRangeValid(dateTimePicker1, dateTimePicker2))
 			{
-
-			}
-		}
-
-		public List<DateTime> GetDatesBetween(DateTimePicker dateTimePicker1, DateTimePicker dateTimePicker2)
-		{
-			DateTime startDate = dateTimePicker1.Value.Date;
-			DateTime endDate = dateTimePicker2.Value.Date;
-
-			List<DateTime> dateRange = new List<DateTime>();
-
-			if (startDate <= endDate)
-			{
-				for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+				if (textBox1.Text.Length > 0)
 				{
-					dateRange.Add(date);
+					var data1 = _orderController.GetOrdersOfCustomer(dateTimePicker1.Value, dateTimePicker2.Value, textBox1.Text);
+					dataGridView2.DataSource = data1;
+					dataGridView2.Columns["OrderId"].HeaderText = "Mã Đơn";
+					dataGridView2.Columns["TotalPrice"].HeaderText = "Tổng hóa đơn";
+					dataGridView2.Columns["Date"].HeaderText = "Ngày Mua";
+					dataGridView2.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
+					dataGridView2.Columns["AccountId"].HeaderText = "Người Phụ Trách";
+					dataGridView2.Columns["TotalPayment"].HeaderText = "Đã Trả";
+				}
+				else
+				{
+					var data2 = _orderController.GetOrdersByTime(dateTimePicker1.Value, dateTimePicker2.Value);
+					dataGridView2.DataSource = data2;
+					dataGridView2.Columns["OrderId"].HeaderText = "Mã Đơn";
+					dataGridView2.Columns["TotalPrice"].HeaderText = "Tổng hóa đơn";
+					dataGridView2.Columns["Date"].HeaderText = "Ngày Mua";
+					dataGridView2.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
+					dataGridView2.Columns["AccountId"].HeaderText = "Người Phụ Trách";
+					dataGridView2.Columns["TotalPayment"].HeaderText = "Đã Trả";
 				}
 			}
 			else
 			{
-				MessageBox.Show("Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				MessageBox.Show("Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc.");
 			}
-
-			return dateRange;
+			
 		}
 
+		private bool IsDateRangeValid(DateTimePicker dateTimePicker1, DateTimePicker dateTimePicker2)
+		{
+			DateTime startDate = dateTimePicker1.Value.Date;
+			DateTime endDate = dateTimePicker2.Value.Date;
+
+			if (startDate <= endDate)
+			{
+				return true;
+			}
+			else
+			{
+				
+				return false;
+			}
+		}
+
+		private void btnFind_Click(object sender, EventArgs e)
+		{
+			List<Customer> customers = new List<Customer>();
+			customers.Add(_customerController.GetCustomerById(txbSearch.Text));
+			dataGridView1.DataSource = customers;
+			dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
+			dataGridView1.Columns["Name"].HeaderText = "Tên khách hàng";
+			dataGridView1.Columns["PurchaseTime"].HeaderText = "Số lần mua";
+			dataGridView1.Columns["TotalBought"].HeaderText = "Tổng tiền đã mua";
+			dataGridView1.Columns["Debt"].HeaderText = "Tiền nợ";
+			dataGridView1.Columns["Email"].HeaderText = "Email";
+		}
 	}
 }

@@ -40,11 +40,12 @@ namespace FertilizerTradingApp.GUI.Forms
 
 		private void btnConfirm_Click(object sender, EventArgs e)
 		{
-			if (_fertilizerController.AddFertilizer(GenerateUniqueImageName(fileName), txtName.Text, txtPrice.Text, txtCategory.Text, txtQuantity.Text, txtDescription.Text))
+			fileName = GenerateUniqueImageName(fileName);
+			if (_fertilizerController.AddFertilizer(fileName, txtName.Text, txtPrice.Text, txtCategory.Text, txtQuantity.Text, txtDescription.Text))
 			{
 				string projectPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName).FullName).FullName;
 				string imagesPath = Path.Combine(projectPath, "Resources/Fertilizer");
-				string savePath = Path.Combine(imagesPath, GenerateUniqueImageName(fileName));
+				string savePath = Path.Combine(imagesPath, fileName);
 				resizedImage.Save(savePath, System.Drawing.Imaging.ImageFormat.Jpeg);
 				MessageBox.Show("Thêm phân bón thành công!");
 			}

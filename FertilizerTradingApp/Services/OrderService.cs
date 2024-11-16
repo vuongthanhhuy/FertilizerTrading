@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 using FertilizerTradingApp.Models;
@@ -40,5 +41,13 @@ namespace FertilizerTradingApp.Services
                 return null;
             }
         }
-    }
+		public List<Order> GetOrdersOfCustomer(DateTime startDate, DateTime endDate, string customer_phone)
+		{
+			return _orderRepository.GetOrdersOfCustomer(startDate, endDate, customer_phone);
+		}
+		public List<Order> GetOrdersByTime(DateTime startDate, DateTime endDate)
+		{
+			return _orderRepository.GetOrdersByTime(startDate, endDate);
+		}
+	}
 }

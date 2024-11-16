@@ -16,13 +16,15 @@ namespace FertilizerTradingApp.GUI.UserForms
     public partial class ManageUserControl : UserControl
     {
         private CustomerController _customerController;
+		private Customer _customerSelected;
         public ManageUserControl()
         {
             InitializeComponent();
 			_customerController = new CustomerController();
-			this.Load += CategoryControl_Load;
+			_customerSelected = null;
+			this.Load += CustomerControl_Load;
 		}
-		private void CategoryControl_Load(object sender, EventArgs e)
+		private void CustomerControl_Load(object sender, EventArgs e)
 		{
 			dataGridView1.DataSource = _customerController.GetAllCustomers();
 			dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
@@ -50,18 +52,58 @@ namespace FertilizerTradingApp.GUI.UserForms
 				var rowData = dataGridView1.Rows[e.RowIndex];
 
 				Customer customer = _customerController.GetCustomerById(rowData.Cells[0].Value.ToString());
+				_customerSelected = customer;
 
-				/*if (fertilizer != null)
+				if (customer != null)
 				{
-					LoadImageIntoPictureBox(fertilizer.Image);
-					lbName.Text = fertilizer.Name;
-					label7.Text = fertilizer.Id;
-					lbPrice.Text = fertilizer.Price.ToString();
-					lbType.Text = fertilizer.Category.ToString();
-					lbNumber.Text = fertilizer.Stock.ToString();
-					lbDesc.Text = fertilizer.Description;
-				}*/
+					label5.Text = customer.Name;
+					label7.Text = customer.CustomerPhone;
+					label8.Text = customer.Email;
+					label12.Text = customer.PurchaseTime.ToString();
+					label14.Text = customer.Debt.ToString();
+					label15.Text = customer.TotalBought.ToString();
+
+					var relatedData = _customerController.GetAllOrdersByCustomer(customer.CustomerPhone);
+					dataGridView2.DataSource = relatedData;
+					dataGridView2.Columns["OrderId"].HeaderText = "Mã Đơn";
+					dataGridView2.Columns["TotalPrice"].HeaderText = "Tổng hóa đơn";
+					dataGridView2.Columns["Date"].HeaderText = "Ngày Mua";
+					dataGridView2.Columns["CustomerPhone"].Visible = false;
+					dataGridView2.Columns["AccountId"].HeaderText = "Người Phụ Trách";
+					dataGridView2.Columns["TotalPayment"].HeaderText = "Đã Trả";
+				}
 			}
 		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			if(_customerSelected != null)
+			{
+
+			}
+		}
+
+		public List<DateTime> GetDatesBetween(DateTimePicker dateTimePicker1, DateTimePicker dateTimePicker2)
+		{
+			DateTime startDate = dateTimePicker1.Value.Date;
+			DateTime endDate = dateTimePicker2.Value.Date;
+
+			List<DateTime> dateRange = new List<DateTime>();
+
+			if (startDate <= endDate)
+			{
+				for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+				{
+					dateRange.Add(date);
+				}
+			}
+			else
+			{
+				MessageBox.Show("Ngày bắt đầu phải nhỏ hơn hoặc bằng ngày kết thúc.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			}
+
+			return dateRange;
+		}
+
 	}
 }

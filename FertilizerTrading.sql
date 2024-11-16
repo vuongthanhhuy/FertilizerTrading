@@ -113,3 +113,13 @@ go
 insert into _Account values ('A0000001', 'vuonggthanhhhuyy', '$2a$12$5dR7hBKWbj1O4rOt9DuRA.okJsA1g4.09.j16GS35LikHvTDydo/O')
 go
 
+delete from _Customer
+go
+
+insert into _Customer values ('0854637748', 7, 200000, 1200000, N'Vương Thanh Huy 1', 'vuonggthanhhhuyy1@gmail.com')
+insert into _Customer values ('0854637749', 8, 300000, 2300000, N'Vương Thanh Huy 2', 'vuonggthanhhhuyy2@gmail.com')
+go
+
+insert into _Order values ('O000000001', 6000, '2014-11-16', 5000, '0854637748', 'A0000001')
+insert into _Order values ('O000000002', 2000, '2014-11-16', 1000, '0854637748', 'A0000001')
+go

@@ -153,11 +153,9 @@ namespace FertilizerTradingApp.GUI.UserForms
             string filePath = Path.Combine(outputDirectory, "BillExport.pdf");
             string tempImagePath = Path.Combine(outputDirectory, "tempImage.png");
 
-            // Create a new PDF document
             PdfDocument document = new PdfDocument();
             document.Info.Title = "Exported Bill";
 
-            // Create a new page in the PDF document
             PdfPage page = document.AddPage();
             XGraphics gfx = XGraphics.FromPdfPage(page);
             Bitmap bmp = new Bitmap(pnBill.Width, pnBill.Height);

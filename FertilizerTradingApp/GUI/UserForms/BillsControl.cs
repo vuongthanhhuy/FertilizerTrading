@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using FertilizerTradingApp.Controllers;
 using FertilizerTradingApp.Models;
+using System.IO;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using System.Drawing;
 
 namespace FertilizerTradingApp.GUI.UserForms
 {
@@ -59,7 +60,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                 {
 
                     int paymis = ((int)order.TotalPrice) - ((int)order.TotalPayment);
-                    lbIdBill.Text = order.OrderId;
+                    lbBill.Text = order.OrderId;
                     lbPrice.Text = order.TotalPrice.ToString("C");
                     lbDate.Text = order.Date.ToShortDateString();
                     lbDeposit.Text = order.TotalPayment.ToString("C");
@@ -97,6 +98,76 @@ namespace FertilizerTradingApp.GUI.UserForms
                     dataGridView2.Columns["FertilizerPrice"].HeaderText = "Giá sản phẩm";
                 }
             }
+        }
+
+        private void btn_excel(object sender, EventArgs e)
+        {
+            string outputDirectory = Path.Combine(Application.StartupPath, "output");
+            if (!Directory.Exists(outputDirectory))
+            {
+                Directory.CreateDirectory(outputDirectory);
+            }
+            string filePath = Path.Combine(outputDirectory, "OrdersAndFertilizers.xlsx");
+            using (var workbook = new ClosedXML.Excel.XLWorkbook())
+            {
+                var ordersSheet = workbook.AddWorksheet("Orders");
+                var fertilizersSheet = workbook.AddWorksheet("Fertilizers");
+                for (int i = 0; i < dataGridView1.Columns.Count; i++)
+                {
+                    ordersSheet.Cell(1, i + 1).Value = dataGridView1.Columns[i].HeaderText;
+                }
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                    {
+                        ordersSheet.Cell(i + 2, j + 1).Value = dataGridView1.Rows[i].Cells[j].Value?.ToString();
+                    }
+                }
+                for (int i = 0; i < dataGridView2.Columns.Count; i++)
+                {
+                    fertilizersSheet.Cell(1, i + 1).Value = dataGridView2.Columns[i].HeaderText;
+                }
+
+                for (int i = 0; i < dataGridView2.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataGridView2.Columns.Count; j++)
+                    {
+                        fertilizersSheet.Cell(i + 2, j + 1).Value = dataGridView2.Rows[i].Cells[j].Value?.ToString();
+                    }
+                }
+
+                workbook.SaveAs(filePath);
+            }
+            MessageBox.Show($"Excel file has been saved to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnExportBill_Click(object sender, EventArgs e)
+        {
+            // Define the output directory and file path
+            string outputDirectory = Path.Combine(Application.StartupPath, "output");
+            if (!Directory.Exists(outputDirectory))
+            {
+                Directory.CreateDirectory(outputDirectory);
+            }
+
+            string filePath = Path.Combine(outputDirectory, "BillExport.pdf");
+            string tempImagePath = Path.Combine(outputDirectory, "tempImage.png");
+
+            // Create a new PDF document
+            PdfDocument document = new PdfDocument();
+            document.Info.Title = "Exported Bill";
+
+            // Create a new page in the PDF document
+            PdfPage page = document.AddPage();
+            XGraphics gfx = XGraphics.FromPdfPage(page);
+            Bitmap bmp = new Bitmap(pnBill.Width, pnBill.Height);
+            pnBill.DrawToBitmap(bmp, new Rectangle(0, 0, pnBill.Width, pnBill.Height));
+            bmp.Save(tempImagePath, System.Drawing.Imaging.ImageFormat.Png);
+            XImage xImage = XImage.FromFile(tempImagePath);
+            gfx.DrawImage(xImage, 0, 0, page.Width, page.Height);
+            document.Save(filePath);
+            File.Delete(tempImagePath);
+            MessageBox.Show($"The bill has been exported to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
     public class FertilizerInfo

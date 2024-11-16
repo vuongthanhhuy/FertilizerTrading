@@ -48,7 +48,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.txbSearch = new System.Windows.Forms.TextBox();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnFind = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.pnBill = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel19 = new System.Windows.Forms.Panel();
@@ -82,7 +82,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.lblCusName = new System.Windows.Forms.Label();
             this.lbPrice = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.lbIdBill = new System.Windows.Forms.Label();
+            this.lbBill = new System.Windows.Forms.Label();
             this.lbId = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -90,7 +90,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.panel13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel11.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.pnBill.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel18.SuspendLayout();
             this.panel19.SuspendLayout();
@@ -109,12 +109,13 @@ namespace FertilizerTradingApp.GUI.UserForms
             // 
             // panel1
             // 
+            this.panel1.AutoSize = true;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0, 0, 0, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1904, 61);
+            this.panel1.Size = new System.Drawing.Size(1904, 51);
             this.panel1.TabIndex = 2;
             // 
             // label1
@@ -132,7 +133,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             // 
             this.panel2.BackColor = System.Drawing.Color.DarkSeaGreen;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 61);
+            this.panel2.Location = new System.Drawing.Point(0, 51);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1904, 8);
@@ -143,10 +144,10 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.panel3.Controls.Add(this.panel12);
             this.panel3.Controls.Add(this.panel11);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(0, 69);
+            this.panel3.Location = new System.Drawing.Point(0, 59);
             this.panel3.Margin = new System.Windows.Forms.Padding(2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(900, 861);
+            this.panel3.Size = new System.Drawing.Size(900, 871);
             this.panel3.TabIndex = 5;
             // 
             // panel12
@@ -155,7 +156,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel12.Location = new System.Drawing.Point(0, 69);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(900, 792);
+            this.panel12.Size = new System.Drawing.Size(900, 802);
             this.panel12.TabIndex = 9;
             // 
             // panel13
@@ -245,6 +246,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.btnExportExcel.TabIndex = 7;
             this.btnExportExcel.Text = "Xuất";
             this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btn_excel);
             // 
             // btnFind
             // 
@@ -257,15 +259,15 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.btnFind.Text = "Tìm kiếm";
             this.btnFind.UseVisualStyleBackColor = true;
             // 
-            // panel5
+            // pnBill
             // 
-            this.panel5.Controls.Add(this.panel4);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(900, 69);
-            this.panel5.Margin = new System.Windows.Forms.Padding(2);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1004, 861);
-            this.panel5.TabIndex = 2;
+            this.pnBill.Controls.Add(this.panel4);
+            this.pnBill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnBill.Location = new System.Drawing.Point(900, 59);
+            this.pnBill.Margin = new System.Windows.Forms.Padding(2);
+            this.pnBill.Name = "pnBill";
+            this.pnBill.Size = new System.Drawing.Size(1004, 871);
+            this.pnBill.TabIndex = 2;
             // 
             // panel4
             // 
@@ -438,6 +440,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.btnExportBill.TabIndex = 10;
             this.btnExportBill.Text = "Xuất hóa đơn";
             this.btnExportBill.UseVisualStyleBackColor = true;
+            this.btnExportBill.Click += new System.EventHandler(this.btnExportBill_Click);
             // 
             // btnDelete
             // 
@@ -674,7 +677,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.lbIdBill);
+            this.panel7.Controls.Add(this.lbBill);
             this.panel7.Controls.Add(this.lbId);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
@@ -682,16 +685,16 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.panel7.Size = new System.Drawing.Size(854, 53);
             this.panel7.TabIndex = 11;
             // 
-            // lbIdBill
+            // lbBill
             // 
-            this.lbIdBill.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbIdBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbIdBill.Location = new System.Drawing.Point(437, 0);
-            this.lbIdBill.Name = "lbIdBill";
-            this.lbIdBill.Size = new System.Drawing.Size(417, 53);
-            this.lbIdBill.TabIndex = 2;
-            this.lbIdBill.Text = "lbIdBill";
-            this.lbIdBill.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbBill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBill.Location = new System.Drawing.Point(437, 0);
+            this.lbBill.Name = "lbBill";
+            this.lbBill.Size = new System.Drawing.Size(417, 53);
+            this.lbBill.TabIndex = 2;
+            this.lbBill.Text = "lbBill";
+            this.lbBill.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbId
             // 
@@ -709,7 +712,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.pnBill);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -724,7 +727,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
-            this.panel5.ResumeLayout(false);
+            this.pnBill.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel18.ResumeLayout(false);
@@ -743,6 +746,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.tableLayoutPanel1.PerformLayout();
             this.panel7.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -758,10 +762,10 @@ namespace FertilizerTradingApp.GUI.UserForms
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel pnBill;
         private System.Windows.Forms.Label lbId;
         private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label lbIdBill;
+        private System.Windows.Forms.Label lbBill;
         private System.Windows.Forms.Label lbDeposit;
         private System.Windows.Forms.Label lbPrice;
         private System.Windows.Forms.Label label4;

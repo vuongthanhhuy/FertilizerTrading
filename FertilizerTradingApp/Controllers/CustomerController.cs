@@ -25,5 +25,9 @@ namespace FertilizerTradingApp.Controllers
 		{
 			return _customerService.GetCustomerById(id);
 		}
+		public List<Order> GetAllOrdersByCustomer(string customerId)
+		{
+			return _customerService.GetAllOrdersByCustomer(customerId);
+		}
 	}
 }

@@ -80,5 +80,38 @@ namespace FertilizerTradingApp.Repository
 
 			return customer;
 		}
+		public List<Order> GetAllOrdersByCustomer(string customerId)
+		{
+			List<Order> orders = new List<Order>();
+
+			using (var connection = new SqlConnection(_connectionString))
+			{
+				var query = "SELECT * FROM _Order WHERE customer_phone = @customerId";
+				var command = new SqlCommand(query, connection);
+				command.Parameters.AddWithValue("@customerId", customerId);
+
+				connection.Open();
+
+				using (var reader = command.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						var order = new Order
+						(
+							reader["order_id"].ToString(),              
+							Convert.ToSingle(reader["_total_price"]),   
+							Convert.ToDateTime(reader["_date"]),         
+							Convert.ToInt32(reader["_total_payment"]),   
+							reader["customer_phone"].ToString(),         
+							reader["account_id"].ToString()
+						);
+
+						orders.Add(order);
+					}
+				}
+			}
+
+			return orders;
+		}
 	}
 }

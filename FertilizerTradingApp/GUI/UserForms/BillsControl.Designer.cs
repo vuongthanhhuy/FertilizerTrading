@@ -43,14 +43,8 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idUser = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dayCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPriceCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.depositCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unpaidCol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.cbbSearch = new System.Windows.Forms.ComboBox();
             this.txbSearch = new System.Windows.Forms.TextBox();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnFind = new System.Windows.Forms.Button();
@@ -59,18 +53,14 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.panel18 = new System.Windows.Forms.Panel();
             this.panel19 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.nameItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.panel17 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.lbDate = new System.Windows.Forms.Label();
             this.panel16 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.lbAcc = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.btnExportBill = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -79,22 +69,21 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lb_paymis = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lbl_cusID = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lbDeposit = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lbl_cusPhone = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblCusName = new System.Windows.Forms.Label();
             this.lbPrice = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
             this.lbIdBill = new System.Windows.Forms.Label();
             this.lbId = new System.Windows.Forms.Label();
-            this.cbbSearch = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -179,6 +168,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -188,14 +178,6 @@ namespace FertilizerTradingApp.GUI.UserForms
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idCol,
-            this.idUser,
-            this.dayCol,
-            this.numCol,
-            this.totalPriceCol,
-            this.depositCol,
-            this.unpaidCol});
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -220,65 +202,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(850, 761);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // idCol
-            // 
-            this.idCol.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.idCol.HeaderText = "Mã hóa đơn";
-            this.idCol.MinimumWidth = 125;
-            this.idCol.Name = "idCol";
-            this.idCol.Width = 125;
-            // 
-            // idUser
-            // 
-            this.idUser.HeaderText = "Mã khách hàng";
-            this.idUser.MinimumWidth = 6;
-            this.idUser.Name = "idUser";
-            this.idUser.ReadOnly = true;
-            this.idUser.Width = 125;
-            // 
-            // dayCol
-            // 
-            this.dayCol.HeaderText = "Ngày xuất đơn";
-            this.dayCol.MinimumWidth = 6;
-            this.dayCol.Name = "dayCol";
-            this.dayCol.ReadOnly = true;
-            this.dayCol.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dayCol.Width = 125;
-            // 
-            // numCol
-            // 
-            this.numCol.HeaderText = "Tổng số lượng";
-            this.numCol.MinimumWidth = 6;
-            this.numCol.Name = "numCol";
-            this.numCol.ReadOnly = true;
-            this.numCol.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.numCol.Width = 125;
-            // 
-            // totalPriceCol
-            // 
-            this.totalPriceCol.HeaderText = "Đơn giá";
-            this.totalPriceCol.MinimumWidth = 6;
-            this.totalPriceCol.Name = "totalPriceCol";
-            this.totalPriceCol.ReadOnly = true;
-            this.totalPriceCol.Width = 125;
-            // 
-            // depositCol
-            // 
-            this.depositCol.HeaderText = "Số tiền đã cọc";
-            this.depositCol.MinimumWidth = 6;
-            this.depositCol.Name = "depositCol";
-            this.depositCol.ReadOnly = true;
-            this.depositCol.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.depositCol.Width = 150;
-            // 
-            // unpaidCol
-            // 
-            this.unpaidCol.HeaderText = "Số tiền còn phải trả";
-            this.unpaidCol.MinimumWidth = 6;
-            this.unpaidCol.Name = "unpaidCol";
-            this.unpaidCol.ReadOnly = true;
-            this.unpaidCol.Width = 150;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // panel11
             // 
@@ -291,6 +215,16 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(900, 69);
             this.panel11.TabIndex = 8;
+            // 
+            // cbbSearch
+            // 
+            this.cbbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbSearch.FormattingEnabled = true;
+            this.cbbSearch.Location = new System.Drawing.Point(346, 19);
+            this.cbbSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.cbbSearch.Name = "cbbSearch";
+            this.cbbSearch.Size = new System.Drawing.Size(199, 33);
+            this.cbbSearch.TabIndex = 8;
             // 
             // txbSearch
             // 
@@ -365,6 +299,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -374,11 +309,6 @@ namespace FertilizerTradingApp.GUI.UserForms
             dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nameItem,
-            this.number,
-            this.price,
-            this.totalPrice});
             dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 15F);
@@ -402,38 +332,6 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.dataGridView2.Size = new System.Drawing.Size(781, 401);
             this.dataGridView2.TabIndex = 12;
             // 
-            // nameItem
-            // 
-            this.nameItem.HeaderText = "Tên món hàng";
-            this.nameItem.MinimumWidth = 6;
-            this.nameItem.Name = "nameItem";
-            this.nameItem.ReadOnly = true;
-            this.nameItem.Width = 125;
-            // 
-            // number
-            // 
-            this.number.HeaderText = "Số lượng";
-            this.number.MinimumWidth = 6;
-            this.number.Name = "number";
-            this.number.ReadOnly = true;
-            this.number.Width = 50;
-            // 
-            // price
-            // 
-            this.price.HeaderText = "Giá tiền";
-            this.price.MinimumWidth = 6;
-            this.price.Name = "price";
-            this.price.ReadOnly = true;
-            this.price.Width = 80;
-            // 
-            // totalPrice
-            // 
-            this.totalPrice.HeaderText = "Tổng giá tiền";
-            this.totalPrice.MinimumWidth = 6;
-            this.totalPrice.Name = "totalPrice";
-            this.totalPrice.ReadOnly = true;
-            this.totalPrice.Width = 125;
-            // 
             // panel10
             // 
             this.panel10.Controls.Add(this.panel15);
@@ -456,7 +354,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             // panel17
             // 
             this.panel17.Controls.Add(this.label15);
-            this.panel17.Controls.Add(this.label16);
+            this.panel17.Controls.Add(this.lbDate);
             this.panel17.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel17.Location = new System.Drawing.Point(480, 0);
             this.panel17.Name = "panel17";
@@ -474,21 +372,21 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.label15.Text = "Ngày xuất hóa đơn";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label16
+            // lbDate
             // 
-            this.label16.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(162, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(212, 48);
-            this.label16.TabIndex = 18;
-            this.label16.Text = "label5";
-            this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbDate.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDate.Location = new System.Drawing.Point(162, 0);
+            this.lbDate.Name = "lbDate";
+            this.lbDate.Size = new System.Drawing.Size(212, 48);
+            this.lbDate.TabIndex = 18;
+            this.lbDate.Text = "label5";
+            this.lbDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel16
             // 
             this.panel16.Controls.Add(this.label11);
-            this.panel16.Controls.Add(this.label12);
+            this.panel16.Controls.Add(this.lbAcc);
             this.panel16.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel16.Location = new System.Drawing.Point(0, 0);
             this.panel16.Name = "panel16";
@@ -506,17 +404,17 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.label11.Text = "Thu ngân:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label12
+            // lbAcc
             // 
-            this.label12.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(145, 0);
-            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(212, 48);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "label12";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbAcc.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbAcc.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAcc.Location = new System.Drawing.Point(145, 0);
+            this.lbAcc.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbAcc.Name = "lbAcc";
+            this.lbAcc.Size = new System.Drawing.Size(212, 48);
+            this.lbAcc.TabIndex = 26;
+            this.lbAcc.Text = "label12";
+            this.lbAcc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel9
             // 
@@ -602,17 +500,17 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.label10, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lb_paymis, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.label4, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.label9, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lbl_cusID, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lbDeposit, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label14, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lbl_cusPhone, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label13, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblCusName, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbPrice, 3, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -624,17 +522,17 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.tableLayoutPanel1.Size = new System.Drawing.Size(641, 204);
             this.tableLayoutPanel1.TabIndex = 27;
             // 
-            // label10
+            // lb_paymis
             // 
-            this.label10.AutoSize = true;
-            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(459, 136);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(179, 68);
-            this.label10.TabIndex = 24;
-            this.label10.Text = "label7";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lb_paymis.AutoSize = true;
+            this.lb_paymis.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lb_paymis.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_paymis.Location = new System.Drawing.Point(459, 136);
+            this.lb_paymis.Name = "lb_paymis";
+            this.lb_paymis.Size = new System.Drawing.Size(179, 68);
+            this.lb_paymis.TabIndex = 24;
+            this.lb_paymis.Text = "label7";
+            this.lb_paymis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label4
             // 
@@ -673,18 +571,18 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.label2.Text = "Tên khách hàng";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label5
+            // lbl_cusID
             // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(143, 136);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(181, 68);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "label5";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl_cusID.AutoSize = true;
+            this.lbl_cusID.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_cusID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_cusID.Location = new System.Drawing.Point(143, 136);
+            this.lbl_cusID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_cusID.Name = "lbl_cusID";
+            this.lbl_cusID.Size = new System.Drawing.Size(181, 68);
+            this.lbl_cusID.TabIndex = 20;
+            this.lbl_cusID.Text = "label5";
+            this.lbl_cusID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
@@ -711,18 +609,18 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.lbDeposit.Text = "label7";
             this.lbDeposit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label14
+            // lbl_cusPhone
             // 
-            this.label14.AutoSize = true;
-            this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(143, 0);
-            this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(181, 68);
-            this.label14.TabIndex = 26;
-            this.label14.Text = "label14";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbl_cusPhone.AutoSize = true;
+            this.lbl_cusPhone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_cusPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_cusPhone.Location = new System.Drawing.Point(143, 0);
+            this.lbl_cusPhone.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_cusPhone.Name = "lbl_cusPhone";
+            this.lbl_cusPhone.Size = new System.Drawing.Size(181, 68);
+            this.lbl_cusPhone.TabIndex = 26;
+            this.lbl_cusPhone.Text = "label14";
+            this.lbl_cusPhone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
@@ -749,18 +647,18 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.label13.Text = "Mã khách hàng";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label7
+            // lblCusName
             // 
-            this.label7.AutoSize = true;
-            this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(143, 68);
-            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(181, 68);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "label7";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblCusName.AutoSize = true;
+            this.lblCusName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblCusName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCusName.Location = new System.Drawing.Point(143, 68);
+            this.lblCusName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblCusName.Name = "lblCusName";
+            this.lblCusName.Size = new System.Drawing.Size(181, 68);
+            this.lblCusName.TabIndex = 22;
+            this.lblCusName.Text = "label7";
+            this.lblCusName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbPrice
             // 
@@ -771,7 +669,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.lbPrice.Name = "lbPrice";
             this.lbPrice.Size = new System.Drawing.Size(179, 68);
             this.lbPrice.TabIndex = 15;
-            this.lbPrice.Text = "label6";
+            this.lbPrice.Text = "lblPrice";
             this.lbPrice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel7
@@ -806,16 +704,6 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.lbId.TabIndex = 1;
             this.lbId.Text = "Mã hóa đơn";
             this.lbId.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // cbbSearch
-            // 
-            this.cbbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbSearch.FormattingEnabled = true;
-            this.cbbSearch.Location = new System.Drawing.Point(346, 19);
-            this.cbbSearch.Margin = new System.Windows.Forms.Padding(2);
-            this.cbbSearch.Name = "cbbSearch";
-            this.cbbSearch.Size = new System.Drawing.Size(199, 33);
-            this.cbbSearch.TabIndex = 8;
             // 
             // BillsControl
             // 
@@ -880,28 +768,17 @@ namespace FertilizerTradingApp.GUI.UserForms
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button btnExportBill;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameItem;
-        private System.Windows.Forms.DataGridViewTextBoxColumn number;
-        private System.Windows.Forms.DataGridViewTextBoxColumn price;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalPrice;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblCusName;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbl_cusID;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lb_paymis;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lbAcc;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idUser;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dayCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalPriceCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn depositCol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unpaidCol;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lbl_cusPhone;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel9;
@@ -912,7 +789,7 @@ namespace FertilizerTradingApp.GUI.UserForms
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel14;
         private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lbDate;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Panel panel16;

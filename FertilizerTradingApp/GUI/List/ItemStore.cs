@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FertilizerTradingApp.GUI.List
 {
-    public partial class ListItemStore : UserControl
+    public partial class ItemStore : UserControl
     {
-        public ListItemStore()
+        public ItemStore()
         {
             InitializeComponent();
         }

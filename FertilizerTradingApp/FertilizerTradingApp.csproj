@@ -108,7 +108,7 @@
       <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <HintPath>..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -177,11 +177,17 @@
     <Compile Include="GUI\Forms\PurcherBill.Designer.cs">
       <DependentUpon>PurcherBill.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\List\ListItemStore.cs">
+    <Compile Include="GUI\List\ItemBasket.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GUI\List\ListItemStore.Designer.cs">
-      <DependentUpon>ListItemStore.cs</DependentUpon>
+    <Compile Include="GUI\List\ItemBasket.designer.cs">
+      <DependentUpon>ItemBasket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\List\ItemStore.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\List\ItemStore.designer.cs">
+      <DependentUpon>ItemStore.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\UserForms\CategoryControl.cs">
       <SubType>UserControl</SubType>
@@ -241,8 +247,8 @@
     <EmbeddedResource Include="GUI\Forms\PurcherBill.resx">
       <DependentUpon>PurcherBill.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUI\List\ListItemStore.resx">
-      <DependentUpon>ListItemStore.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\List\ItemBasket.resx">
+      <DependentUpon>ItemBasket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\UserForms\CategoryControl.resx">
       <DependentUpon>CategoryControl.cs</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿namespace FertilizerTradingApp.GUI.List
 {
-    partial class ListItemStore
+    partial class ItemStore
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,17 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // ListItemStore
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "ListItemStore";
-            this.Size = new System.Drawing.Size(405, 70);
-            this.ResumeLayout(false);
-
         }
 
         #endregion

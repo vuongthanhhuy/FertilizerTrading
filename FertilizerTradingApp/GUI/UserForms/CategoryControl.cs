@@ -1,4 +1,5 @@
 ﻿using FertilizerTradingApp.Controllers;
+using FertilizerTradingApp.GUI.Forms;
 using FertilizerTradingApp.Models;
 using System;
 using System.Collections.Generic;
@@ -20,9 +21,9 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             InitializeComponent();
 			_fertilizerController = new FertilizerController();
-			this.Load += CategoryControl_Load;
+			/*this.Load += CategoryControl_Load;*/
 		}
-		private void CategoryControl_Load(object sender, EventArgs e)
+		/*private void CategoryControl_Load(object sender, EventArgs e)
 		{
 			dgvFertilizers.DataSource = _fertilizerController.GetAllFertilizers();
 			dgvFertilizers.Columns["Id"].HeaderText = "Mã SP";
@@ -32,7 +33,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 			dgvFertilizers.Columns["Stock"].HeaderText = "Số lượng tồn kho";
 			dgvFertilizers.Columns["Description"].HeaderText = "Mô tả";
 			dgvFertilizers.Columns["Image"].Visible = false;
-		}
+		}*/
 
 		private void dgvFertilizers_CellContentClick(object sender, DataGridViewCellEventArgs e)
 		{
@@ -79,5 +80,17 @@ namespace FertilizerTradingApp.GUI.UserForms
 				MessageBox.Show("Ảnh không tồn tại!");
 			}
 		}
-	}
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+			AddItem addItem = new AddItem();
+			addItem.Show();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            AddItem addItem = new AddItem();
+            addItem.Show();
+        }
+    }
 }

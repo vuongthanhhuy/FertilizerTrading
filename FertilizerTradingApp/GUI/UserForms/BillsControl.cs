@@ -23,10 +23,10 @@ namespace FertilizerTradingApp.GUI.UserForms
             _itemOrderedController = new ItemOrderedController();
             _fertilizerController = new FertilizerController();
             _customerController = new CustomerController();
-            this.Load += BillsControl_Load;
+            /*this.Load += BillsControl_Load;*/
         }
 
-        private void BillsControl_Load(object sender, EventArgs e)
+        /*private void BillsControl_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = _orderController.GetAllOrders();
             dataGridView1.Columns["OrderId"].HeaderText = "Mã hóa đơn";
@@ -35,7 +35,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             dataGridView1.Columns["TotalPayment"].HeaderText = "Tổng thanh toán";
             dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại khách hàng";
             dataGridView1.Columns["AccountId"].HeaderText = "Mã tài khoản nhân viên";
-        }
+        }*/
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

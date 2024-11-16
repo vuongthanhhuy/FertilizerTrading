@@ -23,10 +23,10 @@ namespace FertilizerTradingApp.GUI.UserForms
             _itemOrderedController = new ItemOrderedController();
             _fertilizerController = new FertilizerController();
             _customerController = new CustomerController();
-            /*this.Load += BillsControl_Load;*/
+            this.Load += BillsControl_Load;
         }
 
-        /*private void BillsControl_Load(object sender, EventArgs e)
+        private void BillsControl_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = _orderController.GetAllOrders();
             dataGridView1.Columns["OrderId"].HeaderText = "Mã hóa đơn";
@@ -35,7 +35,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             dataGridView1.Columns["TotalPayment"].HeaderText = "Tổng thanh toán";
             dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại khách hàng";
             dataGridView1.Columns["AccountId"].HeaderText = "Mã tài khoản nhân viên";
-        }*/
+        }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -51,7 +51,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                     }
                 }
 
-                var rowData = dataGridView1.Rows[e.RowIndex];
+				var rowData = dataGridView1.Rows[e.RowIndex];
                 string orderId = rowData.Cells[0].Value.ToString();
 
                 Order order = _orderController.GetOrderById(orderId);
@@ -67,7 +67,6 @@ namespace FertilizerTradingApp.GUI.UserForms
                     lb_paymis.Text = paymis.ToString();
                     lbl_cusPhone.Text = order.CustomerPhone;
                     lbAcc.Text = order.AccountId;
-                    lbl_cusID.Text = order.CustomerPhone;
                     Customer customer = _customerController.GetCustomerById(order.CustomerPhone);
                     if (customer != null)
                     {
@@ -80,7 +79,6 @@ namespace FertilizerTradingApp.GUI.UserForms
                         Fertilizer fertilizer = _fertilizerController.GetFertilizerById(item.FertilizerId);
                         if (fertilizer != null)
                         {
-                            // Add the fertilizer's name and price to the list
                             fertilizersInfo.Add(new FertilizerInfo
                             {
                                 FertilizerId = item.FertilizerId,
@@ -143,7 +141,6 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void btnExportBill_Click(object sender, EventArgs e)
         {
-            // Define the output directory and file path
             string outputDirectory = Path.Combine(Application.StartupPath, "output");
             if (!Directory.Exists(outputDirectory))
             {
@@ -167,8 +164,23 @@ namespace FertilizerTradingApp.GUI.UserForms
             File.Delete(tempImagePath);
             MessageBox.Show($"The bill has been exported to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-    }
-    public class FertilizerInfo
+
+		private void btnFind_Click(object sender, EventArgs e)
+		{
+            if(txbSearch.Text.Length > 0) 
+            {
+				dataGridView1.DataSource = _orderController.FindOrder(txbSearch.Text);
+				dataGridView1.Columns["OrderId"].HeaderText = "Mã hóa đơn";
+				dataGridView1.Columns["TotalPrice"].HeaderText = "Tổng giá";
+				dataGridView1.Columns["Date"].HeaderText = "Ngày đặt hàng";
+				dataGridView1.Columns["TotalPayment"].HeaderText = "Tổng thanh toán";
+				dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại khách hàng";
+				dataGridView1.Columns["AccountId"].HeaderText = "Mã tài khoản nhân viên";
+			}
+			
+		}
+	}
+	public class FertilizerInfo
     {
         public string FertilizerId { get; set; }
         public string FertilizerName { get; set; }

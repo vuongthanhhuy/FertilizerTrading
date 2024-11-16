@@ -2,6 +2,7 @@
 using FertilizerTradingApp.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,10 @@ namespace FertilizerTradingApp.Services
 		public Fertilizer GetFertilizerById(string id)
 		{
 			return _fertilizerRepository.GetFertilizerById(id);
+		}
+		public List<Fertilizer> FindFertilizer(string str)
+		{
+			return _fertilizerRepository.FindFertilizer(str);
 		}
 	}
 }

@@ -153,6 +153,7 @@
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\FertilizerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\RevenueController.cs" />
     <Compile Include="GUI\Forms\AddItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,10 +232,12 @@
     <Compile Include="Repository\ItemOrderedRepository.cs" />
     <Compile Include="Repository\LoginRepository.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
+    <Compile Include="Repository\RevenueRepository.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\FertilizerService.cs" />
     <Compile Include="Services\LoginService.cs" />
+    <Compile Include="Services\RevenueService.cs" />
     <EmbeddedResource Include="GUI\Forms\AddItem.resx">
       <DependentUpon>AddItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -249,6 +252,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\List\ItemBasket.resx">
       <DependentUpon>ItemBasket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\List\ItemStore.resx">
+      <DependentUpon>ItemStore.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\UserForms\CategoryControl.resx">
       <DependentUpon>CategoryControl.cs</DependentUpon>

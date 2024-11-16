@@ -31,5 +31,9 @@ namespace FertilizerTradingApp.Controllers
 		{
 			return _orderService.GetOrdersByTime(startDate, endDate);
 		}
+		public List<Order> FindOrder(string str)
+		{
+			return _orderService.FindOrder(str);
+		}
 	}
 }

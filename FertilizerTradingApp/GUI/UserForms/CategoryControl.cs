@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -53,10 +54,29 @@ namespace FertilizerTradingApp.GUI.UserForms
 
 				if (fertilizer != null)
 				{
+					LoadImageIntoPictureBox(fertilizer.Image);
 					lbName.Text = fertilizer.Name;
 					label7.Text = fertilizer.Id;
-					lbPrice.Text = fertilizer.Price
+					lbPrice.Text = fertilizer.Price.ToString();
+					lbType.Text = fertilizer.Category.ToString();
+					lbNumber.Text = fertilizer.Stock.ToString();
+					lbDesc.Text = fertilizer.Description;
 				}
+			}
+		}
+		private void LoadImageIntoPictureBox(string imageName)
+		{
+			string projectPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName).FullName).FullName;
+			string imagesPath = Path.Combine(projectPath, "Resources/Fertilizer");
+			string imagePath = Path.Combine(imagesPath, imageName);
+
+			if (File.Exists(imagePath))
+			{
+				pictureBox1.Image = Image.FromFile(imagePath);
+			}
+			else
+			{
+				MessageBox.Show("Ảnh không tồn tại!");
 			}
 		}
 	}

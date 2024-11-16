@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\FertilizerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="GUI\Forms\AddItem.cs">
@@ -136,8 +137,10 @@
     <Compile Include="DTO\Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CustomerRepository.cs" />
     <Compile Include="Repository\FertilizerRepository.cs" />
     <Compile Include="Repository\LoginRepository.cs" />
+    <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\FertilizerService.cs" />
     <Compile Include="Services\LoginService.cs" />
     <EmbeddedResource Include="GUI\Forms\AddItem.resx">

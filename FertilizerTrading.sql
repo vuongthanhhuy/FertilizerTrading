@@ -1,4 +1,4 @@
-drop database if exists FertilizerTrading
+﻿drop database if exists FertilizerTrading
 go
 create database FertilizerTrading
 go
@@ -20,6 +20,9 @@ go
 create table _Customer
 (
 	customer_phone varchar(20) primary key,
+	_purchase_time int,
+	_debt float,
+	_total_bought float,
 	_name nvarchar(500),
 	_email varchar(500)
 )
@@ -100,7 +103,8 @@ go
 delete from _Fertilizer
 go
 
-exec AddFertilizer 'abc', 'abc', 'abc', 'abc', 1.1, 1
+exec AddFertilizer N'Mô tả 1', '20241116_052222_tawpf2qjnob_Fertilizer1.jpg', N'Tên 1', N'Loại 1', 300000, 3
+exec AddFertilizer N'Mô tả 2', '20241116_052222_tawpf2qjnob_Fertilizer1.jpg', N'Tên 2', N'Loại 2', 300000, 3
 go
 
 delete from _Account
@@ -108,3 +112,4 @@ go
 
 insert into _Account values ('A0000001', 'vuonggthanhhhuyy', '$2a$12$5dR7hBKWbj1O4rOt9DuRA.okJsA1g4.09.j16GS35LikHvTDydo/O')
 go
+

@@ -42,5 +42,19 @@ namespace FertilizerTradingApp.Repository
 
             return itemsOrdered;
         }
+        public void AddItemOrdered(ItemOrdered itemOrdered)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = @"INSERT INTO _ItemOrdered (_quantity, fertilizer_id, order_id) 
+                              VALUES (@Quantity, @FertilizerId, @OrderId)";
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Quantity", itemOrdered.Quantity);
+                command.Parameters.AddWithValue("@FertilizerId", itemOrdered.FertilizerId);
+                command.Parameters.AddWithValue("@OrderId", itemOrdered.OrderId);
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
     }
 }

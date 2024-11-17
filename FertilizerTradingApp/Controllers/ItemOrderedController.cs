@@ -19,5 +19,9 @@ namespace FertilizerTradingApp.Controllers
         {
             return _itemOrderedRepository.GetItemsByOrderId(orderId);
         }
+        public void AddItemOrdered(ItemOrdered item)
+        {
+            _itemOrderedRepository.AddItemOrdered(item);
+        }
     }
 }

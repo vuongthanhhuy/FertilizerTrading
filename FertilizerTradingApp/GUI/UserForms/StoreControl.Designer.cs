@@ -40,22 +40,22 @@
             this.lbAccount = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.lbRemain = new System.Windows.Forms.Label();
-            this.lbPaid = new System.Windows.Forms.Label();
             this.panel22 = new System.Windows.Forms.Panel();
             this.label57 = new System.Windows.Forms.Label();
             this.lbTotal = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label53 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
+            this.tbPaid = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnExportBill = new System.Windows.Forms.Button();
             this.btnPay = new System.Windows.Forms.Button();
             this.panel29 = new System.Windows.Forms.Panel();
             this.panel23 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.tbPhone = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel28 = new System.Windows.Forms.Panel();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -214,11 +214,11 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel1.Controls.Add(this.lbRemain, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lbPaid, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel22, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lbTotal, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label55, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.tbPaid, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(677, 0);
@@ -235,35 +235,24 @@
             // 
             this.lbRemain.AutoSize = true;
             this.lbRemain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbRemain.Location = new System.Drawing.Point(200, 96);
+            this.lbRemain.Location = new System.Drawing.Point(200, 87);
             this.lbRemain.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbRemain.Name = "lbRemain";
-            this.lbRemain.Size = new System.Drawing.Size(290, 32);
+            this.lbRemain.Size = new System.Drawing.Size(290, 41);
             this.lbRemain.TabIndex = 1;
             this.lbRemain.Text = "000000000";
             this.lbRemain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lbPaid
-            // 
-            this.lbPaid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbPaid.Location = new System.Drawing.Point(200, 51);
-            this.lbPaid.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbPaid.Name = "lbPaid";
-            this.lbPaid.Size = new System.Drawing.Size(290, 44);
-            this.lbPaid.TabIndex = 1;
-            this.lbPaid.Text = "000000000";
-            this.lbPaid.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel22
             // 
             this.panel22.AutoSize = true;
             this.panel22.Controls.Add(this.label57);
             this.panel22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel22.Location = new System.Drawing.Point(1, 96);
+            this.panel22.Location = new System.Drawing.Point(1, 87);
             this.panel22.Margin = new System.Windows.Forms.Padding(0);
             this.panel22.Name = "panel22";
             this.panel22.Padding = new System.Windows.Forms.Padding(5);
-            this.panel22.Size = new System.Drawing.Size(196, 32);
+            this.panel22.Size = new System.Drawing.Size(196, 41);
             this.panel22.TabIndex = 23;
             // 
             // label57
@@ -272,7 +261,7 @@
             this.label57.Location = new System.Drawing.Point(5, 5);
             this.label57.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(186, 22);
+            this.label57.Size = new System.Drawing.Size(186, 31);
             this.label57.TabIndex = 0;
             this.label57.Text = "Còn lại";
             // 
@@ -320,10 +309,18 @@
             this.label55.Margin = new System.Windows.Forms.Padding(0);
             this.label55.Name = "label55";
             this.label55.Padding = new System.Windows.Forms.Padding(5);
-            this.label55.Size = new System.Drawing.Size(196, 44);
+            this.label55.Size = new System.Drawing.Size(196, 35);
             this.label55.TabIndex = 0;
             this.label55.Text = "Đã thanh toán";
             this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // tbPaid
+            // 
+            this.tbPaid.Location = new System.Drawing.Point(201, 54);
+            this.tbPaid.Name = "tbPaid";
+            this.tbPaid.Size = new System.Drawing.Size(281, 29);
+            this.tbPaid.TabIndex = 24;
+            this.tbPaid.Text = "000000000";
             // 
             // panel5
             // 
@@ -385,9 +382,9 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.textBox2, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.tbPhone, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBox1, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tbName, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.label4, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -398,15 +395,15 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(912, 88);
             this.tableLayoutPanel2.TabIndex = 27;
             // 
-            // textBox2
+            // tbPhone
             // 
-            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(456, 44);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(456, 31);
-            this.textBox2.TabIndex = 3;
+            this.tbPhone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPhone.Location = new System.Drawing.Point(456, 44);
+            this.tbPhone.Margin = new System.Windows.Forms.Padding(0);
+            this.tbPhone.Name = "tbPhone";
+            this.tbPhone.Size = new System.Drawing.Size(456, 31);
+            this.tbPhone.TabIndex = 3;
             // 
             // label3
             // 
@@ -422,15 +419,15 @@
             this.label3.Text = "Tên khách hàng:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // tbName
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(456, 0);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(0);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(456, 31);
-            this.textBox1.TabIndex = 2;
+            this.tbName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbName.Location = new System.Drawing.Point(456, 0);
+            this.tbName.Margin = new System.Windows.Forms.Padding(0);
+            this.tbName.Name = "tbName";
+            this.tbName.Size = new System.Drawing.Size(456, 31);
+            this.tbName.TabIndex = 2;
             // 
             // label4
             // 
@@ -682,11 +679,10 @@
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Button btnPay;
         private System.Windows.Forms.Panel panel22;
-        private System.Windows.Forms.Label lbPaid;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.Panel panel26;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbPhone;
+        private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.Panel panel28;
@@ -709,5 +705,6 @@
         private System.Windows.Forms.Panel panel24;
         private System.Windows.Forms.FlowLayoutPanel flpItems;
         private List.ItemStore itemStore1;
+        private System.Windows.Forms.TextBox tbPaid;
     }
 }

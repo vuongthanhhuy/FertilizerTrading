@@ -70,6 +70,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                 {
                     Name = fertilizer.Name,
                     Num = "1",
+                    Id = fertilizer.Id,
                     ImageItem = LoadImage(fertilizer.Image),
                     Dock = DockStyle.Top,
                     Price = fertilizer.Price.ToString() + "vnd",
@@ -128,16 +129,14 @@ namespace FertilizerTradingApp.GUI.UserForms
                 if (flag)
                 {
                     lbAccount.Text = "{name user logged}";
-                    lbPaid.Text = "Check lai cho nay";
                     lbTotal.Text = (float.Parse(lbTotal.Text) + fertilizer.Price).ToString("F2");
-                    lbRemain.Text = "0";
+                    lbRemain.Text = (float.Parse(lbTotal.Text) - float.Parse(tbPaid.Text)).ToString("F2");
                 }
                 else
                 {
                     lbAccount.Text = "{name user logged}";
-                    lbPaid.Text = "Check lai cho nay";
                     lbTotal.Text = (float.Parse(lbTotal.Text) - fertilizer.Price).ToString("F2");
-                    lbRemain.Text = "0";
+                    lbRemain.Text = (float.Parse(lbTotal.Text) - float.Parse(tbPaid.Text)).ToString("F2");
                 }
             }
             catch (Exception ex)
@@ -179,13 +178,51 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
+                if (pnBasket.Controls.Count == 0)
+                {
+                    MessageBox.Show("Basket is empty. Please add items before proceeding to payment.", "Empty Basket", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(tbPhone.Text) || string.IsNullOrWhiteSpace(tbPaid.Text))
+                {
+                    MessageBox.Show("Customer phone and payment amount are required.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                float totalPrice = float.Parse(lbTotal.Text);
+                float totalPayment = float.Parse(tbPaid.Text);
+                string customerPhone = tbPhone.Text;
+                string accountId = "{account_logged}";
+
+                OrderController orderController = new OrderController();
+                Order order = new Order(null, totalPrice, DateTime.Now, totalPayment, customerPhone, accountId);
+                string orderId = orderController.getNewestOrderId();
+                if (string.IsNullOrEmpty(orderId))
+                {
+                    MessageBox.Show("Failed to create order. Please try again.", "Order Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                ItemOrderedController itemOrderedController = new ItemOrderedController();
+                foreach (Control control in pnBasket.Controls)
+                {
+                    if (control is ItemBasket basket)
+                    {
+                        int quantity = int.Parse(basket.Num);
+                        string fertilizerId = basket.Id;
+                        ItemOrdered item = new ItemOrdered(quantity, fertilizerId, orderId);
+                        itemOrderedController.AddItemOrdered(item);
+                    }
+                }
+                MessageBox.Show("Payment processed successfully. Order and items saved.", "Payment Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                pnBasket.Controls.Clear();
+                lbTotal.Text = "0.00";
+                tbPaid.Text = "0.00";
+                lbRemain.Text = "0.00";
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error processing payment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnFind_Click(object sender, EventArgs e)
         {
             try

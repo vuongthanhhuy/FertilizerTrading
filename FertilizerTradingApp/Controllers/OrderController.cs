@@ -31,5 +31,13 @@ namespace FertilizerTradingApp.Controllers
 		{
 			return _orderService.GetOrdersByTime(startDate, endDate);
 		}
-	}
+        public void AddOrder(Order order)
+        {
+            _orderService.AddOrder(order);
+        }
+        public string getNewestOrderId()
+        {
+            return _orderService.getNewestOrderId();
+        }
+    }
 }

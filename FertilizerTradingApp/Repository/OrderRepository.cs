@@ -113,8 +113,32 @@ namespace FertilizerTradingApp.Repository
 					}
 				}
 			}
-
 			return orders;
 		}
-	}
+        public void AddOrder(Order order)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "EXEC AddOrder @TotalPrice, @Date, @TotalPayment, @CustomerPhone, @AccountId";
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@TotalPrice", order.TotalPrice);
+                command.Parameters.AddWithValue("@Date", order.Date);
+                command.Parameters.AddWithValue("@TotalPayment", order.TotalPayment);
+                command.Parameters.AddWithValue("@CustomerPhone", order.CustomerPhone);
+                command.Parameters.AddWithValue("@AccountId", "A0000001");
+                connection.Open();
+            }
+        }
+        public string GetNewestOrderId()
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "SELECT TOP 1 order_id FROM _Order ORDER BY _date DESC";
+                var command = new SqlCommand(query, connection);
+                connection.Open();
+                var newestOrderId = command.ExecuteScalar()?.ToString();
+                return newestOrderId;
+            }
+        }
+    }
 }

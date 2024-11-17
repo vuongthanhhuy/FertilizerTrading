@@ -110,19 +110,34 @@ CREATE PROCEDURE AddOrder
     @_total_price FLOAT,
     @_date DATETIME,
     @_total_payment FLOAT,
-    @_customer_phone VARCHAR(20),
-    @_account_id VARCHAR(10)
+    @_customer_phone VARCHAR(20), -- Correct naming here for the parameter
+    @_account_id VARCHAR(10)      -- Correct naming here for the parameter
 AS
 BEGIN
-    DECLARE @nextOrderId INT;
-    SET @nextOrderId = NEXT VALUE FOR OrderIdSequence;
-    DECLARE @formattedOrderId VARCHAR(10);
-    SET @formattedOrderId = 'O' + RIGHT('000000000' + CAST(@nextOrderId AS VARCHAR(10)), 9);
+    DECLARE @newOrderID VARCHAR(10)
+    DECLARE @maxOrderID VARCHAR(10)
+    
+    SET @newOrderID = 'O000000001'
+    
+    SELECT @maxOrderID = CAST(MAX(CAST(SUBSTRING(order_id, 2, 10) AS INT)) + 1 AS VARCHAR)
+    FROM _Order
+    WHERE SUBSTRING(order_id, 1, 1) = 'O'
+    
+    IF (CAST(@maxOrderID AS INT) > CAST(SUBSTRING(@newOrderID, 2, 10) AS INT))
+    BEGIN
+        WHILE (LEN(@maxOrderID) < 9)
+        BEGIN
+            SET @maxOrderID = '0' + @maxOrderID
+        END
+        SET @newOrderID = 'O' + @maxOrderID
+    END
+    
     INSERT INTO _Order (order_id, _total_price, _date, _total_payment, customer_phone, account_id)
-    VALUES (@formattedOrderId, @_total_price, @_date, @_total_payment, @_customer_phone, @_account_id);
-END;
+    VALUES (@newOrderID, @_total_price, @_date, @_total_payment, @_customer_phone, @_account_id)
+END
 GO
-EXEC AddOrder 5000, '2024-11-17', 3000, '0854637748', 'A0000001';
+
+
 
 delete from _Fertilizer
 go
@@ -145,6 +160,5 @@ insert into _Customer values ('0854637748', 7, 200000, 1200000, N'Vương Thanh 
 insert into _Customer values ('0854637749', 8, 300000, 2300000, N'Vương Thanh Huy 2', 'vuonggthanhhhuyy2@gmail.com')
 go
 
-EXEC AddOrder 6000, '2014-11-16', 5000, '0854637748', 'A0000001';
-EXEC AddOrder 2000, '2014-11-16', 1000, '0854637748', 'A0000001';
+EXEC AddOrder 5000, '2024-11-17', 3000, '0854637748', 'A0000001';
 go

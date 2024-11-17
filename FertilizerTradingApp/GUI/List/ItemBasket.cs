@@ -22,6 +22,7 @@ namespace FertilizerTradingApp.GUI.List
         private string _num;
         private Image _img;
         private string _price;
+        private string _id;
         private float _unitPrice; // to store the unit price
 
         [Category("Data")]
@@ -30,7 +31,12 @@ namespace FertilizerTradingApp.GUI.List
             get { return _name; }
             set { _name = value; lbName.Text = value; }
         }
-
+        [Category("Data")]
+        public string Id
+        {
+            get { return _id; }
+            set { _id = value; lbId.Text = value; }
+        }
         [Category("Data")]
         public string Price
         {

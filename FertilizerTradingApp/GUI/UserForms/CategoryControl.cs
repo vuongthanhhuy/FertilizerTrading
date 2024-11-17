@@ -24,19 +24,9 @@ namespace FertilizerTradingApp.GUI.UserForms
 			_fertilizerController = new FertilizerController();
 			this.Load += CategoryControl_Load;
 		}
-		private void CategoryControl_Load(object sender, EventArgs e)
-		{
-			dgvFertilizers.DataSource = _fertilizerController.GetAllFertilizers();
-			dgvFertilizers.Columns["Id"].HeaderText = "Mã SP";
-			dgvFertilizers.Columns["Name"].HeaderText = "Tên SP";
-			dgvFertilizers.Columns["Price"].HeaderText = "Giá";
-			dgvFertilizers.Columns["Category"].HeaderText = "Phân Loại";
-			dgvFertilizers.Columns["Stock"].HeaderText = "Số lượng tồn kho";
-			dgvFertilizers.Columns["Description"].HeaderText = "Mô tả";
-			dgvFertilizers.Columns["Image"].Visible = false;
-		}
 
-        /*private void CategoryControl_Load(object sender, EventArgs e)
+
+        private void CategoryControl_Load(object sender, EventArgs e)
         {
             try
             {
@@ -53,7 +43,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             {
                 MessageBox.Show($"An error occurred while loading the fertilizers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }*/
+        }
 
         private void dgvFertilizers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {

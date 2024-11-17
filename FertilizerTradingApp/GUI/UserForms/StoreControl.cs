@@ -21,7 +21,8 @@ namespace FertilizerTradingApp.GUI.UserForms
             _fertilizerController = new FertilizerController();
             populateItems(); // Initial population of items
         }
-        private void populateItems(List<Fertilizer> fertilizers = null)
+		
+		private void populateItems(List<Fertilizer> fertilizers = null)
         {
             try
             {
@@ -50,11 +51,14 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(imagePath))
+				string projectPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName).FullName).FullName;
+				string imagesPath = Path.Combine(projectPath, "Resources/Fertilizer");
+				string imageP = Path.Combine(imagesPath, imagePath);
+				if (string.IsNullOrWhiteSpace(imagePath))
                 {
                     throw new ArgumentException("Image path is empty.");
                 }
-                return Image.FromFile(imagePath);
+                return Image.FromFile(imageP);
             }
             catch (Exception ex)
             {
@@ -116,8 +120,8 @@ namespace FertilizerTradingApp.GUI.UserForms
                 }
 
                 lbTotal.Text = total.ToString("F2");
-            }
-            catch (Exception ex)
+			}
+			catch (Exception ex)
             {
                 MessageBox.Show($"Error updating bill: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -130,13 +134,11 @@ namespace FertilizerTradingApp.GUI.UserForms
                 {
                     lbAccount.Text = "{name user logged}";
                     lbTotal.Text = (float.Parse(lbTotal.Text) + fertilizer.Price).ToString("F2");
-                    lbRemain.Text = (float.Parse(lbTotal.Text) - float.Parse(tbPaid.Text)).ToString("F2");
                 }
                 else
                 {
                     lbAccount.Text = "{name user logged}";
                     lbTotal.Text = (float.Parse(lbTotal.Text) - fertilizer.Price).ToString("F2");
-                    lbRemain.Text = (float.Parse(lbTotal.Text) - float.Parse(tbPaid.Text)).ToString("F2");
                 }
             }
             catch (Exception ex)
@@ -195,7 +197,9 @@ namespace FertilizerTradingApp.GUI.UserForms
 
                 OrderController orderController = new OrderController();
                 Order order = new Order(null, totalPrice, DateTime.Now, totalPayment, customerPhone, accountId);
-                string orderId = orderController.getNewestOrderId();
+				orderController.AddOrder(order);
+				string orderId = orderController.getNewestOrderId();
+
                 if (string.IsNullOrEmpty(orderId))
                 {
                     MessageBox.Show("Failed to create order. Please try again.", "Order Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -209,14 +213,15 @@ namespace FertilizerTradingApp.GUI.UserForms
                         int quantity = int.Parse(basket.Num);
                         string fertilizerId = basket.Id;
                         ItemOrdered item = new ItemOrdered(quantity, fertilizerId, orderId);
+
                         itemOrderedController.AddItemOrdered(item);
                     }
                 }
+                  
                 MessageBox.Show("Payment processed successfully. Order and items saved.", "Payment Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 pnBasket.Controls.Clear();
                 lbTotal.Text = "0.00";
                 tbPaid.Text = "0.00";
-                lbRemain.Text = "0.00";
             }
             catch (Exception ex)
             {

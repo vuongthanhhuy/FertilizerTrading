@@ -23,14 +23,14 @@ namespace FertilizerTradingApp.Controllers
         {
             return _orderService.GetOrderById(orderId);
         }
-		public List<Order> GetOrdersOfCustomer(DateTime startDate, DateTime endDate, string customer_phone)
-		{
-			return _orderService.GetOrdersOfCustomer(startDate, endDate, customer_phone);
-		}
-		public List<Order> GetOrdersByTime(DateTime startDate, DateTime endDate)
-		{
-			return _orderService.GetOrdersByTime(startDate, endDate);
-		}
+        public List<Order> GetOrdersOfCustomer(DateTime startDate, DateTime endDate, string customer_phone)
+        {
+            return _orderService.GetOrdersOfCustomer(startDate, endDate, customer_phone);
+        }
+        public List<Order> GetOrdersByTime(DateTime startDate, DateTime endDate)
+        {
+            return _orderService.GetOrdersByTime(startDate, endDate);
+        }
         public void AddOrder(Order order)
         {
             _orderService.AddOrder(order);
@@ -39,10 +39,9 @@ namespace FertilizerTradingApp.Controllers
         {
             return _orderService.getNewestOrderId();
         }
+        public List<Order> FindOrder(string str)
+        {
+            return _orderService.FindOrder(str);
+        }
     }
-		public List<Order> FindOrder(string str)
-		{
-			return _orderService.FindOrder(str);
-		}
-	}
 }

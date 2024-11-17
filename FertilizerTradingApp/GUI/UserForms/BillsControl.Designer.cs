@@ -2,40 +2,40 @@
 
 namespace FertilizerTradingApp.GUI.UserForms
 {
-    partial class BillsControl
-    {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class BillsControl
+	{
+		/// <summary> 
+		/// Required designer variable.
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+		/// <summary> 
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+		protected override void Dispose(bool disposing)
+		{
+			if (disposing && (components != null))
+			{
+				components.Dispose();
+			}
+			base.Dispose(disposing);
+		}
 
-        #region Component Designer generated code
+		#region Component Designer generated code
 
-        /// <summary> 
-        /// Required method for Designer support - do not modify 
-        /// the contents of this method with the code editor.
-        /// </summary>
-        private void InitializeComponent()
-        {
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+		/// <summary> 
+		/// Required method for Designer support - do not modify 
+		/// the contents of this method with the code editor.
+		/// </summary>
+		private void InitializeComponent()
+		{
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
@@ -62,6 +62,8 @@ namespace FertilizerTradingApp.GUI.UserForms
 			this.lbAcc = new System.Windows.Forms.Label();
 			this.panel9 = new System.Windows.Forms.Panel();
 			this.btnExportBill = new System.Windows.Forms.Button();
+			this.btnDelete = new System.Windows.Forms.Button();
+			this.btnEdit = new System.Windows.Forms.Button();
 			this.panel8 = new System.Windows.Forms.Panel();
 			this.panel6 = new System.Windows.Forms.Panel();
 			this.panel14 = new System.Windows.Forms.Panel();
@@ -70,7 +72,6 @@ namespace FertilizerTradingApp.GUI.UserForms
 			this.label4 = new System.Windows.Forms.Label();
 			this.label9 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.lbl_cusID = new System.Windows.Forms.Label();
 			this.lbDeposit = new System.Windows.Forms.Label();
 			this.lbl_cusPhone = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
@@ -167,35 +168,35 @@ namespace FertilizerTradingApp.GUI.UserForms
 			// dataGridView1
 			// 
 			this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
 			this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView1.Location = new System.Drawing.Point(0, 0);
 			this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.dataGridView1.Name = "dataGridView1";
-			dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+			dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
 			this.dataGridView1.RowHeadersWidth = 51;
 			this.dataGridView1.RowTemplate.Height = 24;
 			this.dataGridView1.Size = new System.Drawing.Size(1133, 937);
@@ -238,14 +239,13 @@ namespace FertilizerTradingApp.GUI.UserForms
 			// btnFind
 			// 
 			this.btnFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnFind.Location = new System.Drawing.Point(491, 25);
+			this.btnFind.Location = new System.Drawing.Point(481, 23);
 			this.btnFind.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnFind.Name = "btnFind";
 			this.btnFind.Size = new System.Drawing.Size(133, 37);
 			this.btnFind.TabIndex = 4;
 			this.btnFind.Text = "Tìm kiếm";
 			this.btnFind.UseVisualStyleBackColor = true;
-			this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
 			// 
 			// pnBill
 			// 
@@ -293,35 +293,35 @@ namespace FertilizerTradingApp.GUI.UserForms
 			// dataGridView2
 			// 
 			this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-			dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+			dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
 			this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-			dataGridViewCellStyle11.Font = new System.Drawing.Font("Tahoma", 15F);
-			dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle11;
+			dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+			dataGridViewCellStyle5.Font = new System.Drawing.Font("Tahoma", 15F);
+			dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle5;
 			this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridView2.Location = new System.Drawing.Point(0, 0);
 			this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
 			this.dataGridView2.Name = "dataGridView2";
-			dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-			dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-			dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-			dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+			dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+			dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+			dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+			dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
 			this.dataGridView2.RowHeadersWidth = 51;
 			this.dataGridView2.Size = new System.Drawing.Size(1041, 494);
 			this.dataGridView2.TabIndex = 12;
@@ -417,6 +417,8 @@ namespace FertilizerTradingApp.GUI.UserForms
 			// panel9
 			// 
 			this.panel9.Controls.Add(this.btnExportBill);
+			this.panel9.Controls.Add(this.btnDelete);
+			this.panel9.Controls.Add(this.btnEdit);
 			this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
 			this.panel9.Location = new System.Drawing.Point(0, 953);
 			this.panel9.Margin = new System.Windows.Forms.Padding(4);
@@ -428,7 +430,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 			// 
 			this.btnExportBill.AutoSize = true;
 			this.btnExportBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnExportBill.Location = new System.Drawing.Point(857, 6);
+			this.btnExportBill.Location = new System.Drawing.Point(61, 6);
 			this.btnExportBill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnExportBill.Name = "btnExportBill";
 			this.btnExportBill.Size = new System.Drawing.Size(245, 50);
@@ -436,6 +438,30 @@ namespace FertilizerTradingApp.GUI.UserForms
 			this.btnExportBill.Text = "Xuất hóa đơn";
 			this.btnExportBill.UseVisualStyleBackColor = true;
 			this.btnExportBill.Click += new System.EventHandler(this.btnExportBill_Click);
+			// 
+			// btnDelete
+			// 
+			this.btnDelete.AutoSize = true;
+			this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnDelete.Location = new System.Drawing.Point(1023, 6);
+			this.btnDelete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnDelete.Name = "btnDelete";
+			this.btnDelete.Size = new System.Drawing.Size(96, 50);
+			this.btnDelete.TabIndex = 8;
+			this.btnDelete.Text = "Xóa";
+			this.btnDelete.UseVisualStyleBackColor = true;
+			// 
+			// btnEdit
+			// 
+			this.btnEdit.AutoSize = true;
+			this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnEdit.Location = new System.Drawing.Point(891, 5);
+			this.btnEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnEdit.Name = "btnEdit";
+			this.btnEdit.Size = new System.Drawing.Size(96, 50);
+			this.btnEdit.TabIndex = 9;
+			this.btnEdit.Text = "Sửa";
+			this.btnEdit.UseVisualStyleBackColor = true;
 			// 
 			// panel8
 			// 
@@ -480,7 +506,6 @@ namespace FertilizerTradingApp.GUI.UserForms
 			this.tableLayoutPanel1.Controls.Add(this.label4, 2, 1);
 			this.tableLayoutPanel1.Controls.Add(this.label9, 2, 2);
 			this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-			this.tableLayoutPanel1.Controls.Add(this.lbl_cusID, 1, 2);
 			this.tableLayoutPanel1.Controls.Add(this.lbDeposit, 3, 1);
 			this.tableLayoutPanel1.Controls.Add(this.lbl_cusPhone, 1, 0);
 			this.tableLayoutPanel1.Controls.Add(this.label3, 2, 0);
@@ -547,17 +572,6 @@ namespace FertilizerTradingApp.GUI.UserForms
 			this.label2.TabIndex = 19;
 			this.label2.Text = "Tên khách hàng";
 			this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// lbl_cusID
-			// 
-			this.lbl_cusID.AutoSize = true;
-			this.lbl_cusID.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.lbl_cusID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbl_cusID.Location = new System.Drawing.Point(177, 166);
-			this.lbl_cusID.Name = "lbl_cusID";
-			this.lbl_cusID.Size = new System.Drawing.Size(255, 85);
-			this.lbl_cusID.TabIndex = 20;
-			this.lbl_cusID.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// lbDeposit
 			// 
@@ -703,53 +717,54 @@ namespace FertilizerTradingApp.GUI.UserForms
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
-        }
+		}
 
-        #endregion
+		#endregion
 
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button btnExportExcel;
-        private System.Windows.Forms.TextBox txbSearch;
-        private System.Windows.Forms.Button btnFind;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Panel pnBill;
-        private System.Windows.Forms.Label lbId;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label lbBill;
-        private System.Windows.Forms.Label lbDeposit;
-        private System.Windows.Forms.Label lbPrice;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button btnExportBill;
-        private System.Windows.Forms.Label lblCusName;
-        private System.Windows.Forms.Label lbl_cusID;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lb_paymis;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label lbAcc;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label lbl_cusPhone;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Label lbDate;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.Panel panel16;
-        private System.Windows.Forms.Panel panel18;
-        private System.Windows.Forms.Panel panel19;
-    }
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Panel panel2;
+		private System.Windows.Forms.Panel panel3;
+		private System.Windows.Forms.Button btnExportExcel;
+		private System.Windows.Forms.TextBox txbSearch;
+		private System.Windows.Forms.Button btnFind;
+		private System.Windows.Forms.DataGridView dataGridView1;
+		private System.Windows.Forms.Button btnDelete;
+		private System.Windows.Forms.Button btnEdit;
+		private System.Windows.Forms.Panel pnBill;
+		private System.Windows.Forms.Label lbId;
+		private System.Windows.Forms.Panel panel7;
+		private System.Windows.Forms.Label lbBill;
+		private System.Windows.Forms.Label lbDeposit;
+		private System.Windows.Forms.Label lbPrice;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.DataGridView dataGridView2;
+		private System.Windows.Forms.Button btnExportBill;
+		private System.Windows.Forms.Label lblCusName;
+		private System.Windows.Forms.Label label2;
+		private System.Windows.Forms.Label lb_paymis;
+		private System.Windows.Forms.Label label9;
+		private System.Windows.Forms.Panel panel6;
+		private System.Windows.Forms.Label lbAcc;
+		private System.Windows.Forms.Label label11;
+		private System.Windows.Forms.Label label13;
+		private System.Windows.Forms.Label lbl_cusPhone;
+		private System.Windows.Forms.Panel panel4;
+		private System.Windows.Forms.Panel panel10;
+		private System.Windows.Forms.Panel panel9;
+		private System.Windows.Forms.Panel panel8;
+		private System.Windows.Forms.Panel panel12;
+		private System.Windows.Forms.Panel panel11;
+		private System.Windows.Forms.Panel panel13;
+		private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+		private System.Windows.Forms.Panel panel14;
+		private System.Windows.Forms.Panel panel15;
+		private System.Windows.Forms.Label lbDate;
+		private System.Windows.Forms.Label label15;
+		private System.Windows.Forms.Panel panel17;
+		private System.Windows.Forms.Panel panel16;
+		private System.Windows.Forms.Panel panel18;
+		private System.Windows.Forms.Panel panel19;
+	}
 }

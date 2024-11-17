@@ -67,7 +67,6 @@ namespace FertilizerTradingApp.GUI.UserForms
                         lb_paymis.Text = paymis.ToString();
                         lbl_cusPhone.Text = order.CustomerPhone;
                         lbAcc.Text = order.AccountId;
-                        lbl_cusID.Text = order.CustomerPhone;
 
                         Customer customer = _customerController.GetCustomerById(order.CustomerPhone);
                         if (customer != null)
@@ -193,13 +192,10 @@ namespace FertilizerTradingApp.GUI.UserForms
                 MessageBox.Show($"An error occurred while exporting the bill: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    }
-    public class FertilizerInfo
-
 		private void btnFind_Click(object sender, EventArgs e)
 		{
-            if(txbSearch.Text.Length > 0) 
-            {
+			if (txbSearch.Text.Length > 0)
+			{
 				dataGridView1.DataSource = _orderController.FindOrder(txbSearch.Text);
 				dataGridView1.Columns["OrderId"].HeaderText = "Mã hóa đơn";
 				dataGridView1.Columns["TotalPrice"].HeaderText = "Tổng giá";
@@ -209,4 +205,14 @@ namespace FertilizerTradingApp.GUI.UserForms
 				dataGridView1.Columns["AccountId"].HeaderText = "Mã tài khoản nhân viên";
 			}
 		}
+	}
+    public class FertilizerInfo
+	{
+		public string FertilizerId { get; set; }
+		public string FertilizerName { get; set; }
+		public float FertilizerPrice { get; set; }
+		public int Quantity { get; set; }
+	}
+
+	
 	}

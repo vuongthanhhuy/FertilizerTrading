@@ -86,15 +86,15 @@ as
 begin
     declare @newFertilizerID varchar(10)
 	declare @maxFertilizerID varchar(10)
-	set @newFertilizerID = 'A000000001'
-	select @maxFertilizerID = cast(max(cast(substring(fertilizer_id, 2, 10) as int)) + 1 as varchar) from _Fertilizer where substring(fertilizer_id, 1, 1) = 'A'
+	set @newFertilizerID = 'F000000001'
+	select @maxFertilizerID = cast(max(cast(substring(fertilizer_id, 2, 10) as int)) + 1 as varchar) from _Fertilizer where substring(fertilizer_id, 1, 1) = 'F'
 	if (cast(@maxFertilizerID as int) > cast(substring(@newFertilizerID, 2, 10) as int))
 	begin
 		while (len(@maxFertilizerID) < 9)
 		begin
 			set @maxFertilizerID = '0' + @maxFertilizerID
 		end
-		set @newFertilizerID = 'A' + @maxFertilizerID 
+		set @newFertilizerID = 'F' + @maxFertilizerID 
 	end
     insert into _Fertilizer (fertilizer_id, _description, _image, _name, _category, _price, _stock) values (@newFertilizerID, @_description, @_image, @_name, @_category, @_price, @_stock)
 end

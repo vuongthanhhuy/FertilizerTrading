@@ -24,8 +24,19 @@ namespace FertilizerTradingApp.GUI.UserForms
             _itemOrderedController = new ItemOrderedController();
             _fertilizerController = new FertilizerController();
             _customerController = new CustomerController();
+            this.Load += BillsControl_Load;
         }
 
+        private void BillsControl_Load(object sender, EventArgs e)
+        {
+            dataGridView1.DataSource = _orderController.GetAllOrders();
+            dataGridView1.Columns["OrderId"].HeaderText = "Mã hóa đơn";
+            dataGridView1.Columns["TotalPrice"].HeaderText = "Tổng giá";
+            dataGridView1.Columns["Date"].HeaderText = "Ngày đặt hàng";
+            dataGridView1.Columns["TotalPayment"].HeaderText = "Tổng thanh toán";
+            dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại khách hàng";
+            dataGridView1.Columns["AccountId"].HeaderText = "Mã tài khoản nhân viên";
+        }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -46,7 +57,6 @@ namespace FertilizerTradingApp.GUI.UserForms
                     string orderId = rowData.Cells[0].Value.ToString();
 
                     Order order = _orderController.GetOrderById(orderId);
-
                     if (order != null)
                     {
                         int paymis = ((int)order.TotalPrice) - ((int)order.TotalPayment);
@@ -154,7 +164,6 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                // Define the output directory and file path
                 string outputDirectory = Path.Combine(Application.StartupPath, "output");
                 if (!Directory.Exists(outputDirectory))
                 {
@@ -185,12 +194,19 @@ namespace FertilizerTradingApp.GUI.UserForms
             }
         }
     }
-
     public class FertilizerInfo
-    {
-        public string FertilizerId { get; set; }
-        public string FertilizerName { get; set; }
-        public float FertilizerPrice { get; set; }
-        public int Quantity { get; set; }
-    }
-}
+
+		private void btnFind_Click(object sender, EventArgs e)
+		{
+            if(txbSearch.Text.Length > 0) 
+            {
+				dataGridView1.DataSource = _orderController.FindOrder(txbSearch.Text);
+				dataGridView1.Columns["OrderId"].HeaderText = "Mã hóa đơn";
+				dataGridView1.Columns["TotalPrice"].HeaderText = "Tổng giá";
+				dataGridView1.Columns["Date"].HeaderText = "Ngày đặt hàng";
+				dataGridView1.Columns["TotalPayment"].HeaderText = "Tổng thanh toán";
+				dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại khách hàng";
+				dataGridView1.Columns["AccountId"].HeaderText = "Mã tài khoản nhân viên";
+			}
+		}
+	}

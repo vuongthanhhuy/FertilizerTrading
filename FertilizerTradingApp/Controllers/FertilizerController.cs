@@ -29,6 +29,10 @@ namespace FertilizerTradingApp.Controllers
 		{
 			return _fertilizerService.GetFertilizerById(id);
 		}
+		public List<Fertilizer> FindFertilizer(string str)
+		{
+			return _fertilizerService.FindFertilizer(str);
+		}
 		private int ConvertToInt(string input)
 		{
 			int result;

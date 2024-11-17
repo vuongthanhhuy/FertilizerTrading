@@ -109,5 +109,40 @@ namespace FertilizerTradingApp.Repository
 
 			return fertilizer;
 		}
+		public List<Fertilizer> FindFertilizer(string str)
+		{
+			List<Fertilizer> fertilizers = new List<Fertilizer>();
+
+			using (var connection = new SqlConnection(_connectionString))
+			{
+				var query = "SELECT * FROM _Fertilizer WHERE fertilizer_id = @str OR _name LIKE '%' + @str + '%'";
+				var command = new SqlCommand(query, connection);
+
+				command.Parameters.AddWithValue("@str", str);
+
+				connection.Open();
+
+				using (var reader = command.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						var fertilizer = new Fertilizer
+						(
+							reader["fertilizer_id"].ToString(),
+							reader["_name"].ToString(),
+							Convert.ToSingle(reader["_price"]),
+							reader["_category"].ToString(),
+							Convert.ToInt32(reader["_stock"]),
+							reader["_description"].ToString(),
+							reader["_image"].ToString()
+						);
+
+						fertilizers.Add(fertilizer);
+					}
+				}
+			}
+
+			return fertilizers;
+		}
 	}
 }

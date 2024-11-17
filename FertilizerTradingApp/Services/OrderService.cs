@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
+using DocumentFormat.OpenXml.Wordprocessing;
 using FertilizerTradingApp.Models;
 using FertilizerTradingApp.Repository;
 
@@ -48,6 +50,10 @@ namespace FertilizerTradingApp.Services
 		public List<Order> GetOrdersByTime(DateTime startDate, DateTime endDate)
 		{
 			return _orderRepository.GetOrdersByTime(startDate, endDate);
+        }
+        public List<Order> FindOrder(string str)
+        {
+			return _orderRepository.FindOrder(str);
 		}
         public void AddOrder(Order order)
         {

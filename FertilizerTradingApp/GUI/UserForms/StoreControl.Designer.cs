@@ -656,7 +656,6 @@
             this.panel15.PerformLayout();
             this.pnBill.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         #endregion

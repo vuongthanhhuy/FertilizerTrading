@@ -55,5 +55,13 @@ namespace FertilizerTradingApp.Services
         {
 			return _orderRepository.FindOrder(str);
 		}
+        public void AddOrder(Order order)
+        {
+            _orderRepository.AddOrder(order);
+        }
+        public string getNewestOrderId()
+        {
+            return _orderRepository.GetNewestOrderId();
+        }
 	}
 }

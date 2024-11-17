@@ -37,6 +37,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDel = new System.Windows.Forms.Button();
             this.lbName = new System.Windows.Forms.Label();
+            this.lbPrice = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbItem)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -54,6 +55,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbPrice);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.lbName);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -132,6 +134,7 @@
             this.btnDel.TabIndex = 4;
             this.btnDel.Text = "X";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // lbName
             // 
@@ -145,7 +148,17 @@
             this.lbName.TabIndex = 5;
             this.lbName.Text = "label2";
             // 
-            // ListItemStore
+            // lbPrice
+            // 
+            this.lbPrice.AutoSize = true;
+            this.lbPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPrice.Location = new System.Drawing.Point(17, 60);
+            this.lbPrice.Name = "lbPrice";
+            this.lbPrice.Size = new System.Drawing.Size(46, 18);
+            this.lbPrice.TabIndex = 7;
+            this.lbPrice.Text = "label1";
+            // 
+            // ItemBasket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -153,10 +166,11 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pbItem);
             this.Margin = new System.Windows.Forms.Padding(0);
-            this.Name = "ListItemStore";
+            this.Name = "ItemBasket";
             this.Size = new System.Drawing.Size(1098, 123);
             ((System.ComponentModel.ISupportInitialize)(this.pbItem)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -176,5 +190,6 @@
         private System.Windows.Forms.Button btnSub;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbName;
+        private System.Windows.Forms.Label lbPrice;
     }
 }

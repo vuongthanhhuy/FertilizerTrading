@@ -100,6 +100,30 @@ begin
 end
 go
 
+CREATE SEQUENCE OrderIdSequence
+    AS INT
+    START WITH 3
+    INCREMENT BY 1;
+	go
+
+CREATE PROCEDURE AddOrder
+    @_total_price FLOAT,
+    @_date DATETIME,
+    @_total_payment FLOAT,
+    @_customer_phone VARCHAR(20),
+    @_account_id VARCHAR(10)
+AS
+BEGIN
+    DECLARE @nextOrderId INT;
+    SET @nextOrderId = NEXT VALUE FOR OrderIdSequence;
+    DECLARE @formattedOrderId VARCHAR(10);
+    SET @formattedOrderId = 'O' + RIGHT('000000000' + CAST(@nextOrderId AS VARCHAR(10)), 9);
+    INSERT INTO _Order (order_id, _total_price, _date, _total_payment, customer_phone, account_id)
+    VALUES (@formattedOrderId, @_total_price, @_date, @_total_payment, @_customer_phone, @_account_id);
+END;
+GO
+EXEC AddOrder 5000, '2024-11-17', 3000, '0854637748', 'A0000001';
+
 delete from _Fertilizer
 go
 
@@ -113,6 +137,7 @@ go
 insert into _Account values ('A0000001', 'vuonggthanhhhuyy', '$2a$12$5dR7hBKWbj1O4rOt9DuRA.okJsA1g4.09.j16GS35LikHvTDydo/O')
 go
 
+
 delete from _Customer
 go
 
@@ -120,6 +145,6 @@ insert into _Customer values ('0854637748', 7, 200000, 1200000, N'Vương Thanh 
 insert into _Customer values ('0854637749', 8, 300000, 2300000, N'Vương Thanh Huy 2', 'vuonggthanhhhuyy2@gmail.com')
 go
 
-insert into _Order values ('O000000001', 6000, '2014-11-16', 5000, '0854637748', 'A0000001')
-insert into _Order values ('O000000002', 2000, '2014-11-16', 1000, '0854637748', 'A0000001')
+EXEC AddOrder 6000, '2014-11-16', 5000, '0854637748', 'A0000001';
+EXEC AddOrder 2000, '2014-11-16', 1000, '0854637748', 'A0000001';
 go

@@ -21,6 +21,8 @@ namespace FertilizerTradingApp.GUI.List
         private string _name;
         private string _num;
         private Image _img;
+        private string _price;
+        private float _unitPrice; // to store the unit price
 
         [Category("Data")]
         public string Name
@@ -28,7 +30,14 @@ namespace FertilizerTradingApp.GUI.List
             get { return _name; }
             set { _name = value; lbName.Text = value; }
         }
-        
+
+        [Category("Data")]
+        public string Price
+        {
+            get { return _price; }
+            set { _price = value; lbPrice.Text = value; }
+        }
+
         [Category("Data")]
         public string Num
         {
@@ -43,22 +52,43 @@ namespace FertilizerTradingApp.GUI.List
             set { _img = value; pbItem.Image = value; }
         }
 
+        public float UnitPrice
+        {
+            get { return _unitPrice; }
+            set { _unitPrice = value; }
+        }
+
         #endregion
 
+        public event EventHandler ItemUpdate;
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            int num = int.Parse(btnAdd.Text);
-            btnAdd.Text = (num + 1).ToString();
+            int num = int.Parse(lbNum.Text);
+            lbNum.Text = (num + 1).ToString();
+            ItemUpdate?.Invoke(this, EventArgs.Empty);
         }
 
         private void btnSub_Click(object sender, EventArgs e)
         {
-            int num = int.Parse(btnAdd.Text);
+            int num = int.Parse(lbNum.Text);
             if (num > 1)
             {
-                btnAdd.Text = (num - 1).ToString();
+                lbNum.Text = (num - 1).ToString();
+                ItemUpdate?.Invoke(this, EventArgs.Empty);
             }
+        }
+
+        public event EventHandler ItemDeleted;
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            ItemDeleted?.Invoke(this, EventArgs.Empty);
+        }
+
+        // To get the updated price
+        public float GetUpdatedPrice()
+        {
+            return float.Parse(lbNum.Text) * _unitPrice; // updated price = quantity * unit price
         }
     }
 }

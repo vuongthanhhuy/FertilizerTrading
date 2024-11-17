@@ -250,6 +250,9 @@
     <EmbeddedResource Include="GUI\List\ItemBasket.resx">
       <DependentUpon>ItemBasket.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\List\ItemStore.resx">
+      <DependentUpon>ItemStore.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\UserForms\CategoryControl.resx">
       <DependentUpon>CategoryControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -292,8 +295,9 @@
   <ItemGroup>
     <None Include="Resources\shopping-store.png" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Resources\Fertilizer\" />
+    <None Include="Resources\Fertilizer\20241116_052222_tawpf2qjnob_Fertilizer1.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />

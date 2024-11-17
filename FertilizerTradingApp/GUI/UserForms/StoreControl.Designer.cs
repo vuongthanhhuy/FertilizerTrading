@@ -32,18 +32,18 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel30 = new System.Windows.Forms.Panel();
+            this.pnBasket = new System.Windows.Forms.Panel();
             this.panel31 = new System.Windows.Forms.Panel();
             this.panel26 = new System.Windows.Forms.Panel();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.lbAccount = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label52 = new System.Windows.Forms.Label();
-            this.label56 = new System.Windows.Forms.Label();
+            this.lbRemain = new System.Windows.Forms.Label();
+            this.lbPaid = new System.Windows.Forms.Label();
             this.panel22 = new System.Windows.Forms.Panel();
             this.label57 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
+            this.lbTotal = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label53 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
@@ -62,16 +62,17 @@
             this.panel7 = new System.Windows.Forms.Panel();
             this.lbId = new System.Windows.Forms.Label();
             this.panel25 = new System.Windows.Forms.Panel();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnPre = new System.Windows.Forms.Button();
+            this.panel24 = new System.Windows.Forms.Panel();
+            this.flpItems = new System.Windows.Forms.FlowLayoutPanel();
+            this.itemStore1 = new FertilizerTradingApp.GUI.List.ItemStore();
             this.panel15 = new System.Windows.Forms.Panel();
             this.txbSearch = new System.Windows.Forms.TextBox();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnFind = new System.Windows.Forms.Button();
             this.cbbSearch = new System.Windows.Forms.ComboBox();
-            this.panel27 = new System.Windows.Forms.Panel();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnPre = new System.Windows.Forms.Button();
-            this.panel24 = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnBill = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel31.SuspendLayout();
@@ -87,9 +88,10 @@
             this.panel28.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel25.SuspendLayout();
-            this.panel15.SuspendLayout();
-            this.panel27.SuspendLayout();
             this.panel24.SuspendLayout();
+            this.flpItems.SuspendLayout();
+            this.panel15.SuspendLayout();
+            this.pnBill.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -126,7 +128,7 @@
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel4.Controls.Add(this.panel30);
+            this.panel4.Controls.Add(this.pnBasket);
             this.panel4.Controls.Add(this.panel31);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.panel29);
@@ -138,15 +140,15 @@
             this.panel4.Size = new System.Drawing.Size(1172, 816);
             this.panel4.TabIndex = 7;
             // 
-            // panel30
+            // pnBasket
             // 
-            this.panel30.AutoScroll = true;
-            this.panel30.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel30.Location = new System.Drawing.Point(0, 209);
-            this.panel30.Name = "panel30";
-            this.panel30.Size = new System.Drawing.Size(1170, 420);
-            this.panel30.TabIndex = 28;
+            this.pnBasket.AutoScroll = true;
+            this.pnBasket.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnBasket.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnBasket.Location = new System.Drawing.Point(0, 209);
+            this.pnBasket.Name = "pnBasket";
+            this.pnBasket.Size = new System.Drawing.Size(1170, 420);
+            this.pnBasket.TabIndex = 28;
             // 
             // panel31
             // 
@@ -171,7 +173,7 @@
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.label18);
-            this.flowLayoutPanel2.Controls.Add(this.label19);
+            this.flowLayoutPanel2.Controls.Add(this.lbAccount);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -191,18 +193,18 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "Thu ngân:";
             // 
-            // label19
+            // lbAccount
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.label19.Location = new System.Drawing.Point(117, 0);
-            this.label19.Margin = new System.Windows.Forms.Padding(0);
-            this.label19.Name = "label19";
-            this.label19.Padding = new System.Windows.Forms.Padding(0, 15, 15, 15);
-            this.label19.Size = new System.Drawing.Size(105, 54);
-            this.label19.TabIndex = 1;
-            this.label19.Text = "Họ và tên";
+            this.lbAccount.AutoSize = true;
+            this.lbAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAccount.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.lbAccount.Location = new System.Drawing.Point(117, 0);
+            this.lbAccount.Margin = new System.Windows.Forms.Padding(0);
+            this.lbAccount.Name = "lbAccount";
+            this.lbAccount.Padding = new System.Windows.Forms.Padding(0, 15, 15, 15);
+            this.lbAccount.Size = new System.Drawing.Size(105, 54);
+            this.lbAccount.TabIndex = 1;
+            this.lbAccount.Text = "Họ và tên";
             // 
             // tableLayoutPanel1
             // 
@@ -211,10 +213,10 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
-            this.tableLayoutPanel1.Controls.Add(this.label52, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label56, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lbRemain, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lbPaid, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel22, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label54, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lbTotal, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel3, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label55, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -229,28 +231,28 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(493, 129);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // label52
+            // lbRemain
             // 
-            this.label52.AutoSize = true;
-            this.label52.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label52.Location = new System.Drawing.Point(200, 96);
-            this.label52.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(290, 32);
-            this.label52.TabIndex = 1;
-            this.label52.Text = "000000000Đ";
-            this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbRemain.AutoSize = true;
+            this.lbRemain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbRemain.Location = new System.Drawing.Point(200, 96);
+            this.lbRemain.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbRemain.Name = "lbRemain";
+            this.lbRemain.Size = new System.Drawing.Size(290, 32);
+            this.lbRemain.TabIndex = 1;
+            this.lbRemain.Text = "000000000";
+            this.lbRemain.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label56
+            // lbPaid
             // 
-            this.label56.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label56.Location = new System.Drawing.Point(200, 51);
-            this.label56.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(290, 44);
-            this.label56.TabIndex = 1;
-            this.label56.Text = "000000000Đ";
-            this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbPaid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbPaid.Location = new System.Drawing.Point(200, 51);
+            this.lbPaid.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbPaid.Name = "lbPaid";
+            this.lbPaid.Size = new System.Drawing.Size(290, 44);
+            this.lbPaid.TabIndex = 1;
+            this.lbPaid.Text = "000000000";
+            this.lbPaid.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel22
             // 
@@ -274,16 +276,16 @@
             this.label57.TabIndex = 0;
             this.label57.Text = "Còn lại";
             // 
-            // label54
+            // lbTotal
             // 
-            this.label54.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label54.Location = new System.Drawing.Point(200, 1);
-            this.label54.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(290, 49);
-            this.label54.TabIndex = 1;
-            this.label54.Text = "000000000Đ";
-            this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbTotal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbTotal.Location = new System.Drawing.Point(200, 1);
+            this.lbTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbTotal.Name = "lbTotal";
+            this.lbTotal.Size = new System.Drawing.Size(290, 49);
+            this.lbTotal.TabIndex = 1;
+            this.lbTotal.Text = "000000000";
+            this.lbTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel3
             // 
@@ -344,6 +346,7 @@
             this.btnExportBill.TabIndex = 10;
             this.btnExportBill.Text = "Xuất hóa đơn";
             this.btnExportBill.UseVisualStyleBackColor = true;
+            this.btnExportBill.Click += new System.EventHandler(this.btnExportBill_Click);
             // 
             // btnPay
             // 
@@ -356,6 +359,7 @@
             this.btnPay.TabIndex = 8;
             this.btnPay.Text = "Thanh toán";
             this.btnPay.UseVisualStyleBackColor = true;
+            this.btnPay.Click += new System.EventHandler(this.btnPay_Click);
             // 
             // panel29
             // 
@@ -496,68 +500,6 @@
             this.panel25.Size = new System.Drawing.Size(684, 861);
             this.panel25.TabIndex = 10;
             // 
-            // panel15
-            // 
-            this.panel15.Controls.Add(this.txbSearch);
-            this.panel15.Controls.Add(this.btnExportExcel);
-            this.panel15.Controls.Add(this.btnFind);
-            this.panel15.Controls.Add(this.cbbSearch);
-            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel15.Location = new System.Drawing.Point(0, 0);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(684, 69);
-            this.panel15.TabIndex = 10;
-            // 
-            // txbSearch
-            // 
-            this.txbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbSearch.Location = new System.Drawing.Point(28, 19);
-            this.txbSearch.Margin = new System.Windows.Forms.Padding(2);
-            this.txbSearch.Name = "txbSearch";
-            this.txbSearch.Size = new System.Drawing.Size(314, 31);
-            this.txbSearch.TabIndex = 5;
-            // 
-            // btnExportExcel
-            // 
-            this.btnExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportExcel.Location = new System.Drawing.Point(778, 20);
-            this.btnExportExcel.Margin = new System.Windows.Forms.Padding(2);
-            this.btnExportExcel.Name = "btnExportExcel";
-            this.btnExportExcel.Size = new System.Drawing.Size(100, 30);
-            this.btnExportExcel.TabIndex = 7;
-            this.btnExportExcel.Text = "Xuất";
-            this.btnExportExcel.UseVisualStyleBackColor = true;
-            // 
-            // btnFind
-            // 
-            this.btnFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFind.Location = new System.Drawing.Point(549, 20);
-            this.btnFind.Margin = new System.Windows.Forms.Padding(2);
-            this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(100, 30);
-            this.btnFind.TabIndex = 4;
-            this.btnFind.Text = "Tìm kiếm";
-            this.btnFind.UseVisualStyleBackColor = true;
-            // 
-            // cbbSearch
-            // 
-            this.cbbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbbSearch.FormattingEnabled = true;
-            this.cbbSearch.Location = new System.Drawing.Point(346, 16);
-            this.cbbSearch.Margin = new System.Windows.Forms.Padding(2);
-            this.cbbSearch.Name = "cbbSearch";
-            this.cbbSearch.Size = new System.Drawing.Size(199, 33);
-            this.cbbSearch.TabIndex = 6;
-            // 
-            // panel27
-            // 
-            this.panel27.Controls.Add(this.panel4);
-            this.panel27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel27.Location = new System.Drawing.Point(684, 69);
-            this.panel27.Name = "panel27";
-            this.panel27.Size = new System.Drawing.Size(1220, 861);
-            this.panel27.TabIndex = 11;
-            // 
             // btnNext
             // 
             this.btnNext.AutoSize = true;
@@ -584,28 +526,103 @@
             // 
             // panel24
             // 
-            this.panel24.Controls.Add(this.flowLayoutPanel1);
+            this.panel24.Controls.Add(this.flpItems);
             this.panel24.Location = new System.Drawing.Point(19, 74);
             this.panel24.Margin = new System.Windows.Forms.Padding(2);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(660, 720);
             this.panel24.TabIndex = 16;
             // 
-            // flowLayoutPanel1
+            // flpItems
             // 
-            this.flowLayoutPanel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(22, 8, 15, 8);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(660, 720);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.flpItems.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flpItems.Controls.Add(this.itemStore1);
+            this.flpItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flpItems.Location = new System.Drawing.Point(0, 0);
+            this.flpItems.Margin = new System.Windows.Forms.Padding(22, 8, 15, 8);
+            this.flpItems.Name = "flpItems";
+            this.flpItems.Size = new System.Drawing.Size(660, 720);
+            this.flpItems.TabIndex = 0;
+            // 
+            // itemStore1
+            // 
+            this.itemStore1.Image = null;
+            this.itemStore1.Location = new System.Drawing.Point(3, 3);
+            this.itemStore1.Name = "itemStore1";
+            this.itemStore1.Price = null;
+            this.itemStore1.Size = new System.Drawing.Size(150, 150);
+            this.itemStore1.TabIndex = 0;
+            // 
+            // panel15
+            // 
+            this.panel15.Controls.Add(this.txbSearch);
+            this.panel15.Controls.Add(this.btnExportExcel);
+            this.panel15.Controls.Add(this.btnFind);
+            this.panel15.Controls.Add(this.cbbSearch);
+            this.panel15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel15.Location = new System.Drawing.Point(0, 0);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(684, 69);
+            this.panel15.TabIndex = 10;
+            // 
+            // txbSearch
+            // 
+            this.txbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbSearch.Location = new System.Drawing.Point(23, 16);
+            this.txbSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.txbSearch.Name = "txbSearch";
+            this.txbSearch.Size = new System.Drawing.Size(314, 31);
+            this.txbSearch.TabIndex = 5;
+            // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportExcel.Location = new System.Drawing.Point(778, 20);
+            this.btnExportExcel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(100, 30);
+            this.btnExportExcel.TabIndex = 7;
+            this.btnExportExcel.Text = "Xuất";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            // 
+            // btnFind
+            // 
+            this.btnFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFind.Location = new System.Drawing.Point(549, 20);
+            this.btnFind.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(100, 30);
+            this.btnFind.TabIndex = 4;
+            this.btnFind.Text = "Tìm kiếm";
+            this.btnFind.UseVisualStyleBackColor = true;
+            this.btnFind.Click += new System.EventHandler(this.btnFind_Click);
+            // 
+            // cbbSearch
+            // 
+            this.cbbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbSearch.FormattingEnabled = true;
+            this.cbbSearch.Location = new System.Drawing.Point(346, 16);
+            this.cbbSearch.Margin = new System.Windows.Forms.Padding(2);
+            this.cbbSearch.Name = "cbbSearch";
+            this.cbbSearch.Size = new System.Drawing.Size(199, 33);
+            this.cbbSearch.TabIndex = 6;
+            // 
+            // pnBill
+            // 
+            this.pnBill.Controls.Add(this.panel4);
+            this.pnBill.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnBill.Location = new System.Drawing.Point(684, 69);
+            this.pnBill.Name = "pnBill";
+            this.pnBill.Size = new System.Drawing.Size(1220, 861);
+            this.pnBill.TabIndex = 11;
             // 
             // StoreControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel27);
+            this.AutoScroll = true;
+            this.AutoSize = true;
+            this.Controls.Add(this.pnBill);
             this.Controls.Add(this.panel25);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -636,10 +653,11 @@
             this.panel7.ResumeLayout(false);
             this.panel25.ResumeLayout(false);
             this.panel25.PerformLayout();
+            this.panel24.ResumeLayout(false);
+            this.flpItems.ResumeLayout(false);
             this.panel15.ResumeLayout(false);
             this.panel15.PerformLayout();
-            this.panel27.ResumeLayout(false);
-            this.panel24.ResumeLayout(false);
+            this.pnBill.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -657,14 +675,14 @@
         private System.Windows.Forms.Panel panel23;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label lbTotal;
         private System.Windows.Forms.Label label55;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label lbRemain;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Button btnPay;
         private System.Windows.Forms.Panel panel22;
-        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label lbPaid;
         private System.Windows.Forms.Label label57;
         private System.Windows.Forms.Panel panel26;
         private System.Windows.Forms.TextBox textBox2;
@@ -672,9 +690,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panel25;
         private System.Windows.Forms.Panel panel28;
-        private System.Windows.Forms.Panel panel27;
+        private System.Windows.Forms.Panel pnBill;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Panel panel30;
+        private System.Windows.Forms.Panel pnBasket;
         private System.Windows.Forms.Panel panel29;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel15;
@@ -684,11 +702,12 @@
         private System.Windows.Forms.ComboBox cbbSearch;
         private System.Windows.Forms.Panel panel31;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lbAccount;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.Button btnPre;
         private System.Windows.Forms.Panel panel24;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flpItems;
+        private List.ItemStore itemStore1;
     }
 }

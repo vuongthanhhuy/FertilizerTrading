@@ -63,6 +63,16 @@ namespace FertilizerTradingApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _20241116_052222_tawpf2qjnob_Fertilizer1 {
+            get {
+                object obj = ResourceManager.GetObject("20241116_052222_tawpf2qjnob_Fertilizer1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap shopping_store {
             get {
                 object obj = ResourceManager.GetObject("shopping-store", resourceCulture);

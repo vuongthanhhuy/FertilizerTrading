@@ -3,26 +3,30 @@ using FertilizerTradingApp.GUI.List;
 using FertilizerTradingApp.Models;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using System;
 
 namespace FertilizerTradingApp.GUI.UserForms
 {
     public partial class StoreControl : UserControl
     {
         private readonly FertilizerController _fertilizerController;
-
+        private readonly OrderController _orderController;
+        private readonly ItemOrderedController _itemOrderedController;
         public StoreControl()
         {
             InitializeComponent();
             _fertilizerController = new FertilizerController();
+            _orderController = new OrderController();
+            _itemOrderedController = new ItemOrderedController();
+
             populateItems(); // Initial population of items
         }
-		
-		private void populateItems(List<Fertilizer> fertilizers = null)
+
+        private void populateItems(List<Fertilizer> fertilizers = null)
         {
             try
             {
@@ -51,10 +55,10 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-				string projectPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName).FullName).FullName;
-				string imagesPath = Path.Combine(projectPath, "Resources/Fertilizer");
-				string imageP = Path.Combine(imagesPath, imagePath);
-				if (string.IsNullOrWhiteSpace(imagePath))
+                string projectPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName).FullName).FullName;
+                string imagesPath = Path.Combine(projectPath, "Resources/Fertilizer");
+                string imageP = Path.Combine(imagesPath, imagePath);
+                if (string.IsNullOrWhiteSpace(imagePath))
                 {
                     throw new ArgumentException("Image path is empty.");
                 }
@@ -120,8 +124,8 @@ namespace FertilizerTradingApp.GUI.UserForms
                 }
 
                 lbTotal.Text = total.ToString("F2");
-			}
-			catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show($"Error updating bill: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -195,17 +199,16 @@ namespace FertilizerTradingApp.GUI.UserForms
                 string customerPhone = tbPhone.Text;
                 string accountId = "{account_logged}";
 
-                OrderController orderController = new OrderController();
+
                 Order order = new Order(null, totalPrice, DateTime.Now, totalPayment, customerPhone, accountId);
-				orderController.AddOrder(order);
-				string orderId = orderController.getNewestOrderId();
+                _orderController.AddOrder(order);
+                string orderId = _orderController.getNewestOrderId();
 
                 if (string.IsNullOrEmpty(orderId))
                 {
                     MessageBox.Show("Failed to create order. Please try again.", "Order Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                ItemOrderedController itemOrderedController = new ItemOrderedController();
                 foreach (Control control in pnBasket.Controls)
                 {
                     if (control is ItemBasket basket)
@@ -214,10 +217,10 @@ namespace FertilizerTradingApp.GUI.UserForms
                         string fertilizerId = basket.Id;
                         ItemOrdered item = new ItemOrdered(quantity, fertilizerId, orderId);
 
-                        itemOrderedController.AddItemOrdered(item);
+                        _itemOrderedController.AddItemOrdered(item);
                     }
                 }
-                  
+
                 MessageBox.Show("Payment processed successfully. Order and items saved.", "Payment Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 pnBasket.Controls.Clear();
                 lbTotal.Text = "0.00";

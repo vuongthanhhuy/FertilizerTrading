@@ -26,7 +26,7 @@ namespace FertilizerTradingApp.GUI.List
         private float _unitPrice; // to store the unit price
 
         [Category("Data")]
-        public string Name
+        public new string Name
         {
             get { return _name; }
             set { _name = value; lbName.Text = value; }

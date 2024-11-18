@@ -2,14 +2,8 @@
 using FertilizerTradingApp.GUI.Forms;
 using FertilizerTradingApp.Models;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FertilizerTradingApp.GUI.UserForms
@@ -21,10 +15,9 @@ namespace FertilizerTradingApp.GUI.UserForms
         public categoryControl()
         {
             InitializeComponent();
-			_fertilizerController = new FertilizerController();
-			this.Load += CategoryControl_Load;
-		}
-
+            _fertilizerController = new FertilizerController();
+            this.Load += CategoryControl_Load;
+        }
 
         private void CategoryControl_Load(object sender, EventArgs e)
         {
@@ -104,6 +97,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                 MessageBox.Show($"An error occurred while loading the image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -116,6 +110,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                 MessageBox.Show($"An error occurred while opening the AddItem form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void btnEdit_Click(object sender, EventArgs e)
         {
             try
@@ -129,19 +124,19 @@ namespace FertilizerTradingApp.GUI.UserForms
             }
         }
 
-		private void button2_Click(object sender, EventArgs e)
-		{
-			if(textBox1.Text.Length > 0)
-			{
-				dgvFertilizers.DataSource = _fertilizerController.FindFertilizer(textBox1.Text);
-				dgvFertilizers.Columns["Id"].HeaderText = "Mã SP";
-				dgvFertilizers.Columns["Name"].HeaderText = "Tên SP";
-				dgvFertilizers.Columns["Price"].HeaderText = "Giá";
-				dgvFertilizers.Columns["Category"].HeaderText = "Phân Loại";
-				dgvFertilizers.Columns["Stock"].HeaderText = "Số lượng tồn kho";
-				dgvFertilizers.Columns["Description"].HeaderText = "Mô tả";
-				dgvFertilizers.Columns["Image"].Visible = false;
-			}
-		}
-	}
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length > 0)
+            {
+                dgvFertilizers.DataSource = _fertilizerController.FindFertilizer(textBox1.Text);
+                dgvFertilizers.Columns["Id"].HeaderText = "Mã SP";
+                dgvFertilizers.Columns["Name"].HeaderText = "Tên SP";
+                dgvFertilizers.Columns["Price"].HeaderText = "Giá";
+                dgvFertilizers.Columns["Category"].HeaderText = "Phân Loại";
+                dgvFertilizers.Columns["Stock"].HeaderText = "Số lượng tồn kho";
+                dgvFertilizers.Columns["Description"].HeaderText = "Mô tả";
+                dgvFertilizers.Columns["Image"].Visible = false;
+            }
+        }
+    }
 }

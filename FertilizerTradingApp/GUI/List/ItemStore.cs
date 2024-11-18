@@ -18,7 +18,7 @@ namespace FertilizerTradingApp.GUI.List
         private Image _image;
 
         [Category("Data")]
-        public string Name
+        public new string Name
         {
             get { return _name; }
             set { _name = value; lbName.Text = value; }

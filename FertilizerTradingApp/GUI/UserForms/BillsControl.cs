@@ -2,20 +2,20 @@
 using FertilizerTradingApp.Models;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using System;
 
 namespace FertilizerTradingApp.GUI.UserForms
 {
     public partial class BillsControl : UserControl
     {
-        private OrderController _orderController;
-        private ItemOrderedController _itemOrderedController;
-        private FertilizerController _fertilizerController;
-        private CustomerController _customerController;
+        private readonly OrderController _orderController;
+        private readonly ItemOrderedController _itemOrderedController;
+        private readonly FertilizerController _fertilizerController;
+        private readonly CustomerController _customerController;
 
         public BillsControl()
         {
@@ -29,80 +29,107 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void BillsControl_Load(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = _orderController.GetAllOrders();
-            dataGridView1.Columns["OrderId"].HeaderText = "Mã hóa đơn";
-            dataGridView1.Columns["TotalPrice"].HeaderText = "Tổng giá";
-            dataGridView1.Columns["Date"].HeaderText = "Ngày đặt hàng";
-            dataGridView1.Columns["TotalPayment"].HeaderText = "Tổng thanh toán";
-            dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại khách hàng";
-            dataGridView1.Columns["AccountId"].HeaderText = "Mã tài khoản nhân viên";
+            PopulateOrderGrid();
         }
+
+        private void PopulateOrderGrid()
+        {
+            var orders = _orderController.GetAllOrders();
+            dataGridView1.DataSource = orders;
+            SetOrderGridColumnHeaders();
+        }
+
+        private void SetOrderGridColumnHeaders()
+        {
+            var headers = new Dictionary<string, string>
+            {
+                { "OrderId", "Mã hóa đơn" },
+                { "TotalPrice", "Tổng giá" },
+                { "Date", "Ngày đặt hàng" },
+                { "TotalPayment", "Tổng thanh toán" },
+                { "CustomerPhone", "Số điện thoại khách hàng" },
+                { "AccountId", "Mã tài khoản nhân viên" }
+            };
+
+            foreach (var header in headers)
+            {
+                dataGridView1.Columns[header.Key].HeaderText = header.Value;
+            }
+        }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                HandleOrderSelection(e.RowIndex);
+            }
+        }
+
+        private void HandleOrderSelection(int rowIndex)
+        {
+            var selectedRow = dataGridView1.Rows[rowIndex];
+            var orderId = selectedRow.Cells["OrderId"].Value.ToString();
+            var order = _orderController.GetOrderById(orderId);
+
+            if (order != null)
+            {
+                DisplayOrderDetails(order);
+                LoadFertilizerDetails(orderId);
+            }
+        }
+
+        private void DisplayOrderDetails(Order order)
+        {
+            var paymis = order.TotalPrice - order.TotalPayment;
+            lbBill.Text = order.OrderId;
+            lbPrice.Text = order.TotalPrice.ToString("C");
+            lbDate.Text = order.Date.ToShortDateString();
+            lbDeposit.Text = order.TotalPayment.ToString("C");
+            lb_paymis.Text = paymis.ToString();
+            lbl_cusPhone.Text = order.CustomerPhone;
+            lbAcc.Text = order.AccountId;
+
+            var customer = _customerController.GetCustomerById(order.CustomerPhone);
+            lblCusName.Text = customer?.Name ?? "Unknown";
+        }
+
+        private void LoadFertilizerDetails(string orderId)
+        {
+            var itemsOrdered = _itemOrderedController.GetItemsByOrderId(orderId);
+            var fertilizersInfo = new List<FertilizerInfo>();
+
+            foreach (var item in itemsOrdered)
+            {
+                var fertilizer = _fertilizerController.GetFertilizerById(item.FertilizerId);
+                if (fertilizer != null)
                 {
-                    dataGridView1.Rows[e.RowIndex].Selected = true;
-
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    fertilizersInfo.Add(new FertilizerInfo
                     {
-                        if (row.Index != e.RowIndex)
-                        {
-                            row.Selected = false;
-                        }
-                    }
-
-                    var rowData = dataGridView1.Rows[e.RowIndex];
-                    string orderId = rowData.Cells[0].Value.ToString();
-
-                    Order order = _orderController.GetOrderById(orderId);
-                    if (order != null)
-                    {
-                        int paymis = ((int)order.TotalPrice) - ((int)order.TotalPayment);
-                        lbBill.Text = order.OrderId;
-                        lbPrice.Text = order.TotalPrice.ToString("C");
-                        lbDate.Text = order.Date.ToShortDateString();
-                        lbDeposit.Text = order.TotalPayment.ToString("C");
-                        lb_paymis.Text = paymis.ToString();
-                        lbl_cusPhone.Text = order.CustomerPhone;
-                        lbAcc.Text = order.AccountId;
-
-                        Customer customer = _customerController.GetCustomerById(order.CustomerPhone);
-                        if (customer != null)
-                        {
-                            lblCusName.Text = customer.Name;
-                        }
-
-                        List<ItemOrdered> itemsOrdered = _itemOrderedController.GetItemsByOrderId(orderId);
-                        List<FertilizerInfo> fertilizersInfo = new List<FertilizerInfo>();
-
-                        foreach (var item in itemsOrdered)
-                        {
-                            Fertilizer fertilizer = _fertilizerController.GetFertilizerById(item.FertilizerId);
-                            if (fertilizer != null)
-                            {
-                                fertilizersInfo.Add(new FertilizerInfo
-                                {
-                                    FertilizerId = item.FertilizerId,
-                                    Quantity = item.Quantity,
-                                    FertilizerName = fertilizer.Name,
-                                    FertilizerPrice = fertilizer.Price
-                                });
-                            }
-                        }
-
-                        dataGridView2.DataSource = fertilizersInfo;
-                        dataGridView2.Columns["FertilizerId"].HeaderText = "Mã sản phẩm";
-                        dataGridView2.Columns["FertilizerName"].HeaderText = "Tên sản phẩm";
-                        dataGridView2.Columns["Quantity"].HeaderText = "Số lượng";
-                        dataGridView2.Columns["FertilizerPrice"].HeaderText = "Giá sản phẩm";
-                    }
+                        FertilizerId = item.FertilizerId,
+                        Quantity = item.Quantity,
+                        FertilizerName = fertilizer.Name,
+                        FertilizerPrice = fertilizer.Price
+                    });
                 }
             }
-            catch (Exception ex)
+
+            dataGridView2.DataSource = fertilizersInfo;
+            SetFertilizerGridColumnHeaders();
+        }
+
+        private void SetFertilizerGridColumnHeaders()
+        {
+            var headers = new Dictionary<string, string>
             {
-                MessageBox.Show($"An error occurred while loading the order details: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                { "FertilizerId", "Mã sản phẩm" },
+                { "FertilizerName", "Tên sản phẩm" },
+                { "Quantity", "Số lượng" },
+                { "FertilizerPrice", "Giá sản phẩm" }
+            };
+
+            foreach (var header in headers)
+            {
+                dataGridView2.Columns[header.Key].HeaderText = header.Value;
             }
         }
 
@@ -110,52 +137,47 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                string outputDirectory = Path.Combine(Application.StartupPath, "output");
-                if (!Directory.Exists(outputDirectory))
-                {
-                    Directory.CreateDirectory(outputDirectory);
-                }
-
-                string filePath = Path.Combine(outputDirectory, "OrdersAndFertilizers.xlsx");
-                using (var workbook = new ClosedXML.Excel.XLWorkbook())
-                {
-                    var ordersSheet = workbook.AddWorksheet("Orders");
-                    var fertilizersSheet = workbook.AddWorksheet("Fertilizers");
-
-                    for (int i = 0; i < dataGridView1.Columns.Count; i++)
-                    {
-                        ordersSheet.Cell(1, i + 1).Value = dataGridView1.Columns[i].HeaderText;
-                    }
-
-                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                    {
-                        for (int j = 0; j < dataGridView1.Columns.Count; j++)
-                        {
-                            ordersSheet.Cell(i + 2, j + 1).Value = dataGridView1.Rows[i].Cells[j].Value?.ToString();
-                        }
-                    }
-
-                    for (int i = 0; i < dataGridView2.Columns.Count; i++)
-                    {
-                        fertilizersSheet.Cell(1, i + 1).Value = dataGridView2.Columns[i].HeaderText;
-                    }
-
-                    for (int i = 0; i < dataGridView2.Rows.Count; i++)
-                    {
-                        for (int j = 0; j < dataGridView2.Columns.Count; j++)
-                        {
-                            fertilizersSheet.Cell(i + 2, j + 1).Value = dataGridView2.Rows[i].Cells[j].Value?.ToString();
-                        }
-                    }
-
-                    workbook.SaveAs(filePath);
-                }
-
-                MessageBox.Show($"Excel file has been saved to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ExportToExcel();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while exporting to Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError("An error occurred while exporting to Excel", ex);
+            }
+        }
+
+        private void ExportToExcel()
+        {
+            string outputDirectory = Path.Combine(Application.StartupPath, "output");
+            Directory.CreateDirectory(outputDirectory);
+
+            string filePath = Path.Combine(outputDirectory, "OrdersAndFertilizers.xlsx");
+            using (var workbook = new ClosedXML.Excel.XLWorkbook())
+            {
+                var ordersSheet = workbook.AddWorksheet("Orders");
+                var fertilizersSheet = workbook.AddWorksheet("Fertilizers");
+
+                ExportGridToExcel(ordersSheet, dataGridView1);
+                ExportGridToExcel(fertilizersSheet, dataGridView2);
+
+                workbook.SaveAs(filePath);
+            }
+
+            MessageBox.Show($"Excel file has been saved to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ExportGridToExcel(ClosedXML.Excel.IXLWorksheet sheet, DataGridView grid)
+        {
+            for (int i = 0; i < grid.Columns.Count; i++)
+            {
+                sheet.Cell(1, i + 1).Value = grid.Columns[i].HeaderText;
+            }
+
+            for (int i = 0; i < grid.Rows.Count; i++)
+            {
+                for (int j = 0; j < grid.Columns.Count; j++)
+                {
+                    sheet.Cell(i + 2, j + 1).Value = grid.Rows[i].Cells[j].Value?.ToString();
+                }
             }
         }
 
@@ -163,56 +185,49 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                string outputDirectory = Path.Combine(Application.StartupPath, "output");
-                if (!Directory.Exists(outputDirectory))
-                {
-                    Directory.CreateDirectory(outputDirectory);
-                }
-
-                string filePath = Path.Combine(outputDirectory, "BillExport.pdf");
-                string tempImagePath = Path.Combine(outputDirectory, "tempImage.png");
-
-                PdfDocument document = new PdfDocument();
-                document.Info.Title = "Exported Bill";
-
-                PdfPage page = document.AddPage();
-                XGraphics gfx = XGraphics.FromPdfPage(page);
-                Bitmap bmp = new Bitmap(pnBill.Width, pnBill.Height);
-                pnBill.DrawToBitmap(bmp, new Rectangle(0, 0, pnBill.Width, pnBill.Height));
-                bmp.Save(tempImagePath, System.Drawing.Imaging.ImageFormat.Png);
-                XImage xImage = XImage.FromFile(tempImagePath);
-                gfx.DrawImage(xImage, 0, 0, page.Width, page.Height);
-                document.Save(filePath);
-                File.Delete(tempImagePath);
-
-                MessageBox.Show($"The bill has been exported to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ExportBillToPdf();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while exporting the bill: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError("An error occurred while exporting the bill", ex);
             }
         }
-		private void btnFind_Click(object sender, EventArgs e)
-		{
-			if (txbSearch.Text.Length > 0)
-			{
-				dataGridView1.DataSource = _orderController.FindOrder(txbSearch.Text);
-				dataGridView1.Columns["OrderId"].HeaderText = "Mã hóa đơn";
-				dataGridView1.Columns["TotalPrice"].HeaderText = "Tổng giá";
-				dataGridView1.Columns["Date"].HeaderText = "Ngày đặt hàng";
-				dataGridView1.Columns["TotalPayment"].HeaderText = "Tổng thanh toán";
-				dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại khách hàng";
-				dataGridView1.Columns["AccountId"].HeaderText = "Mã tài khoản nhân viên";
-			}
-		}
-	}
-    public class FertilizerInfo
-	{
-		public string FertilizerId { get; set; }
-		public string FertilizerName { get; set; }
-		public float FertilizerPrice { get; set; }
-		public int Quantity { get; set; }
-	}
 
-	
-	}
+        private void ExportBillToPdf()
+        {
+            string outputDirectory = Path.Combine(Application.StartupPath, "output");
+            Directory.CreateDirectory(outputDirectory);
+
+            string filePath = Path.Combine(outputDirectory, "BillExport.pdf");
+            string tempImagePath = Path.Combine(outputDirectory, "tempImage.png");
+
+            var document = new PdfDocument { Info = { Title = "Exported Bill" } };
+            var page = document.AddPage();
+            var gfx = XGraphics.FromPdfPage(page);
+            var bmp = new Bitmap(pnBill.Width, pnBill.Height);
+            pnBill.DrawToBitmap(bmp, new Rectangle(0, 0, pnBill.Width, pnBill.Height));
+            bmp.Save(tempImagePath, System.Drawing.Imaging.ImageFormat.Png);
+
+            var xImage = XImage.FromFile(tempImagePath);
+            gfx.DrawImage(xImage, 0, 0, page.Width, page.Height);
+            document.Save(filePath);
+            File.Delete(tempImagePath);
+
+            MessageBox.Show($"The bill has been exported to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ShowError(string message, Exception ex)
+        {
+            MessageBox.Show($"{message}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnFind_Click(object sender, EventArgs e)
+        {
+            if (txbSearch.Text.Length > 0)
+            {
+                dataGridView1.DataSource = _orderController.FindOrder(txbSearch.Text);
+                SetOrderGridColumnHeaders();
+            }
+        }
+    }
+}

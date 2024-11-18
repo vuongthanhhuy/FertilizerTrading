@@ -108,7 +108,7 @@
       <HintPath>..\packages\SixLabors.Fonts.1.0.0\lib\netstandard2.0\SixLabors.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -154,6 +154,7 @@
     <Compile Include="Controllers\FertilizerController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RevenueController.cs" />
+    <Compile Include="DTO\FertilizerInfo.cs" />
     <Compile Include="GUI\Forms\AddItem.cs">
       <SubType>Form</SubType>
     </Compile>

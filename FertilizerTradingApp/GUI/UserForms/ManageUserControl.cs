@@ -2,6 +2,7 @@
 using FertilizerTradingApp.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 namespace FertilizerTradingApp.GUI.UserForms
@@ -162,6 +163,41 @@ namespace FertilizerTradingApp.GUI.UserForms
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while searching for the customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string outputDirectory = Path.Combine(Application.StartupPath, "output");
+                Directory.CreateDirectory(outputDirectory);
+                string filePath = Path.Combine(outputDirectory, "Customers.xlsx");
+                using (var workbook = new ClosedXML.Excel.XLWorkbook())
+                {
+                    var customersSheet = workbook.AddWorksheet("Customers");
+                    ExportGridToExcel(customersSheet, dataGridView1);
+                    workbook.SaveAs(filePath);
+                }
+                MessageBox.Show($"Excel file has been saved to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while exporting to Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void ExportGridToExcel(ClosedXML.Excel.IXLWorksheet sheet, DataGridView grid)
+        {
+            for (int i = 0; i < grid.Columns.Count; i++)
+            {
+                sheet.Cell(1, i + 1).Value = grid.Columns[i].HeaderText;
+            }
+            for (int i = 0; i < grid.Rows.Count; i++)
+            {
+                for (int j = 0; j < grid.Columns.Count; j++)
+                {
+                    sheet.Cell(i + 2, j + 1).Value = grid.Rows[i].Cells[j].Value?.ToString();
+                }
             }
         }
     }

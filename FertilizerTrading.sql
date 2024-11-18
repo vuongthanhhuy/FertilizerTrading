@@ -20,7 +20,7 @@ go
 create table _Customer
 (
 	customer_phone varchar(20) primary key,
-	_purchase_time int,
+	_purchase_time Date,
 	_debt float,
 	_total_bought float,
 	_name nvarchar(500),
@@ -156,8 +156,8 @@ go
 delete from _Customer
 go
 
-insert into _Customer values ('0854637748', 7, 200000, 1200000, N'Vương Thanh Huy 1', 'vuonggthanhhhuyy1@gmail.com')
-insert into _Customer values ('0854637749', 8, 300000, 2300000, N'Vương Thanh Huy 2', 'vuonggthanhhhuyy2@gmail.com')
+insert into _Customer values ('0854637748', '11-18-2024', 200000, 1200000, N'Vương Thanh Huy 1', 'vuonggthanhhhuyy1@gmail.com')
+insert into _Customer values ('0854637749', '11-18-2024', 300000, 2300000, N'Vương Thanh Huy 2', 'vuonggthanhhhuyy2@gmail.com')
 go
 
 EXEC AddOrder 5000, '2024-11-17', 3000, '0854637748', 'A0000001';

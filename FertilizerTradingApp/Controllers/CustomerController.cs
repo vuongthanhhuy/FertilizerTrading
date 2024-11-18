@@ -29,5 +29,13 @@ namespace FertilizerTradingApp.Controllers
 		{
 			return _customerService.GetAllOrdersByCustomer(customerId);
 		}
-	}
+		public void AddCustomer(Customer customer)
+		{
+			_customerService.AddCustomer(customer);
+		}
+		public void UpdateCustomer(Customer customer)
+		{
+			_customerService.UpdateCustomer(customer);
+		}
+    }
 }

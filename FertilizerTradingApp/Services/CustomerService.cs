@@ -28,5 +28,12 @@ namespace FertilizerTradingApp.Services
 		{
 			return _customerRepository.GetAllOrdersByCustomer(customerId);
 		}
-	}
+		public void AddCustomer(Customer customer) {
+			_customerRepository.AddCustomer(customer);
+		}
+		public void UpdateCustomer(Customer customer)
+		{
+			_customerRepository.UpdateCustomer(customer);
+		}
+    }
 }

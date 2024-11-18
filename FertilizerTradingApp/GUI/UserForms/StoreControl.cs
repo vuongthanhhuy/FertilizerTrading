@@ -16,14 +16,15 @@ namespace FertilizerTradingApp.GUI.UserForms
         private readonly FertilizerController _fertilizerController;
         private readonly OrderController _orderController;
         private readonly ItemOrderedController _itemOrderedController;
+        private readonly CustomerController _customerController;
         public StoreControl()
         {
             InitializeComponent();
             _fertilizerController = new FertilizerController();
             _orderController = new OrderController();
             _itemOrderedController = new ItemOrderedController();
-
-            populateItems(); // Initial population of items
+            _customerController = new CustomerController();
+            populateItems(); 
         }
 
         private void populateItems(List<Fertilizer> fertilizers = null)
@@ -198,12 +199,27 @@ namespace FertilizerTradingApp.GUI.UserForms
                 float totalPayment = float.Parse(tbPaid.Text);
                 string customerPhone = tbPhone.Text;
                 string accountId = "{account_logged}";
+                var customer = _customerController.GetCustomerById(customerPhone);
+                if (customer == null)
+                {
+                    customer = new Customer(customerPhone, DateTime.Now, totalPrice - totalPayment, totalPrice, tbName.Text, null);
+                    _customerController.AddCustomer(customer);
+                }
+                else
+                {
+                    float updatedDebt = customer.Debt - totalPayment;
+                    float updatedTotalBought = customer.TotalBought + totalPrice;
 
+                    customer.Debt = updatedDebt < 0 ? 0 : updatedDebt; // Avoid negative debt
+                    customer.TotalBought = updatedTotalBought;
+                    customer.PurchaseTime = DateTime.Now;
+                    customer.Name = tbName.Text; // Update name if provided
 
+                    _customerController.UpdateCustomer(customer); // Ensure this method exists in your controller
+                }
                 Order order = new Order(null, totalPrice, DateTime.Now, totalPayment, customerPhone, accountId);
                 _orderController.AddOrder(order);
                 string orderId = _orderController.getNewestOrderId();
-
                 if (string.IsNullOrEmpty(orderId))
                 {
                     MessageBox.Show("Failed to create order. Please try again.", "Order Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -216,11 +232,9 @@ namespace FertilizerTradingApp.GUI.UserForms
                         int quantity = int.Parse(basket.Num);
                         string fertilizerId = basket.Id;
                         ItemOrdered item = new ItemOrdered(quantity, fertilizerId, orderId);
-
                         _itemOrderedController.AddItemOrdered(item);
                     }
                 }
-
                 MessageBox.Show("Payment processed successfully. Order and items saved.", "Payment Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 pnBasket.Controls.Clear();
                 lbTotal.Text = "0.00";
@@ -233,23 +247,85 @@ namespace FertilizerTradingApp.GUI.UserForms
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
-            try
+            //try
+            //{
+            //    string key = txbSearch.Text.Trim().ToLower();
+            //    if (!string.IsNullOrEmpty(key))
+            //    {
+            //        List<Fertilizer> filteredFertilizers = _fertilizerController.GetAllFertilizers()
+            //            .FindAll(f => f.Name.ToLower().Contains(key));
+            //        populateItems(filteredFertilizers);
+            //    }
+            //    else
+            //    {
+            //        populateItems();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error searching items: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+
+
+             try
             {
-                string key = txbSearch.Text.Trim().ToLower();
-                if (!string.IsNullOrEmpty(key))
+                if (pnBasket.Controls.Count == 0)
                 {
-                    List<Fertilizer> filteredFertilizers = _fertilizerController.GetAllFertilizers()
-                        .FindAll(f => f.Name.ToLower().Contains(key));
-                    populateItems(filteredFertilizers);
+                    MessageBox.Show("Basket is empty. Please add items before proceeding to payment.", "Empty Basket", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(tbPhone.Text) || string.IsNullOrWhiteSpace(tbPaid.Text))
+                {
+                    MessageBox.Show("Customer phone and payment amount are required.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                float totalPrice = float.Parse(lbTotal.Text);
+                float totalPayment = float.Parse(tbPaid.Text);
+                string customerPhone = tbPhone.Text;
+                string accountId = "{account_logged}";
+                var customer = _customerController.GetCustomerById(customerPhone);
+                if (customer == null)
+                {
+                    customer = new Customer(customerPhone, DateTime.Now, totalPrice - totalPayment, totalPrice, tbName.Text, null);
+                    _customerController.AddCustomer(customer);
                 }
                 else
                 {
-                    populateItems();
+                    float updatedDebt = customer.Debt + (totalPrice-totalPayment);
+                    float updatedTotalBought = customer.TotalBought + totalPrice;
+                    customer.Debt = updatedDebt < 0 ? 0 : updatedDebt;
+                    customer.TotalBought = updatedTotalBought;
+                    customer.PurchaseTime = DateTime.Now;
+                    customer.Name = tbName.Text; 
+
+                    _customerController.UpdateCustomer(customer);
                 }
+                Order order = new Order(null, totalPrice, DateTime.Now, totalPayment, customerPhone, accountId);
+                _orderController.AddOrder(order);
+                string orderId = _orderController.getNewestOrderId();
+                if (string.IsNullOrEmpty(orderId))
+                {
+                    MessageBox.Show("Failed to create order. Please try again.", "Order Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                foreach (Control control in pnBasket.Controls)
+                {
+                    if (control is ItemBasket basket)
+                    {
+                        int quantity = int.Parse(basket.Num);
+                        string fertilizerId = basket.Id;
+                        ItemOrdered item = new ItemOrdered(quantity, fertilizerId, orderId);
+                        _itemOrderedController.AddItemOrdered(item);
+                    }
+                }
+                MessageBox.Show("Payment processed successfully. Order and items saved.", "Payment Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                pnBasket.Controls.Clear();
+                lbTotal.Text = "0.00";
+                tbPaid.Text = "0.00";
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error searching items: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error processing payment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

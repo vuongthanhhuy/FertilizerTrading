@@ -138,5 +138,48 @@ namespace FertilizerTradingApp.GUI.UserForms
                 dgvFertilizers.Columns["Image"].Visible = false;
             }
         }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ExportToExcel();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while exporting to Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ExportToExcel()
+        {
+            string outputDirectory = Path.Combine(Application.StartupPath, "output");
+            Directory.CreateDirectory(outputDirectory);
+
+            string filePath = Path.Combine(outputDirectory, "Fertilizers.xlsx");
+
+            using (var workbook = new ClosedXML.Excel.XLWorkbook())
+            {
+                var fertilizersSheet = workbook.AddWorksheet("Fertilizers");
+                ExportGridToExcel(fertilizersSheet, dgvFertilizers);
+                workbook.SaveAs(filePath);
+            }
+
+            MessageBox.Show($"Excel file has been saved to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void ExportGridToExcel(ClosedXML.Excel.IXLWorksheet sheet, DataGridView grid)
+        {
+            for (int i = 0; i < grid.Columns.Count; i++)
+            {
+                sheet.Cell(1, i + 1).Value = grid.Columns[i].HeaderText;
+            }
+            for (int i = 0; i < grid.Rows.Count; i++)
+            {
+                for (int j = 0; j < grid.Columns.Count; j++)
+                {
+                    sheet.Cell(i + 2, j + 1).Value = grid.Rows[i].Cells[j].Value?.ToString();
+                }
+            }
+        }
     }
 }

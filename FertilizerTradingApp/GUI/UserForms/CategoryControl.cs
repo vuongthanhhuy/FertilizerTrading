@@ -79,17 +79,14 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                string projectPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName).FullName).FullName;
-                string imagesPath = Path.Combine(projectPath, "Resources/Fertilizer");
-                string imagePath = Path.Combine(imagesPath, imageName);
-
-                if (File.Exists(imagePath))
+                string imagesPath = Path.Combine("D:/AppData/Resource", imageName);
+                if (File.Exists(imagesPath))
                 {
-                    pictureBox1.Image = Image.FromFile(imagePath);
+                    pictureBox1.Image = Image.FromFile(imagesPath);
                 }
                 else
                 {
-                    MessageBox.Show("Ảnh không tồn tại!");
+                    MessageBox.Show("Ảnh không tồn tại!", "Image Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
             catch (Exception ex)
@@ -97,7 +94,6 @@ namespace FertilizerTradingApp.GUI.UserForms
                 MessageBox.Show($"An error occurred while loading the image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -153,7 +149,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void ExportToExcel()
         {
-            string outputDirectory = Path.Combine(Application.StartupPath, "output");
+            string outputDirectory = Path.Combine("D:/AppData/output");
             Directory.CreateDirectory(outputDirectory);
 
             string filePath = Path.Combine(outputDirectory, "Fertilizers.xlsx");

@@ -147,18 +147,16 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void ExportToExcel()
         {
-            string outputDirectory = Path.Combine(Application.StartupPath, "output");
-            Directory.CreateDirectory(outputDirectory);
+            string outputDirectory = Path.Combine("D:/AppData/output");
+            Directory.CreateDirectory(outputDirectory); // Ensure directory exists
 
             string filePath = Path.Combine(outputDirectory, "OrdersAndFertilizers.xlsx");
             using (var workbook = new ClosedXML.Excel.XLWorkbook())
             {
                 var ordersSheet = workbook.AddWorksheet("Orders");
                 var fertilizersSheet = workbook.AddWorksheet("Fertilizers");
-
                 ExportGridToExcel(ordersSheet, dataGridView1);
                 ExportGridToExcel(fertilizersSheet, dataGridView2);
-
                 workbook.SaveAs(filePath);
             }
 
@@ -195,23 +193,20 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void ExportBillToPdf()
         {
-            string outputDirectory = Path.Combine(Application.StartupPath, "output");
-            Directory.CreateDirectory(outputDirectory);
-
+            string outputDirectory = Path.Combine("D:/AppData/output");
+            Directory.CreateDirectory(outputDirectory); // Ensure directory exists
             string filePath = Path.Combine(outputDirectory, "BillExport.pdf");
             string tempImagePath = Path.Combine(outputDirectory, "tempImage.png");
-
             var document = new PdfDocument { Info = { Title = "Exported Bill" } };
             var page = document.AddPage();
             var gfx = XGraphics.FromPdfPage(page);
             var bmp = new Bitmap(pnBill.Width, pnBill.Height);
             pnBill.DrawToBitmap(bmp, new Rectangle(0, 0, pnBill.Width, pnBill.Height));
             bmp.Save(tempImagePath, System.Drawing.Imaging.ImageFormat.Png);
-
             var xImage = XImage.FromFile(tempImagePath);
             gfx.DrawImage(xImage, 0, 0, page.Width, page.Height);
             document.Save(filePath);
-            File.Delete(tempImagePath);
+            File.Delete(tempImagePath); // Clean up temporary image
 
             MessageBox.Show($"The bill has been exported to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

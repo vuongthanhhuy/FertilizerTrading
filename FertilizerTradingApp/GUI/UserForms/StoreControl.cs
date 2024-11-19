@@ -56,19 +56,17 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                string projectPath = Directory.GetParent(Directory.GetParent(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).FullName).FullName).FullName;
-                string imagesPath = Path.Combine(projectPath, "Resources/Fertilizer");
-                string imageP = Path.Combine(imagesPath, imagePath);
-                if (string.IsNullOrWhiteSpace(imagePath))
+                string imagesPath = Path.Combine(@"D:/AppData/resource", imagePath);
+                if (string.IsNullOrWhiteSpace(imagePath) || !File.Exists(imagesPath))
                 {
-                    throw new ArgumentException("Image path is empty.");
+                    throw new ArgumentException("Invalid or missing image path.");
                 }
-                return Image.FromFile(imageP);
+                return Image.FromFile(imagesPath);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return Properties.Resources._20241116_052222_tawpf2qjnob_Fertilizer1; // Default fallback image
+                return Properties.Resources._20241116_052222_tawpf2qjnob_Fertilizer1; 
             }
         }
         private void AddToBasket(Fertilizer fertilizer)
@@ -155,24 +153,31 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                string outputDirectory = Path.Combine(Application.StartupPath, "output");
+                string outputDirectory = @"D:/AppData/output";
                 if (!Directory.Exists(outputDirectory))
                 {
                     Directory.CreateDirectory(outputDirectory);
                 }
+
                 string filePath = Path.Combine(outputDirectory, "StoreBillExport.pdf");
                 string tempImagePath = Path.Combine(outputDirectory, "tempImage.png");
+
                 PdfDocument document = new PdfDocument();
                 document.Info.Title = "Exported Store Bill";
+
                 PdfPage page = document.AddPage();
                 XGraphics gfx = XGraphics.FromPdfPage(page);
+
                 Bitmap bmp = new Bitmap(pnBill.Width, pnBill.Height);
                 pnBill.DrawToBitmap(bmp, new Rectangle(0, 0, pnBill.Width, pnBill.Height));
                 bmp.Save(tempImagePath, System.Drawing.Imaging.ImageFormat.Png);
+
                 XImage xImage = XImage.FromFile(tempImagePath);
                 gfx.DrawImage(xImage, 0, 0, page.Width, page.Height);
+
                 document.Save(filePath);
                 File.Delete(tempImagePath);
+
                 MessageBox.Show($"The store bill has been exported to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)

@@ -170,9 +170,10 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                string outputDirectory = Path.Combine(Application.StartupPath, "output");
-                Directory.CreateDirectory(outputDirectory);
+                string outputDirectory = Path.Combine("D:/AppData/output");
+                Directory.CreateDirectory(outputDirectory); // Ensure the directory exists
                 string filePath = Path.Combine(outputDirectory, "Customers.xlsx");
+
                 using (var workbook = new ClosedXML.Excel.XLWorkbook())
                 {
                     var customersSheet = workbook.AddWorksheet("Customers");

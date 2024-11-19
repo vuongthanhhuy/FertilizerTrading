@@ -146,6 +146,9 @@ exec AddFertilizer N'Mô tả 1', '20241116_052222_tawpf2qjnob_Fertilizer1.jpg',
 exec AddFertilizer N'Mô tả 2', '20241116_052222_tawpf2qjnob_Fertilizer1.jpg', N'Tên 2', N'Loại 2', 300000, 3
 go
 
+delete from _Fertilizer
+go
+
 delete from _Account
 go
 

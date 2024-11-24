@@ -3,6 +3,7 @@ using FertilizerTradingApp.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace FertilizerTradingApp.GUI.UserForms
@@ -25,7 +26,19 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                dataGridView1.DataSource = _customerController.GetAllCustomers();
+                var customers = _customerController.GetAllCustomers();
+                var formattedCustomers = customers.Select(c => new
+                {
+                    c.CustomerPhone,
+                    c.Name,
+                    c.PurchaseTime,
+                    TotalBought = c.TotalBought.ToString("N0"), 
+                    Debt = c.Debt.ToString("N0"),
+                    c.Email
+                }).ToList();
+
+                dataGridView1.DataSource = formattedCustomers;
+
                 dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
                 dataGridView1.Columns["Name"].HeaderText = "Tên khách hàng";
                 dataGridView1.Columns["PurchaseTime"].HeaderText = "Số lần mua";
@@ -38,6 +51,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                 MessageBox.Show($"An error occurred while loading customers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -64,9 +78,9 @@ namespace FertilizerTradingApp.GUI.UserForms
                         label5.Text = customer.Name;
                         label7.Text = customer.CustomerPhone;
                         label8.Text = customer.Email;
-                        label12.Text = customer.PurchaseTime.ToString();
-                        label14.Text = customer.Debt.ToString();
-                        label15.Text = customer.TotalBought.ToString();
+                        label12.Text = customer.PurchaseTime.ToString("N0");
+                        label14.Text = customer.Debt.ToString("N0");
+                        label15.Text = customer.TotalBought.ToString("N0");
 
                         var relatedData = _customerController.GetAllOrdersByCustomer(customer.CustomerPhone);
                         dataGridView2.DataSource = relatedData;
@@ -93,25 +107,40 @@ namespace FertilizerTradingApp.GUI.UserForms
                     if (textBox1.Text.Length > 0)
                     {
                         var data1 = _orderController.GetOrdersOfCustomer(dateTimePicker1.Value, dateTimePicker2.Value, textBox1.Text);
-                        dataGridView2.DataSource = data1;
-                        dataGridView2.Columns["OrderId"].HeaderText = "Mã Đơn";
-                        dataGridView2.Columns["TotalPrice"].HeaderText = "Tổng hóa đơn";
-                        dataGridView2.Columns["Date"].HeaderText = "Ngày Mua";
-                        dataGridView2.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
-                        dataGridView2.Columns["AccountId"].HeaderText = "Người Phụ Trách";
-                        dataGridView2.Columns["TotalPayment"].HeaderText = "Đã Trả";
+                        var formattedData1 = data1.Select(order => new
+                        {
+                            order.OrderId,
+                            TotalPrice = order.TotalPrice.ToString("N0"), 
+                            Date = order.Date.ToShortDateString(),
+                            order.CustomerPhone,
+                            order.AccountId,
+                            TotalPayment = order.TotalPayment.ToString("N0") 
+                        }).ToList();
+
+                        dataGridView2.DataSource = formattedData1;
                     }
                     else
                     {
                         var data2 = _orderController.GetOrdersByTime(dateTimePicker1.Value, dateTimePicker2.Value);
-                        dataGridView2.DataSource = data2;
-                        dataGridView2.Columns["OrderId"].HeaderText = "Mã Đơn";
-                        dataGridView2.Columns["TotalPrice"].HeaderText = "Tổng hóa đơn";
-                        dataGridView2.Columns["Date"].HeaderText = "Ngày Mua";
-                        dataGridView2.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
-                        dataGridView2.Columns["AccountId"].HeaderText = "Người Phụ Trách";
-                        dataGridView2.Columns["TotalPayment"].HeaderText = "Đã Trả";
+                        var formattedData2 = data2.Select(order => new
+                        {
+                            order.OrderId,
+                            TotalPrice = order.TotalPrice.ToString("N0"),
+                            Date = order.Date.ToShortDateString(),
+                            order.CustomerPhone,
+                            order.AccountId,
+                            TotalPayment = order.TotalPayment.ToString("N0") 
+                        }).ToList();
+
+                        dataGridView2.DataSource = formattedData2;
                     }
+
+                    dataGridView2.Columns["OrderId"].HeaderText = "Mã Đơn";
+                    dataGridView2.Columns["TotalPrice"].HeaderText = "Tổng hóa đơn";
+                    dataGridView2.Columns["Date"].HeaderText = "Ngày Mua";
+                    dataGridView2.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
+                    dataGridView2.Columns["AccountId"].HeaderText = "Người Phụ Trách";
+                    dataGridView2.Columns["TotalPayment"].HeaderText = "Đã Trả";
                 }
                 else
                 {
@@ -123,6 +152,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                 MessageBox.Show($"An error occurred while filtering orders: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private bool IsDateRangeValid(DateTimePicker dateTimePicker1, DateTimePicker dateTimePicker2)
         {
             try
@@ -142,16 +172,25 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                List<Customer> customers = new List<Customer>();
+                var customers = new List<object>(); 
                 var customer = _customerController.GetCustomerById(txbSearch.Text);
                 if (customer != null)
                 {
-                    customers.Add(customer);
+                    customers.Add(new
+                    {
+                        customer.CustomerPhone,
+                        customer.Name,
+                        customer.PurchaseTime,
+                        TotalBought = customer.TotalBought.ToString("N0"), 
+                        Debt = customer.Debt.ToString("N0"),
+                        customer.Email
+                    });
                 }
                 else
                 {
                     MessageBox.Show("Customer not found!", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
                 dataGridView1.DataSource = customers;
                 dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
                 dataGridView1.Columns["Name"].HeaderText = "Tên khách hàng";
@@ -165,13 +204,12 @@ namespace FertilizerTradingApp.GUI.UserForms
                 MessageBox.Show($"An error occurred while searching for the customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
             try
             {
                 string outputDirectory = Path.Combine("D:/AppData/output");
-                Directory.CreateDirectory(outputDirectory); // Ensure the directory exists
+                Directory.CreateDirectory(outputDirectory);
                 string filePath = Path.Combine(outputDirectory, "Customers.xlsx");
 
                 using (var workbook = new ClosedXML.Excel.XLWorkbook())

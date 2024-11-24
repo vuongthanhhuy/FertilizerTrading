@@ -4,6 +4,7 @@ using FertilizerTradingApp.Models;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace FertilizerTradingApp.GUI.UserForms
@@ -23,7 +24,18 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                dgvFertilizers.DataSource = _fertilizerController.GetAllFertilizers();
+                var fertilizers = _fertilizerController.GetAllFertilizers();
+                var formattedFertilizers = fertilizers.Select(f => new
+                {
+                    f.Id,
+                    f.Name,
+                    Price = f.Price.ToString("N0"), 
+                    f.Category,
+                    f.Stock,
+                    f.Description,
+                    f.Image
+                }).ToList();
+                dgvFertilizers.DataSource = formattedFertilizers;
                 dgvFertilizers.Columns["Id"].HeaderText = "Mã SP";
                 dgvFertilizers.Columns["Name"].HeaderText = "Tên SP";
                 dgvFertilizers.Columns["Price"].HeaderText = "Giá";
@@ -37,6 +49,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                 MessageBox.Show($"An error occurred while loading the fertilizers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void dgvFertilizers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -62,9 +75,9 @@ namespace FertilizerTradingApp.GUI.UserForms
                         LoadImageIntoPictureBox(fertilizer.Image);
                         lbName.Text = fertilizer.Name;
                         label7.Text = fertilizer.Id;
-                        lbPrice.Text = fertilizer.Price.ToString();
+                        lbPrice.Text = fertilizer.Price.ToString("N0");
                         lbType.Text = fertilizer.Category.ToString();
-                        lbNumber.Text = fertilizer.Stock.ToString();
+                        lbNumber.Text = fertilizer.Stock.ToString("N0");
                         lbDesc.Text = fertilizer.Description;
                     }
                 }

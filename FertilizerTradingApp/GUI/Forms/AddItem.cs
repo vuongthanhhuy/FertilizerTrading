@@ -41,6 +41,14 @@ namespace FertilizerTradingApp.GUI.Forms
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             fileName = GenerateUniqueImageName(Path.GetExtension(fileName));
+            if (string.IsNullOrEmpty(txtName.Text) ||
+                string.IsNullOrEmpty(txtPrice.Text) ||
+                string.IsNullOrEmpty(txtCategory.Text) ||
+                string.IsNullOrEmpty(txtQuantity.Text))
+            {
+                MessageBox.Show("Thiếu dữ liệu");
+                return;
+            }
             if (_fertilizerController.AddFertilizer(fileName, txtName.Text, txtPrice.Text, txtCategory.Text, txtQuantity.Text, txtDescription.Text))
             {
                 string imagesPath = Path.Combine("D:/AppData/resource");

@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace FertilizerTradingApp.GUI.UserForms
@@ -35,7 +36,17 @@ namespace FertilizerTradingApp.GUI.UserForms
         private void PopulateOrderGrid()
         {
             var orders = _orderController.GetAllOrders();
-            dataGridView1.DataSource = orders;
+            var formattedOrders = orders.Select(order => new
+            {
+                order.OrderId,
+                TotalPrice = order.TotalPrice.ToString("N0"),
+                Date = order.Date.ToShortDateString(),
+                TotalPayment = order.TotalPayment.ToString("N0"),
+                order.CustomerPhone,
+                order.AccountId
+            }).ToList();
+
+            dataGridView1.DataSource = formattedOrders;
             SetOrderGridColumnHeaders();
         }
 
@@ -81,11 +92,12 @@ namespace FertilizerTradingApp.GUI.UserForms
         private void DisplayOrderDetails(Order order)
         {
             var paymis = order.TotalPrice - order.TotalPayment;
+
             lbBill.Text = order.OrderId;
-            lbPrice.Text = order.TotalPrice.ToString("C");
+            lbPrice.Text = order.TotalPrice.ToString("N0"); 
             lbDate.Text = order.Date.ToShortDateString();
-            lbDeposit.Text = order.TotalPayment.ToString("C");
-            lb_paymis.Text = paymis.ToString();
+            lbDeposit.Text = order.TotalPayment.ToString("N0"); 
+            lb_paymis.Text = paymis.ToString("N0"); 
             lbl_cusPhone.Text = order.CustomerPhone;
             lbAcc.Text = order.AccountId;
 

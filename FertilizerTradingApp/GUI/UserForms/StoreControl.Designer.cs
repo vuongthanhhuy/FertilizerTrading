@@ -377,6 +377,7 @@
             this.tbPhone.Name = "tbPhone";
             this.tbPhone.Size = new System.Drawing.Size(456, 31);
             this.tbPhone.TabIndex = 3;
+            this.tbPhone.TextChanged += new System.EventHandler(this.tbPhone_TextChanged);
             // 
             // label3
             // 

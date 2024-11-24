@@ -38,7 +38,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                     ItemStore item = new ItemStore
                     {
                         Name = fertilizer.Name,
-                        Price = $"${fertilizer.Price:F2}",
+                        Price = $"${fertilizer.Price.ToString("N0")}",
                         Image = LoadImage(fertilizer.Image),
                         Dock = DockStyle.Top
                     };
@@ -80,7 +80,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                     Id = fertilizer.Id,
                     ImageItem = LoadImage(fertilizer.Image),
                     Dock = DockStyle.Top,
-                    Price = fertilizer.Price.ToString() + "vnd",
+                    Price = fertilizer.Price.ToString("N0") + "vnd",
                     UnitPrice = fertilizer.Price
                 };
 
@@ -112,7 +112,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             try
             {
                 float updatedPrice = itemBasket.GetUpdatedPrice();
-                lbTotal.Text = updatedPrice.ToString("F2");
+                lbTotal.Text = updatedPrice.ToString("N0");
                 float total = 0;
                 foreach (Control control in pnBasket.Controls)
                 {
@@ -122,7 +122,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                     }
                 }
 
-                lbTotal.Text = total.ToString("F2");
+                lbTotal.Text = total.ToString("N0");
             }
             catch (Exception ex)
             {
@@ -136,12 +136,12 @@ namespace FertilizerTradingApp.GUI.UserForms
                 if (flag)
                 {
                     lbAccount.Text = "{name user logged}";
-                    lbTotal.Text = (float.Parse(lbTotal.Text) + fertilizer.Price).ToString("F2");
+                    lbTotal.Text = (float.Parse(lbTotal.Text) + fertilizer.Price).ToString("N0");
                 }
                 else
                 {
                     lbAccount.Text = "{name user logged}";
-                    lbTotal.Text = (float.Parse(lbTotal.Text) - fertilizer.Price).ToString("F2");
+                    lbTotal.Text = (float.Parse(lbTotal.Text) - fertilizer.Price).ToString("N0");
                 }
             }
             catch (Exception ex)
@@ -188,6 +188,16 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void btnPay_Click(object sender, EventArgs e)
         {
+            if (tbName.Text == "")
+            {
+                MessageBox.Show("Thiếu tên khách hàng");
+                return;
+            }
+            else if (tbPhone.Text == "")
+            {
+                MessageBox.Show("Thiếu số điện thoại hàng");
+                return;
+            }
             try
             {
                 if (pnBasket.Controls.Count == 0)
@@ -301,7 +311,6 @@ namespace FertilizerTradingApp.GUI.UserForms
                     customer.Debt = updatedDebt < 0 ? 0 : updatedDebt;
                     customer.TotalBought = updatedTotalBought;
                     customer.PurchaseTime = DateTime.Now;
-                    customer.Name = tbName.Text; 
 
                     _customerController.UpdateCustomer(customer);
                 }
@@ -332,6 +341,11 @@ namespace FertilizerTradingApp.GUI.UserForms
             {
                 MessageBox.Show($"Error processing payment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void tbPhone_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

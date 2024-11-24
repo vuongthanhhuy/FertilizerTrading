@@ -1,4 +1,5 @@
-﻿using FertilizerTradingApp.Controllers;
+﻿using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using FertilizerTradingApp.Controllers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +26,11 @@ namespace FertilizerTradingApp.GUI
         {
             string username = txbUsername.Text;
             string password = txbPassword.Text;
-
+            if (username == null || password == null)
+            {
+                MessageBox.Show("Thiếu thông tin");
+                return;
+            }
             if(_loginController.LoginCheck(username, password))
             {
                 this.Hide();
@@ -36,8 +41,8 @@ namespace FertilizerTradingApp.GUI
             }
 			else
             {
-				
-			}
+                MessageBox.Show("Sai thông tin đăng nhập");
+            }
         }
     }
 }

@@ -15,7 +15,7 @@ namespace FertilizerTradingApp.Models
 		public string Category { get; set; }
 		public int Stock { get; set; }
 		public string Description { get; set; }
-		public Fertilizer(string id, string name, float price, string category, int stock, string description, string image) 
+		public Fertilizer(string id, string name, float price, string category, int stock, string description) 
 		{
 			this.Id = id;
 			this.Name = name;
@@ -23,7 +23,6 @@ namespace FertilizerTradingApp.Models
 			this.Category = category;
 			this.Stock = stock;
 			this.Description = description;
-			this.Image = image;
 		}
 	}
 }

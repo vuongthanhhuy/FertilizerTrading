@@ -54,20 +54,7 @@ namespace FertilizerTradingApp.GUI.UserForms
         }
         private Image LoadImage(string imagePath)
         {
-            try
-            {
-                string imagesPath = Path.Combine(@"D:/AppData/resource", imagePath);
-                if (string.IsNullOrWhiteSpace(imagePath) || !File.Exists(imagesPath))
-                {
-                    throw new ArgumentException("Invalid or missing image path.");
-                }
-                return Image.FromFile(imagesPath);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return Properties.Resources._20241116_052222_tawpf2qjnob_Fertilizer1; 
-            }
+           return Properties.Resources._20241116_052222_tawpf2qjnob_Fertilizer1; 
         }
         private void AddToBasket(Fertilizer fertilizer)
         {
@@ -225,12 +212,16 @@ namespace FertilizerTradingApp.GUI.UserForms
                     float updatedDebt = customer.Debt - totalPayment;
                     float updatedTotalBought = customer.TotalBought + totalPrice;
 
-                    customer.Debt = updatedDebt < 0 ? 0 : updatedDebt; // Avoid negative debt
+                    customer.Debt = updatedDebt < 0 ? 0 : updatedDebt; 
                     customer.TotalBought = updatedTotalBought;
                     customer.PurchaseTime = DateTime.Now;
-                    customer.Name = tbName.Text; // Update name if provided
-
-                    _customerController.UpdateCustomer(customer); // Ensure this method exists in your controller
+                    customer.Name = tbName.Text;
+                    if(customer.Name != _customerController.GetCustomerById(customer.CustomerPhone).Name)
+                    {
+                        MessageBox.Show("Sai tên khách hàng");
+                        return;
+                    }
+                    _customerController.UpdateCustomer(customer); 
                 }
                 Order order = new Order(null, totalPrice, DateTime.Now, totalPayment, customerPhone, accountId);
                 _orderController.AddOrder(order);
@@ -262,90 +253,70 @@ namespace FertilizerTradingApp.GUI.UserForms
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    string key = txbSearch.Text.Trim().ToLower();
-            //    if (!string.IsNullOrEmpty(key))
-            //    {
-            //        List<Fertilizer> filteredFertilizers = _fertilizerController.GetAllFertilizers()
-            //            .FindAll(f => f.Name.ToLower().Contains(key));
-            //        populateItems(filteredFertilizers);
-            //    }
-            //    else
-            //    {
-            //        populateItems();
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error searching items: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-
-
-             try
+            try
             {
-                if (pnBasket.Controls.Count == 0)
+                string key = txbSearch.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(key))
                 {
-                    MessageBox.Show("Basket is empty. Please add items before proceeding to payment.", "Empty Basket", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (string.IsNullOrWhiteSpace(tbPhone.Text) || string.IsNullOrWhiteSpace(tbPaid.Text))
-                {
-                    MessageBox.Show("Customer phone and payment amount are required.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                float totalPrice = float.Parse(lbTotal.Text);
-                float totalPayment = float.Parse(tbPaid.Text);
-                string customerPhone = tbPhone.Text;
-                string accountId = "{account_logged}";
-                var customer = _customerController.GetCustomerById(customerPhone);
-                if (customer == null)
-                {
-                    customer = new Customer(customerPhone, DateTime.Now, totalPrice - totalPayment, totalPrice, tbName.Text, null);
-                    _customerController.AddCustomer(customer);
+                    List<Fertilizer> filteredFertilizers = _fertilizerController.GetAllFertilizers()
+                        .FindAll(f => f.Name.ToLower().Contains(key));
+                    populateItems(filteredFertilizers);
                 }
                 else
                 {
-                    float updatedDebt = customer.Debt + (totalPrice-totalPayment);
-                    float updatedTotalBought = customer.TotalBought + totalPrice;
-                    customer.Debt = updatedDebt < 0 ? 0 : updatedDebt;
-                    customer.TotalBought = updatedTotalBought;
-                    customer.PurchaseTime = DateTime.Now;
-
-                    _customerController.UpdateCustomer(customer);
+                    populateItems();
                 }
-                Order order = new Order(null, totalPrice, DateTime.Now, totalPayment, customerPhone, accountId);
-                _orderController.AddOrder(order);
-                string orderId = _orderController.getNewestOrderId();
-                if (string.IsNullOrEmpty(orderId))
-                {
-                    MessageBox.Show("Failed to create order. Please try again.", "Order Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                foreach (Control control in pnBasket.Controls)
-                {
-                    if (control is ItemBasket basket)
-                    {
-                        int quantity = int.Parse(basket.Num);
-                        string fertilizerId = basket.Id;
-                        ItemOrdered item = new ItemOrdered(quantity, fertilizerId, orderId);
-                        _itemOrderedController.AddItemOrdered(item);
-                    }
-                }
-                MessageBox.Show("Payment processed successfully. Order and items saved.", "Payment Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                pnBasket.Controls.Clear();
-                lbTotal.Text = "0.00";
-                tbPaid.Text = "0.00";
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error processing payment: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error searching items: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void tbPhone_TextChanged(object sender, EventArgs e)
+        private void tbPaid_KeyPress(object sender, KeyPressEventArgs e)
         {
+            TextBox textBox = sender as TextBox;
+            if (!IsValidNumericInput(textBox, e.KeyChar))
+            {
+                MessageBox.Show("Chỉ chấp nhận số");
+                e.Handled = true; 
+            }
+        }
+        private bool IsValidNumericInput(TextBox textBox, char keyChar)
+        {
+            if (char.IsControl(keyChar))
+                return true;
+            if (char.IsDigit(keyChar))
+                return true;
+            if (keyChar == '.' && !textBox.Text.Contains("."))
+                return true;
+            return false;
+        }
 
+        private void tbPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (!IsValidNumericInput(textBox, e.KeyChar))
+            {
+                MessageBox.Show("Chỉ chấp nhận số");
+                e.Handled = true;
+            }
+        }
+
+        private void tbPaid_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string unformattedText = textBox.Text.Replace(",", "").Trim();
+            if (decimal.TryParse(unformattedText, out decimal value))
+            {
+                textBox.Text = string.Format("{0:n0}", value);
+                textBox.SelectionStart = textBox.Text.Length;
+            }
+            else if (!string.IsNullOrEmpty(unformattedText))
+            {
+                MessageBox.Show("Chỉ chấp nhận số");
+                textBox.Text = string.Empty;
+            }
         }
     }
 }

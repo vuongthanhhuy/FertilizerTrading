@@ -5,16 +5,17 @@ go
 use FertilizerTrading
 go
 
-create table _Fertilizer
-(
-	fertilizer_id varchar(10) primary key,
-	_description nvarchar(500),
-	_image varchar(500),
-	_name nvarchar(500),
-	_category nvarchar(500),
-	_price float,
-	_stock int
-)
+CREATE TABLE _Fertilizer (
+    fertilizer_id VARCHAR(10) PRIMARY KEY,
+    _description NVARCHAR(500),
+    _image VARCHAR(500),
+    _name NVARCHAR(500),
+    _category NVARCHAR(500),
+    _price FLOAT,
+    _isdeleted BIT DEFAULT 0,
+    _stock INT
+);
+
 go
 
 create table _Customer
@@ -75,30 +76,33 @@ add constraint fk_itemordered_order
 foreign key (order_id) references _Order(order_id)
 go
 
-create procedure AddFertilizer
-	@_description nvarchar(500),
-	@_image varchar(500),
-	@_name nvarchar(500),
-	@_category nvarchar(500),
-	@_price float,
-	@_stock int
-as
-begin
-    declare @newFertilizerID varchar(10)
-	declare @maxFertilizerID varchar(10)
-	set @newFertilizerID = 'F000000001'
-	select @maxFertilizerID = cast(max(cast(substring(fertilizer_id, 2, 10) as int)) + 1 as varchar) from _Fertilizer where substring(fertilizer_id, 1, 1) = 'F'
-	if (cast(@maxFertilizerID as int) > cast(substring(@newFertilizerID, 2, 10) as int))
-	begin
-		while (len(@maxFertilizerID) < 9)
-		begin
-			set @maxFertilizerID = '0' + @maxFertilizerID
-		end
-		set @newFertilizerID = 'F' + @maxFertilizerID 
-	end
-    insert into _Fertilizer (fertilizer_id, _description, _image, _name, _category, _price, _stock) values (@newFertilizerID, @_description, @_image, @_name, @_category, @_price, @_stock)
-end
-go
+CREATE PROCEDURE AddFertilizer
+    @_description NVARCHAR(500),
+    @_name NVARCHAR(500),
+    @_category NVARCHAR(500),
+    @_price FLOAT,
+    @_stock INT
+AS
+BEGIN
+    DECLARE @newFertilizerID VARCHAR(10)
+    DECLARE @maxFertilizerID VARCHAR(10)
+    SET @newFertilizerID = 'F000000001'
+    SELECT @maxFertilizerID = CAST(MAX(CAST(SUBSTRING(fertilizer_id, 2, 10) AS INT)) + 1 AS VARCHAR)
+    FROM _Fertilizer
+    WHERE SUBSTRING(fertilizer_id, 1, 1) = 'F'
+
+    IF (CAST(ISNULL(@maxFertilizerID, '0') AS INT) > CAST(SUBSTRING(@newFertilizerID, 2, 10) AS INT))
+    BEGIN
+        WHILE (LEN(@maxFertilizerID) < 9)
+        BEGIN
+            SET @maxFertilizerID = '0' + @maxFertilizerID
+        END
+        SET @newFertilizerID = 'F' + @maxFertilizerID
+    END
+    INSERT INTO _Fertilizer (fertilizer_id, _description, _name, _category, _price, _stock)
+    VALUES (@newFertilizerID, @_description, @_name, @_category, @_price, @_stock)
+END
+GO
 
 CREATE SEQUENCE OrderIdSequence
     AS INT
@@ -142,8 +146,8 @@ GO
 delete from _Fertilizer
 go
 
-exec AddFertilizer N'Mô tả 1', '20241116_052222_tawpf2qjnob_Fertilizer1.jpg', N'Tên 1', N'Loại 1', 300000, 3
-exec AddFertilizer N'Mô tả 2', '20241116_052222_tawpf2qjnob_Fertilizer1.jpg', N'Tên 2', N'Loại 2', 300000, 3
+exec AddFertilizer N'Mô tả 1', N'Tên 1', N'Loại 1', 300000, 3
+exec AddFertilizer N'Mô tả 2', N'Tên 2', N'Loại 2', 300000, 3
 go
 
 delete from _Fertilizer

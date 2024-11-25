@@ -16,9 +16,9 @@ namespace FertilizerTradingApp.Services
 		{
 			_fertilizerRepository = new FertilizerRepository(connectionString);
 		}
-		public bool AddFertilizer(string image, string name, float price, string category, int stock, string description)
+		public bool AddFertilizer( string name, float price, string category, int stock, string description)
 		{
-			return _fertilizerRepository.AddFertilizer(image, name, price, category, stock, description);
+			return _fertilizerRepository.AddFertilizer( name, price, category, stock, description);
 		}
 		public List<Fertilizer> GetAllFertilizers()
 		{

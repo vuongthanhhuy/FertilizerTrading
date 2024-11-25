@@ -17,9 +17,9 @@ namespace FertilizerTradingApp.Controllers
 		{
 			_fertilizerService = new FertilizerService(ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString);
 		}
-		public bool AddFertilizer(string image, string name, string price, string category, string stock, string description)
+		public bool AddFertilizer(string name, string price, string category, string stock, string description)
 		{
-			return _fertilizerService.AddFertilizer(image, name, ConvertToFloat(price), category, ConvertToInt(stock), description);
+			return _fertilizerService.AddFertilizer(name, ConvertToFloat(price), category, ConvertToInt(stock), description);
 		}
 		public List<Fertilizer> GetAllFertilizers()
 		{

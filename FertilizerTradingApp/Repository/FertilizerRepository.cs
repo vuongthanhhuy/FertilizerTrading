@@ -17,34 +17,23 @@ namespace FertilizerTradingApp.Repository
 		{
 			_connectionString = connectionString;
 		}
-		public bool AddFertilizer(string image, string name, float price, string category, int stock, string description)
-		{
-			using (var connection = new SqlConnection(_connectionString))
-			{
-				var query = "EXEC AddFertilizer @description, @image, @name, @category, @price, @stock";
-				var command = new SqlCommand(query, connection);
-				command.Parameters.AddWithValue("@description", description);
-				command.Parameters.AddWithValue("@image", image);
-				command.Parameters.AddWithValue("@name", name);
-				command.Parameters.AddWithValue("@category", category);
-				command.Parameters.AddWithValue("@price", price);
-				command.Parameters.AddWithValue("@stock", stock);
-
-				connection.Open();
-
-				int result = command.ExecuteNonQuery();
-
-				if (result > 0)
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
-		}
-		public List<Fertilizer> GetAllFertilizers()
+        public bool AddFertilizer(string name, float price, string category, int stock, string description)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "EXEC AddFertilizer @_description, @_name, @_category, @_price, @_stock";
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@_description", description);
+                command.Parameters.AddWithValue("@_name", name);
+                command.Parameters.AddWithValue("@_category", category);
+                command.Parameters.AddWithValue("@_price", price);
+                command.Parameters.AddWithValue("@_stock", stock);
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                return result > 0;
+            }
+        }
+        public List<Fertilizer> GetAllFertilizers()
 		{
 			List<Fertilizer> fertilizers = new List<Fertilizer>();
 
@@ -66,8 +55,7 @@ namespace FertilizerTradingApp.Repository
 							Convert.ToSingle(reader["_price"]),
 							reader["_category"].ToString(),
 							Convert.ToInt32(reader["_stock"]),
-							reader["_description"].ToString(),
-							reader["_image"].ToString()
+							reader["_description"].ToString()
 						);
 
 						fertilizers.Add(fertilizer);
@@ -100,8 +88,7 @@ namespace FertilizerTradingApp.Repository
 							Convert.ToSingle(reader["_price"]),
 							reader["_category"].ToString(),
 							Convert.ToInt32(reader["_stock"]),
-							reader["_description"].ToString(),
-							reader["_image"].ToString()
+							reader["_description"].ToString()
 						);
 					}
 				}
@@ -133,8 +120,7 @@ namespace FertilizerTradingApp.Repository
 							Convert.ToSingle(reader["_price"]),
 							reader["_category"].ToString(),
 							Convert.ToInt32(reader["_stock"]),
-							reader["_description"].ToString(),
-							reader["_image"].ToString()
+							reader["_description"].ToString()
 						);
 
 						fertilizers.Add(fertilizer);

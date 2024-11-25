@@ -49,15 +49,8 @@ namespace FertilizerTradingApp.GUI.Forms
                 MessageBox.Show("Thiếu dữ liệu");
                 return;
             }
-            if (_fertilizerController.AddFertilizer(fileName, txtName.Text, txtPrice.Text, txtCategory.Text, txtQuantity.Text, txtDescription.Text))
+            if (_fertilizerController.AddFertilizer(txtName.Text, txtPrice.Text, txtCategory.Text, txtQuantity.Text, txtDescription.Text))
             {
-                string imagesPath = Path.Combine("D:/AppData/resource");
-                if (!Directory.Exists(imagesPath))
-                {
-                    Directory.CreateDirectory(imagesPath);
-                }
-                string savePath = Path.Combine(imagesPath, fileName);
-                resizedImage.Save(savePath, System.Drawing.Imaging.ImageFormat.Jpeg);
                 MessageBox.Show("Thêm phân bón thành công!");
             }
             else
@@ -93,5 +86,67 @@ namespace FertilizerTradingApp.GUI.Forms
 
 			return uniqueName;
 		}
-	}
+        private bool IsValidNumericInput(TextBox textBox, char keyChar)
+        {
+            if (char.IsControl(keyChar))
+                return true;
+            if (char.IsDigit(keyChar))
+                return true;
+            if (keyChar == '.' && !textBox.Text.Contains("."))
+                return true;
+            return false;
+        }
+
+        private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (!IsValidNumericInput(textBox, e.KeyChar))
+            {
+                MessageBox.Show("Chỉ chấp nhận số");
+                e.Handled = true;
+            }
+        }
+
+        private void txtQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (!IsValidNumericInput(textBox, e.KeyChar))
+            {
+                MessageBox.Show("Chỉ chấp nhận số");
+                e.Handled = true;
+            }
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string unformattedText = textBox.Text.Replace(",", "").Trim();
+            if (decimal.TryParse(unformattedText, out decimal value))
+            {
+                textBox.Text = string.Format("{0:n0}", value);
+                textBox.SelectionStart = textBox.Text.Length;
+            }
+            else if (!string.IsNullOrEmpty(unformattedText))
+            {
+                MessageBox.Show("Chỉ chấp nhận số");
+                textBox.Text = string.Empty;
+            }
+        }
+
+        private void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string unformattedText = textBox.Text.Replace(",", "").Trim();
+            if (decimal.TryParse(unformattedText, out decimal value))
+            {
+                textBox.Text = string.Format("{0:n0}", value);
+                textBox.SelectionStart = textBox.Text.Length;
+            }
+            else if (!string.IsNullOrEmpty(unformattedText))
+            {
+                MessageBox.Show("Chỉ chấp nhận số");
+                textBox.Text = string.Empty;
+            }
+        }
+    }
 }

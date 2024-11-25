@@ -90,22 +90,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void LoadImageIntoPictureBox(string imageName)
         {
-            try
-            {
-                string imagesPath = Path.Combine("D:/AppData/Resource", imageName);
-                if (File.Exists(imagesPath))
-                {
-                    pictureBox1.Image = Image.FromFile(imagesPath);
-                }
-                else
-                {
-                    MessageBox.Show("Ảnh không tồn tại!", "Image Not Found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred while loading the image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           pictureBox1.Image = Properties.Resources._20241116_052222_tawpf2qjnob_Fertilizer1;
         }
         private void btnAdd_Click(object sender, EventArgs e)
         {

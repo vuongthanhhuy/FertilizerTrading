@@ -12,7 +12,7 @@ namespace FertilizerTradingApp.GUI.UserForms
     public partial class categoryControl : UserControl
     {
         private readonly FertilizerController _fertilizerController;
-
+        private Fertilizer _fertilizerCurrent;
         public categoryControl()
         {
             InitializeComponent();
@@ -69,7 +69,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 
                     var rowData = dgvFertilizers.Rows[e.RowIndex];
                     Fertilizer fertilizer = _fertilizerController.GetFertilizerById(rowData.Cells[0].Value.ToString());
-
+                    _fertilizerCurrent = fertilizer;
                     if (fertilizer != null)
                     {
                         LoadImageIntoPictureBox(fertilizer.Image);
@@ -125,8 +125,21 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                AddItem addItem = new AddItem();
-                addItem.Show();
+                if (_fertilizerCurrent != null)
+                {
+
+                    EditItem addItem = new EditItem(_fertilizerCurrent.Id);
+                    addItem.FormClosed += (s, args) =>
+                    {
+                        ReloadMainFormData();
+                    };
+                    addItem.Show();
+
+                }
+                else
+                {
+                    MessageBox.Show("Chưa chọn loại hàng nào");
+                }
             }
             catch (Exception ex)
             {
@@ -189,6 +202,52 @@ namespace FertilizerTradingApp.GUI.UserForms
                 {
                     sheet.Cell(i + 2, j + 1).Value = grid.Rows[i].Cells[j].Value?.ToString();
                 }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        private void lbDesc_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click_1(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+             "Bạn có chắc chắn muốn xóa mục này không?",
+             "Xác nhận xóa",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (_fertilizerCurrent.Id != null)
+                {
+                    if (_fertilizerController.RemoveFertilizer(_fertilizerCurrent.Id))
+                    {
+                        MessageBox.Show("Mục đã được xóa thành công.");
+                        ReloadMainFormData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mục đã được xóa thất bại.");
+
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Chưa chọn sản phẩm");
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Hủy bỏ xóa mục.");
             }
         }
     }

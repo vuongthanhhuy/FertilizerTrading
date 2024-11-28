@@ -31,17 +31,22 @@ namespace FertilizerTradingApp.GUI.List
             set { _price = value; lbPrice.Text = value; }
         }
 
-        [Category("Data")]
+/*        [Category("Data")]
         public Image Image
         {
             get { return _image; }
             set { _image = value; pbImage.Image = value; }
-        }
+        }*/
         #endregion
         public event EventHandler ItemAdded;
         private void btAdd_Click(object sender, EventArgs e)
         {
             ItemAdded?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void lbPrice_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

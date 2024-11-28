@@ -1,4 +1,5 @@
-﻿using FertilizerTradingApp.Models;
+﻿using DocumentFormat.OpenXml.Bibliography;
+using FertilizerTradingApp.Models;
 using FertilizerTradingApp.Repository;
 using FertilizerTradingApp.Services;
 using System;
@@ -21,6 +22,10 @@ namespace FertilizerTradingApp.Controllers
 		{
 			return _fertilizerService.AddFertilizer(name, ConvertToFloat(price), category, ConvertToInt(stock), description);
 		}
+		public bool RemoveFertilizer(string id)
+		{
+			return _fertilizerService.deleteFertilizer(id);
+		}
 		public List<Fertilizer> GetAllFertilizers()
 		{
 			return _fertilizerService.GetAllFertilizers();
@@ -32,6 +37,10 @@ namespace FertilizerTradingApp.Controllers
 		public List<Fertilizer> FindFertilizer(string str)
 		{
 			return _fertilizerService.FindFertilizer(str);
+		}
+		public bool updateFertilizer(string id, string name, string price, string category, string stock, string description)
+		{
+			return _fertilizerService.updateFertilizer(new Fertilizer(id, name,ConvertToFloat(price), category, ConvertToInt(stock), description));
 		}
 		private int ConvertToInt(string input)
 		{

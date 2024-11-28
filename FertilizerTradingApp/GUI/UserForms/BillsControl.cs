@@ -236,5 +236,10 @@ namespace FertilizerTradingApp.GUI.UserForms
                 SetOrderGridColumnHeaders();
             }
         }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

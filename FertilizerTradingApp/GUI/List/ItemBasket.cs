@@ -51,12 +51,12 @@ namespace FertilizerTradingApp.GUI.List
             set { _num = value; lbNum.Text = value; }
         }
 
-        [Category("Data")]
+ /*       [Category("Data")]
         public Image ImageItem
         {
             get { return _img; }
             set { _img = value; pbItem.Image = value; }
-        }
+        }*/
 
         public float UnitPrice
         {

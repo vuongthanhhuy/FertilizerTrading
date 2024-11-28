@@ -32,5 +32,13 @@ namespace FertilizerTradingApp.Services
 		{
 			return _fertilizerRepository.FindFertilizer(str);
 		}
+		public bool updateFertilizer(Fertilizer fertilizer)
+		{
+			return _fertilizerRepository.updateFertilizer(fertilizer);
+		}
+		public bool deleteFertilizer(string id)
+		{
+			return _fertilizerRepository.deleteFertilizer(id);
+		}
 	}
 }

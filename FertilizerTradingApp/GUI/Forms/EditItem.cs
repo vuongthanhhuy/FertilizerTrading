@@ -1,4 +1,5 @@
 ﻿using FertilizerTradingApp.Controllers;
+using FertilizerTradingApp.Models;
 using System;
 using System.Drawing;
 using System.IO;
@@ -6,15 +7,18 @@ using System.Windows.Forms;
 
 namespace FertilizerTradingApp.GUI.Forms
 {
-    public partial class AddItem : Form
+    public partial class EditItem : Form
     {
 		private readonly FertilizerController _fertilizerController;
 		private string fileName;
 		private Image resizedImage;
-		public AddItem()
+        private string _currentId;
+        private Fertilizer _currentFertilizer;
+		public EditItem(string id)
         {
 			InitializeComponent();
             _fertilizerController = new FertilizerController();
+            _currentId = id;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -42,14 +46,15 @@ namespace FertilizerTradingApp.GUI.Forms
                 MessageBox.Show("Thiếu dữ liệu");
                 return;
             }
-            if (_fertilizerController.AddFertilizer(txtName.Text, txtPrice.Text, txtCategory.Text, txtQuantity.Text, txtDescription.Text))
+            
+            if (_fertilizerController.updateFertilizer(_currentId, txtName.Text, txtPrice.Text, txtCategory.Text, txtQuantity.Text, txtDescription.Text))
             {
-                MessageBox.Show("Thêm phân bón thành công!");
-
+                MessageBox.Show("Sửa phân bón thành công!");
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Thêm phân bón thất bại!");
+                MessageBox.Show("Sửa phân bón thất bại!");
             }
         }
 
@@ -142,6 +147,27 @@ namespace FertilizerTradingApp.GUI.Forms
                 MessageBox.Show("Chỉ chấp nhận số");
                 textBox.Text = string.Empty;
             }
+        }
+
+        private void EditItem_Load(object sender, EventArgs e)
+        {
+            _currentFertilizer = _fertilizerController.GetFertilizerById(_currentId);
+            _fillData();
+        }
+        private void _fillData()
+        {
+            if (_currentFertilizer != null)
+            {
+                txtName.Text = _currentFertilizer.Name;
+                txtCategory.Text = _currentFertilizer.Category;
+                txtQuantity.Text = _currentFertilizer.Stock.ToString();
+                txtDescription.Text = _currentFertilizer.Description;
+                txtPrice.Text = _currentFertilizer.Price.ToString();
+            }
+        }
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

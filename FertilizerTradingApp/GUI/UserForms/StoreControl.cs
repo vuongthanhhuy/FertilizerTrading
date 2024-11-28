@@ -39,8 +39,8 @@ namespace FertilizerTradingApp.GUI.UserForms
                     {
                         Name = fertilizer.Name,
                         Price = $"${fertilizer.Price.ToString("N0")}",
-                        Image = LoadImage(fertilizer.Image),
-                        Dock = DockStyle.Top
+/*                        Image = LoadImage(fertilizer.Image),
+*/                        Dock = DockStyle.Top
                     };
 
                     item.ItemAdded += (s, e) => AddToBasket(fertilizer);
@@ -65,8 +65,8 @@ namespace FertilizerTradingApp.GUI.UserForms
                     Name = fertilizer.Name,
                     Num = "1",
                     Id = fertilizer.Id,
-                    ImageItem = LoadImage(fertilizer.Image),
-                    Dock = DockStyle.Top,
+/*                    ImageItem = LoadImage(fertilizer.Image),
+*/                    Dock = DockStyle.Top,
                     Price = fertilizer.Price.ToString("N0") + "vnd",
                     UnitPrice = fertilizer.Price
                 };

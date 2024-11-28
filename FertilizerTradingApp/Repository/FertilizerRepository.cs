@@ -39,7 +39,8 @@ namespace FertilizerTradingApp.Repository
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				var query = "SELECT * FROM _Fertilizer";
+				// Get all product _isDelete = false
+				var query = "SELECT * FROM _Fertilizer WHERE _isdeleted = 0";
 				var command = new SqlCommand(query, connection);
 
 				connection.Open();
@@ -130,5 +131,61 @@ namespace FertilizerTradingApp.Repository
 
 			return fertilizers;
 		}
-	}
+        public bool deleteFertilizer(string id)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "UPDATE _Fertilizer SET _isdeleted = 1 WHERE fertilizer_id = @id";
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", id);
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0; 
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false; 
+                }
+            }
+        }
+        public bool updateFertilizer(Fertilizer fertilizer)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+				//@_description, @_name, @_category, @_price, @_stock
+                var query = @"
+				UPDATE _Fertilizer
+				SET
+                _name = @name,
+                _price = @price,
+                _category = @category,
+                _stock = @stock,
+                _description = @description
+				WHERE fertilizer_id = @id";
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@id", fertilizer.Id);
+                command.Parameters.AddWithValue("@name", fertilizer.Name);
+                command.Parameters.AddWithValue("@price", fertilizer.Price);
+                command.Parameters.AddWithValue("@category", fertilizer.Category);
+                command.Parameters.AddWithValue("@stock", fertilizer.Stock);
+                command.Parameters.AddWithValue("@description", fertilizer.Description);
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    return false; 
+                }
+            }
+        }
+
+
+    }
 }

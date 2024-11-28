@@ -155,6 +155,12 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RevenueController.cs" />
     <Compile Include="DTO\FertilizerInfo.cs" />
+    <Compile Include="GUI\Forms\EditItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\EditItem.Designer.cs">
+      <DependentUpon>EditItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Forms\AddItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -239,6 +245,9 @@
     <Compile Include="Services\FertilizerService.cs" />
     <Compile Include="Services\LoginService.cs" />
     <Compile Include="Services\RevenueService.cs" />
+    <EmbeddedResource Include="GUI\Forms\EditItem.resx">
+      <DependentUpon>EditItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Forms\AddItem.resx">
       <DependentUpon>AddItem.cs</DependentUpon>
     </EmbeddedResource>

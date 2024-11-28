@@ -20,7 +20,7 @@ namespace FertilizerTradingApp.GUI.Forms
 		private Image resizedImage;
 		public AddItem()
         {
-            InitializeComponent();
+			InitializeComponent();
             _fertilizerController = new FertilizerController();
         }
 
@@ -32,7 +32,7 @@ namespace FertilizerTradingApp.GUI.Forms
             {
 				Image originalImage = new Bitmap(openFileDialog.FileName);
 				resizedImage = ResizeImage(originalImage, 200, 200);
-				pictureBox1.Image = resizedImage;
+				// pictureBox1.Image = resizedImage;
 				fileName = Path.GetFileName(openFileDialog.FileName);
 				originalImage.Dispose();
 			}
@@ -52,6 +52,7 @@ namespace FertilizerTradingApp.GUI.Forms
             if (_fertilizerController.AddFertilizer(txtName.Text, txtPrice.Text, txtCategory.Text, txtQuantity.Text, txtDescription.Text))
             {
                 MessageBox.Show("Thêm phân bón thành công!");
+
             }
             else
             {
@@ -132,6 +133,7 @@ namespace FertilizerTradingApp.GUI.Forms
                 textBox.Text = string.Empty;
             }
         }
+
 
         private void txtQuantity_TextChanged(object sender, EventArgs e)
         {

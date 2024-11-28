@@ -36,7 +36,7 @@ namespace FertilizerTradingApp.Controllers
 		private int ConvertToInt(string input)
 		{
 			int result;
-			if (int.TryParse(input, out result))
+			if (int.TryParse(input.Replace(",", ""), out result))
 			{
 				return result;
 			}

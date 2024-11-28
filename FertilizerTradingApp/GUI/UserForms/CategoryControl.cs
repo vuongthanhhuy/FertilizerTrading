@@ -90,14 +90,30 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void LoadImageIntoPictureBox(string imageName)
         {
-           pictureBox1.Image = Properties.Resources._20241116_052222_tawpf2qjnob_Fertilizer1;
+           //pictureBox1.Image = Properties.Resources._20241116_052222_tawpf2qjnob_Fertilizer1;
         }
-        private void btnAdd_Click(object sender, EventArgs e)
+		private void ReloadMainFormData()
+		{
+			try
+			{
+				var data = _fertilizerController.GetAllFertilizers();
+				dgvFertilizers.DataSource = data;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show($"Error while reloading data: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+		private void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
                 AddItem addItem = new AddItem();
-                addItem.Show();
+				addItem.FormClosed += (s, args) =>
+				{
+					ReloadMainFormData();
+				};
+				addItem.Show();
             }
             catch (Exception ex)
             {

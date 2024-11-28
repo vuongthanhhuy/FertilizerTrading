@@ -46,8 +46,7 @@ namespace FertilizerTradingApp.GUI.Forms
                 MessageBox.Show("Thiếu dữ liệu");
                 return;
             }
-            
-            if (_fertilizerController.updateFertilizer(_currentId, txtName.Text, txtPrice.Text, txtCategory.Text, txtQuantity.Text, txtDescription.Text))
+            if (_fertilizerController.updateFertilizer(_currentId, txtName.Text, txtPrice.Text, txtCategory.Text, txtQuantity.Text, txtDescription.Text, bool.Parse(button1.Text)))
             {
                 MessageBox.Show("Sửa phân bón thành công!");
                 this.Close();
@@ -163,11 +162,18 @@ namespace FertilizerTradingApp.GUI.Forms
                 txtQuantity.Text = _currentFertilizer.Stock.ToString();
                 txtDescription.Text = _currentFertilizer.Description;
                 txtPrice.Text = _currentFertilizer.Price.ToString();
+                button1.Text = _currentFertilizer.Deleted.ToString();
             }
         }
         private void txtName_TextChanged(object sender, EventArgs e)
         {
 
         }
-    }
+
+		private void button1_Click_1(object sender, EventArgs e)
+		{
+            _currentFertilizer.Deleted = !_currentFertilizer.Deleted;
+            button1.Text = _currentFertilizer.Deleted.ToString();
+		}
+	}
 }

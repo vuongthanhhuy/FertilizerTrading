@@ -39,8 +39,7 @@ namespace FertilizerTradingApp.Repository
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				// Get all product _isDelete = false
-				var query = "SELECT * FROM _Fertilizer WHERE _isdeleted = 0";
+				var query = "SELECT * FROM _Fertilizer";
 				var command = new SqlCommand(query, connection);
 
 				connection.Open();
@@ -56,7 +55,8 @@ namespace FertilizerTradingApp.Repository
 							Convert.ToSingle(reader["_price"]),
 							reader["_category"].ToString(),
 							Convert.ToInt32(reader["_stock"]),
-							reader["_description"].ToString()
+							reader["_description"].ToString(),
+							Convert.ToBoolean(reader["_isdeleted"])
 						);
 
 						fertilizers.Add(fertilizer);
@@ -89,7 +89,8 @@ namespace FertilizerTradingApp.Repository
 							Convert.ToSingle(reader["_price"]),
 							reader["_category"].ToString(),
 							Convert.ToInt32(reader["_stock"]),
-							reader["_description"].ToString()
+							reader["_description"].ToString(),
+							Convert.ToBoolean(reader["_isdeleted"])
 						);
 					}
 				}
@@ -121,7 +122,8 @@ namespace FertilizerTradingApp.Repository
 							Convert.ToSingle(reader["_price"]),
 							reader["_category"].ToString(),
 							Convert.ToInt32(reader["_stock"]),
-							reader["_description"].ToString()
+							reader["_description"].ToString(),
+							Convert.ToBoolean(reader["_isdeleted"])
 						);
 
 						fertilizers.Add(fertilizer);
@@ -155,7 +157,6 @@ namespace FertilizerTradingApp.Repository
         {
             using (var connection = new SqlConnection(_connectionString))
             {
-				//@_description, @_name, @_category, @_price, @_stock
                 var query = @"
 				UPDATE _Fertilizer
 				SET
@@ -163,7 +164,8 @@ namespace FertilizerTradingApp.Repository
                 _price = @price,
                 _category = @category,
                 _stock = @stock,
-                _description = @description
+                _description = @description,
+				_isDeleted = @deleted
 				WHERE fertilizer_id = @id";
                 var command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", fertilizer.Id);
@@ -172,7 +174,8 @@ namespace FertilizerTradingApp.Repository
                 command.Parameters.AddWithValue("@category", fertilizer.Category);
                 command.Parameters.AddWithValue("@stock", fertilizer.Stock);
                 command.Parameters.AddWithValue("@description", fertilizer.Description);
-                try
+				command.Parameters.AddWithValue("@deleted", fertilizer.Deleted);
+				try
                 {
                     connection.Open();
                     int rowsAffected = command.ExecuteNonQuery();
@@ -180,6 +183,7 @@ namespace FertilizerTradingApp.Repository
                 }
                 catch (Exception ex)
                 {
+					MessageBox.Show(ex.Message);
                     Console.WriteLine(ex.Message);
                     return false; 
                 }

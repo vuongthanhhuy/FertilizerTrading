@@ -38,9 +38,9 @@ namespace FertilizerTradingApp.Controllers
 		{
 			return _fertilizerService.FindFertilizer(str);
 		}
-		public bool updateFertilizer(string id, string name, string price, string category, string stock, string description)
+		public bool updateFertilizer(string id, string name, string price, string category, string stock, string description, bool deleted)
 		{
-			return _fertilizerService.updateFertilizer(new Fertilizer(id, name,ConvertToFloat(price), category, ConvertToInt(stock), description));
+			return _fertilizerService.updateFertilizer(new Fertilizer(id, name,ConvertToFloat(price), category, ConvertToInt(stock), description, deleted));
 		}
 		private int ConvertToInt(string input)
 		{

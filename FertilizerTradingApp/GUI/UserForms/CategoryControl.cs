@@ -33,7 +33,8 @@ namespace FertilizerTradingApp.GUI.UserForms
                     f.Category,
                     f.Stock,
                     f.Description,
-                    f.Image
+                    f.Image,
+                    f.Deleted
                 }).ToList();
                 dgvFertilizers.DataSource = formattedFertilizers;
                 dgvFertilizers.Columns["Id"].HeaderText = "Mã SP";
@@ -43,8 +44,9 @@ namespace FertilizerTradingApp.GUI.UserForms
                 dgvFertilizers.Columns["Stock"].HeaderText = "Số lượng tồn kho";
                 dgvFertilizers.Columns["Description"].HeaderText = "Mô tả";
                 dgvFertilizers.Columns["Image"].Visible = false;
-            }
-            catch (Exception ex)
+				dgvFertilizers.Columns["Deleted"].HeaderText = "Đã xóa";
+			}
+			catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while loading the fertilizers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -230,7 +232,8 @@ namespace FertilizerTradingApp.GUI.UserForms
                     if (_fertilizerController.RemoveFertilizer(_fertilizerCurrent.Id))
                     {
                         MessageBox.Show("Mục đã được xóa thành công.");
-                        ReloadMainFormData();
+						
+						ReloadMainFormData();
                     }
                     else
                     {

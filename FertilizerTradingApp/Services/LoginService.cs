@@ -34,6 +34,7 @@ namespace FertilizerTradingApp.Services
                 MessageBox.Show($"An error occurred while checking login: {ex.Message}", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            return false;
         }
         public bool UpdatePassword(string username, string oldPassword, string newPassword)
         {

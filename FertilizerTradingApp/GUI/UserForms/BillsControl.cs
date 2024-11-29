@@ -256,7 +256,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                 }
             }
         }
-    }
+   
 		private void btnExportBill_Click(object sender, EventArgs e)
 		{
 			try

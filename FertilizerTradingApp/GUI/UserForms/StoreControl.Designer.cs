@@ -75,12 +75,12 @@
             this.btnPre = new System.Windows.Forms.Button();
             this.panel24 = new System.Windows.Forms.Panel();
             this.flpItems = new System.Windows.Forms.FlowLayoutPanel();
+            this.itemStore1 = new FertilizerTradingApp.GUI.List.ItemStore();
             this.panel15 = new System.Windows.Forms.Panel();
             this.txbSearch = new System.Windows.Forms.TextBox();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnFind = new System.Windows.Forms.Button();
             this.pnBill = new System.Windows.Forms.Panel();
-            this.itemStore1 = new FertilizerTradingApp.GUI.List.ItemStore();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel31.SuspendLayout();
@@ -675,6 +675,15 @@
             this.flpItems.Size = new System.Drawing.Size(660, 720);
             this.flpItems.TabIndex = 0;
             // 
+            // itemStore1
+            // 
+            this.itemStore1.Location = new System.Drawing.Point(4, 4);
+            this.itemStore1.Margin = new System.Windows.Forms.Padding(4);
+            this.itemStore1.Name = "itemStore1";
+            this.itemStore1.Price = null;
+            this.itemStore1.Size = new System.Drawing.Size(223, 144);
+            this.itemStore1.TabIndex = 0;
+            // 
             // panel15
             // 
             this.panel15.Controls.Add(this.txbSearch);
@@ -726,15 +735,6 @@
             this.pnBill.Name = "pnBill";
             this.pnBill.Size = new System.Drawing.Size(1220, 861);
             this.pnBill.TabIndex = 11;
-            // 
-            // itemStore1
-            // 
-            this.itemStore1.Location = new System.Drawing.Point(4, 4);
-            this.itemStore1.Margin = new System.Windows.Forms.Padding(4);
-            this.itemStore1.Name = "itemStore1";
-            this.itemStore1.Price = null;
-            this.itemStore1.Size = new System.Drawing.Size(223, 144);
-            this.itemStore1.TabIndex = 0;
             // 
             // StoreControl
             // 

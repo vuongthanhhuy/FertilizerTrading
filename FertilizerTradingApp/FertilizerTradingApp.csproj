@@ -179,6 +179,12 @@
     <Compile Include="GUI\Forms\fMain.designer.cs">
       <DependentUpon>fMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Forms\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Forms\FormMain.designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Forms\PurcherBill.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -197,6 +203,18 @@
     <Compile Include="GUI\List\ItemStore.designer.cs">
       <DependentUpon>ItemStore.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\UserForms\Bill.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\UserForms\Bill.designer.cs">
+      <DependentUpon>Bill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UserForms\Category.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\UserForms\Category.designer.cs">
+      <DependentUpon>Category.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\UserForms\CategoryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -214,6 +232,18 @@
     </Compile>
     <Compile Include="GUI\UserForms\ManageUserControl.Designer.cs">
       <DependentUpon>ManageUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UserForms\OverviewControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\UserForms\OverviewControl.designer.cs">
+      <DependentUpon>OverviewControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\UserForms\Store.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUI\UserForms\Store.designer.cs">
+      <DependentUpon>Store.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\UserForms\StoreControl.cs">
       <SubType>UserControl</SubType>
@@ -257,6 +287,9 @@
     <EmbeddedResource Include="GUI\Forms\fMain.resx">
       <DependentUpon>fMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Forms\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Forms\PurcherBill.resx">
       <DependentUpon>PurcherBill.cs</DependentUpon>
     </EmbeddedResource>
@@ -266,6 +299,12 @@
     <EmbeddedResource Include="GUI\List\ItemStore.resx">
       <DependentUpon>ItemStore.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUI\UserForms\Bill.resx">
+      <DependentUpon>Bill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\UserForms\Category.resx">
+      <DependentUpon>Category.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\UserForms\CategoryControl.resx">
       <DependentUpon>CategoryControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -274,6 +313,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\UserForms\ManageUserControl.resx">
       <DependentUpon>ManageUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\UserForms\OverviewControl.resx">
+      <DependentUpon>OverviewControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\UserForms\Store.resx">
+      <DependentUpon>Store.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\UserForms\StoreControl.resx">
       <DependentUpon>StoreControl.cs</DependentUpon>

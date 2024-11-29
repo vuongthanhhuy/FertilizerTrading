@@ -37,8 +37,7 @@
             // 
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbName.Location = new System.Drawing.Point(8, 17);
-            this.lbName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbName.Location = new System.Drawing.Point(3, 0);
             this.lbName.Name = "lbName";
             this.lbName.Size = new System.Drawing.Size(68, 25);
             this.lbName.TabIndex = 0;
@@ -47,12 +46,11 @@
             // btAdd
             // 
             this.btAdd.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btAdd.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btAdd.Location = new System.Drawing.Point(183, 135);
-            this.btAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btAdd.Location = new System.Drawing.Point(57, 99);
             this.btAdd.Name = "btAdd";
-            this.btAdd.Size = new System.Drawing.Size(103, 36);
+            this.btAdd.Size = new System.Drawing.Size(68, 26);
             this.btAdd.TabIndex = 2;
             this.btAdd.Text = "Add";
             this.btAdd.UseVisualStyleBackColor = false;
@@ -62,8 +60,7 @@
             // 
             this.lbPrice.AutoSize = true;
             this.lbPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPrice.Location = new System.Drawing.Point(10, 57);
-            this.lbPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbPrice.Location = new System.Drawing.Point(4, 55);
             this.lbPrice.Name = "lbPrice";
             this.lbPrice.Size = new System.Drawing.Size(43, 20);
             this.lbPrice.TabIndex = 3;
@@ -72,14 +69,13 @@
             // 
             // ItemStore
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.lbPrice);
             this.Controls.Add(this.btAdd);
             this.Controls.Add(this.lbName);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ItemStore";
-            this.Size = new System.Drawing.Size(303, 185);
+            this.Size = new System.Drawing.Size(125, 125);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -8,14 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FertilizerTradingApp.GUI.Forms
+namespace FertilizerTradingApp.GUI.UserForms
 {
-    public partial class PurcherBill : Form
+    public partial class OverviewControl : UserControl
     {
-        public PurcherBill()
+        public OverviewControl()
         {
-            TopMost = true;
             InitializeComponent();
         }
+
+        
     }
 }

@@ -41,7 +41,7 @@ namespace FertilizerTradingApp.GUI
             }
 			else
             {
-                MessageBox.Show("Sai thông tin đăng nhập");
+                //MessageBox.Show("Sai thông tin đăng nhập");
             }
         }
     }

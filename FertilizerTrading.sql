@@ -144,28 +144,28 @@ GO
 
 
 
-delete from _Fertilizer
-go
+--delete from _Fertilizer
+--go
 
-exec AddFertilizer N'Mô tả 1', N'Tên 1', N'Loại 1', 300000, 3
-exec AddFertilizer N'Mô tả 2', N'Tên 2', N'Loại 2', 300000, 3
-go
+--exec AddFertilizer N'Mô tả 1', N'Tên 1', N'Loại 1', 300000, 3
+--exec AddFertilizer N'Mô tả 2', N'Tên 2', N'Loại 2', 300000, 3
+--go
 
-go
-delete from _Account
-go
+--go
+--delete from _Account
+--go
 
-insert into _Account values ('A0000001', 'vuonggthanhhhuyy', '$2a$12$5dR7hBKWbj1O4rOt9DuRA.okJsA1g4.09.j16GS35LikHvTDydo/O')
-go
-
-
-delete from _Customer
+insert into _Account values ('A0000001', 'admin', '$2a$12$bTu.FTMnahbftLAvwvJRhuOKvzr0WKClBBKyIN5Lacey87EBe5hPK')
 go
 
 
-insert into _Customer(customer_phone,_purchase_update,_debt,_total_bought,_name,_email) values ('0854637748', '11-18-2024', 200000, 1200000, N'Vương Thanh Huy 1', 'vuonggthanhhhuyy1@gmail.com')
-insert into _Customer(customer_phone,_purchase_update,_debt,_total_bought,_name,_email) values ('0854637749', '11-18-2024', 300000, 2300000, N'Vương Thanh Huy 2', 'vuonggthanhhhuyy2@gmail.com')
-go
+--delete from _Customer
+--go
 
-EXEC AddOrder 5000, '2024-11-17', 3000, '0854637748', 'A0000001';
-go
+
+--insert into _Customer(customer_phone,_purchase_update,_debt,_total_bought,_name,_email) values ('0854637748', '11-18-2024', 200000, 1200000, N'Vương Thanh Huy 1', 'vuonggthanhhhuyy1@gmail.com')
+--insert into _Customer(customer_phone,_purchase_update,_debt,_total_bought,_name,_email) values ('0854637749', '11-18-2024', 300000, 2300000, N'Vương Thanh Huy 2', 'vuonggthanhhhuyy2@gmail.com')
+--go
+
+--EXEC AddOrder 5000, '2024-11-17', 3000, '0854637748', 'A0000001';
+--go

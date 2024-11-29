@@ -266,10 +266,27 @@ namespace FertilizerTradingApp.GUI.UserForms
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
+			try
+			{
+			    string key = txbSearch.Text.Trim().ToLower();
+			    if (!string.IsNullOrEmpty(key))
+			    {
+			        List<Fertilizer> filteredFertilizers = _fertilizerController.GetAllFertilizersAvailble()
+			            .FindAll(f => f.Name.ToLower().Contains(key));
+			        populateItems(filteredFertilizers);
+			    }
+			    else
+			    {
+			        populateItems();
+			    }
+			}
+			catch (Exception ex)
+			{
+			    MessageBox.Show($"Error searching items: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
 
-        }
-
-        private void tbPaid_KeyPress(object sender, KeyPressEventArgs e)
+		private void tbPaid_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBox textBox = sender as TextBox;
             if (!IsValidNumericInput(textBox, e.KeyChar))

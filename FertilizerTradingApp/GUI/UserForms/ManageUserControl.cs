@@ -31,26 +31,34 @@ namespace FertilizerTradingApp.GUI.UserForms
                 {
                     c.CustomerPhone,
                     c.Name,
+                    c.PurchaseUpdate,
                     TotalBought = c.TotalBought.ToString("N0"), 
                     Debt = c.Debt.ToString("N0"),
                     c.Email,
                     c.PurchaseTime
-                }).ToList();
+				}).ToList();
 
                 dataGridView1.DataSource = formattedCustomers;
 
-                dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
+                /*dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
                 dataGridView1.Columns["Name"].HeaderText = "Tên khách hàng";
                 dataGridView1.Columns["TotalBought"].HeaderText = "Tổng tiền đã mua";
                 dataGridView1.Columns["Debt"].HeaderText = "Tiền nợ";
                 dataGridView1.Columns["Email"].HeaderText = "Email";
-                dataGridView1.Columns["PurchaseTime"].HeaderText = "Số lần mua";
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"An error occurred while loading customers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-        }
+                dataGridView1.Columns["PurchaseTime"].HeaderText = "Số lần mua";*/
+			    dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
+			    dataGridView1.Columns["Name"].HeaderText = "Tên khách hàng";
+			    dataGridView1.Columns["PurchaseUpdate"].HeaderText = "Lần cuối mua";
+			    dataGridView1.Columns["TotalBought"].HeaderText = "Tổng tiền đã mua";
+			    dataGridView1.Columns["Debt"].HeaderText = "Tiền nợ";
+			    dataGridView1.Columns["Email"].Visible = false;
+			    dataGridView1.Columns["PurchaseTime"].HeaderText = "Số lần mua";
+			//}
+			//catch (Exception ex)
+			//{
+			//    MessageBox.Show($"An error occurred while loading customers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			//}
+		}
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -183,22 +191,24 @@ namespace FertilizerTradingApp.GUI.UserForms
                         customer.PurchaseUpdate,
                         TotalBought = customer.TotalBought.ToString("N0"), 
                         Debt = customer.Debt.ToString("N0"),
-                        customer.Email
-                    });
-                }
+                        customer.Email,
+						customer.PurchaseTime
+					});
+					dataGridView1.DataSource = customers;
+					dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
+					dataGridView1.Columns["Name"].HeaderText = "Tên khách hàng";
+					dataGridView1.Columns["PurchaseUpdate"].HeaderText = "Lần cuối mua";
+					dataGridView1.Columns["TotalBought"].HeaderText = "Tổng tiền đã mua";
+					dataGridView1.Columns["Debt"].HeaderText = "Tiền nợ";
+					dataGridView1.Columns["Email"].Visible = false;
+					dataGridView1.Columns["PurchaseTime"].HeaderText = "Số lần mua";
+				}
                 else
                 {
                     MessageBox.Show("Customer not found!", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                dataGridView1.DataSource = customers;
-                dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
-                dataGridView1.Columns["Name"].HeaderText = "Tên khách hàng";
-                dataGridView1.Columns["PurchaseTime"].HeaderText = "Số lần mua";
-                dataGridView1.Columns["TotalBought"].HeaderText = "Tổng tiền đã mua";
-                dataGridView1.Columns["Debt"].HeaderText = "Tiền nợ";
-                dataGridView1.Columns["Email"].HeaderText = "Email";
-            }
+			}
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while searching for the customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

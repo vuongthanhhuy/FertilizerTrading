@@ -137,7 +137,7 @@ namespace FertilizerTradingApp.Repository
 
 			using (var connection = new SqlConnection(_connectionString))
 			{
-				var query = "SELECT * FROM _Fertilizer WHERE fertilizer_id = @str OR _name LIKE '%' + @str + '%'";
+				var query = "SELECT * FROM _Fertilizer WHERE fertilizer_id = @str OR _name LIKE N'%' + @str + '%'";
 				var command = new SqlCommand(query, connection);
 
 				command.Parameters.AddWithValue("@str", str);

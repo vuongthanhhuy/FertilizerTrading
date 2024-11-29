@@ -29,7 +29,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             {
                 Name = "Revenue",
                 ChartType = SeriesChartType.Column,
-                XValueType = ChartValueType.Int32,
+                XValueType = ChartValueType.DateTime,
                 YValueType = ChartValueType.Double
             };
 
@@ -37,7 +37,8 @@ namespace FertilizerTradingApp.GUI.UserForms
 
             foreach (DataRow row in dataTable.Rows)
             {
-                int xValue = Convert.ToInt32(row[0]);
+                MessageBox.Show(row[0].ToString());
+                DateTime xValue = Convert.ToDateTime(row[0]);
                 double yValue = Convert.ToDouble(row[1]);
                 series.Points.AddXY(xValue, yValue);
             }

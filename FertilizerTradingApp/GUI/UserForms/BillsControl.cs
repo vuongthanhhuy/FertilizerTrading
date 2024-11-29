@@ -227,7 +227,7 @@ namespace FertilizerTradingApp.GUI.UserForms
         private void btnEdit_Click(object sender, EventArgs e)
         {
             int paid;
-            if (!int.TryParse(tbPaid.Text, out paid))
+            if (!int.TryParse(tbPaid.Text.ToString().Replace(",", ""), out paid))
             {
                 MessageBox.Show("Please enter a valid number for the paid amount.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -249,10 +249,17 @@ namespace FertilizerTradingApp.GUI.UserForms
             {
                 try
                 {
-                    _orderController.UpdateTotalPayment(order_id, paid);
-                    _customerController.UpdateDebtById(cus_id, paid);
+                    float currentPayMiss = _orderController.GetOrderById(order_id).TotalPrice - _orderController.GetOrderById(order_id).TotalPayment;
+                    _customerController.GetCustomerById(cus_id).Debt = _customerController.GetCustomerById(cus_id).Debt - currentPayMiss;
+					_orderController.UpdateTotalPayment(order_id, paid);
+
+					float currentPayMissN = _orderController.GetOrderById(order_id).TotalPrice - _orderController.GetOrderById(order_id).TotalPayment;
+					_customerController.UpdateDebtById(cus_id, currentPayMissN + currentPayMiss);                    
+
                     MessageBox.Show("Cập nhập thành công");
-                }
+                    PopulateOrderGrid();
+                    DisplayOrderDetails(_orderController.GetOrderById(order_id));
+				}
                 catch (Exception ex)
                 {
                     MessageBox.Show("Có lỗi trong quá trình cập nhập");

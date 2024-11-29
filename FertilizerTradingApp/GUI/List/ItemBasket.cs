@@ -34,7 +34,7 @@ namespace FertilizerTradingApp.GUI.List
         public string Id
         {
             get { return _id; }
-            set { _id = value; lbName.Text = value; }
+            set { _id = value; lbId.Text = value; }
         }
         [Category("Data")]
         public string Price

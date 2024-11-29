@@ -179,7 +179,8 @@ namespace FertilizerTradingApp.Repository
                 command.Parameters.AddWithValue("@OrderId", orderId);
 
                 connection.Open();
-            }
+				command.ExecuteNonQuery();
+			}
         }
     }
 }

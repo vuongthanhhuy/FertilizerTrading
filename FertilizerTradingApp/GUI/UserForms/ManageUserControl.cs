@@ -218,7 +218,7 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                string outputDirectory = Path.Combine("D:/AppData/output");
+                string outputDirectory = Path.Combine("D:/FertilizerTrading/output");
                 Directory.CreateDirectory(outputDirectory);
                 string filePath = Path.Combine(outputDirectory, "Customers.xlsx");
 

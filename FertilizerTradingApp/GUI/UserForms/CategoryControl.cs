@@ -22,7 +22,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void CategoryControl_Load(object sender, EventArgs e)
         {
-            /*try
+            try
             {
                 var fertilizers = _fertilizerController.GetAllFertilizers();
                 var formattedFertilizers = fertilizers.Select(f => new
@@ -49,7 +49,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 			catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while loading the fertilizers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
+            }
         }
 
 

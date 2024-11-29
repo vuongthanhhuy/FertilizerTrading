@@ -97,12 +97,12 @@ namespace FertilizerTradingApp.GUI.UserForms
             lbPrice.Text = order.TotalPrice.ToString("N0"); 
             lbDate.Text = order.Date.ToShortDateString();
             lbDeposit.Text = order.TotalPayment.ToString("N0"); 
-            lb_paymis.Text = paymis.ToString("N0"); 
-            lbl_cusPhone.Text = order.CustomerPhone;
+            lbTotal.Text = paymis.ToString("N0"); 
+            label2.Text = order.CustomerPhone;
             lbAcc.Text = order.AccountId;
 
             var customer = _customerController.GetCustomerById(order.CustomerPhone);
-            lblCusName.Text = customer?.Name ?? "Unknown";
+            label2.Text = customer?.Name ?? "Unknown";
         }
 
         private void LoadFertilizerDetails(string orderId)

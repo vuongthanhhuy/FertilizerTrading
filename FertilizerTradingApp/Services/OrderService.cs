@@ -63,5 +63,10 @@ namespace FertilizerTradingApp.Services
         {
             return _orderRepository.GetNewestOrderId();
         }
-	}
+        public void UpdateTotalPayment(string orderId, float newTotalPayment)
+        {
+            _orderRepository.UpdateTotalPayment(orderId, newTotalPayment);
+        }
+
+    }
 }

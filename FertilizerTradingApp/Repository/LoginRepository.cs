@@ -39,5 +39,26 @@ namespace FertilizerTradingApp.Repository
 			}
 			return storedHashedPassword;
 		}
-	}
+        public bool UpdatePassword(string username, string newHashedPassword)
+        {
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    var query = "UPDATE _Account SET _password = @password WHERE _username = @username";
+                    var command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@username", username);
+                    command.Parameters.AddWithValue("@password", newHashedPassword);
+
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating password: " + ex.Message);
+            }
+        }
+    }
 }

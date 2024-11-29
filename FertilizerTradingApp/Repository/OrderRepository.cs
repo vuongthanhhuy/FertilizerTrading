@@ -169,6 +169,17 @@ namespace FertilizerTradingApp.Repository
 			}
 			return orders;
 		}
+        public void UpdateTotalPayment(string orderId, float newTotalPayment)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "UPDATE _Order SET _total_payment = @NewTotalPayment WHERE order_id = @OrderId";
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@NewTotalPayment", newTotalPayment);
+                command.Parameters.AddWithValue("@OrderId", orderId);
 
-	}
+                connection.Open();
+            }
+        }
+    }
 }

@@ -44,5 +44,38 @@ namespace FertilizerTradingApp.GUI
                 //MessageBox.Show("Sai thông tin đăng nhập");
             }
         }
+
+        private void btnChangePass_Click(object sender, EventArgs e)
+        {
+            if (pnChangePass.Visible == false)
+            {
+                pnChangePass.Visible = true;
+                btnLogin.Enabled = false;
+                btnConfirm.Visible = true;
+                tbNewPass.Text = "";
+                btnChangePass.Text = "Quay về đăng nhập";
+            }
+            else
+            {
+                pnChangePass.Visible = false;
+                btnLogin.Enabled = true;
+                btnConfirm.Visible = false;
+                tbNewPass.Text = "";
+                btnChangePass.Text = "Đổi mật khẩu";
+            }
+        }
+
+        private void btnConfirm_Click(object sender, EventArgs e)
+        {
+            string username = txbUsername.Text;
+            string curP = txbPassword.Text;
+            string newP = tbNewPass.Text;
+            if(curP == null || newP == null) {
+                MessageBox.Show("Hãy nhập mật khẩu");
+                return; }
+            if (_loginController.UpdatePassword(username, curP, newP)){
+                MessageBox.Show("Cập nhập thành công");
+            }
+        }
     }
 }

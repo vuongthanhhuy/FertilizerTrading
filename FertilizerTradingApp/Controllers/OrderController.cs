@@ -43,5 +43,9 @@ namespace FertilizerTradingApp.Controllers
         {
             return _orderService.FindOrder(str);
         }
+        public void UpdateTotalPayment(string orderId, float newTotalPayment)
+        {
+            _orderService.UpdateTotalPayment(orderId, newTotalPayment);
+        }
     }
 }

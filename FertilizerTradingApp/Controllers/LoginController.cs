@@ -20,5 +20,9 @@ namespace FertilizerTradingApp.Controllers
 		{
 			return _loginService.LoginCheck(username, password);
 		}
+		public bool UpdatePassword(string username, string curP, string newP)
+		{
+			return _loginService.UpdatePassword(username, curP, newP);
+		}
 	}
 }

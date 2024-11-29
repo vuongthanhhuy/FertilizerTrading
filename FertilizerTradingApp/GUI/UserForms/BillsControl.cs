@@ -97,8 +97,8 @@ namespace FertilizerTradingApp.GUI.UserForms
             lbPrice.Text = order.TotalPrice.ToString("N0"); 
             lbDate.Text = order.Date.ToShortDateString();
             lbDeposit.Text = order.TotalPayment.ToString("N0"); 
-            lbTotal.Text = paymis.ToString("N0"); 
-            label2.Text = order.CustomerPhone;
+            lbTotal.Text = order.TotalPrice.ToString("N0");
+            lbPhone.Text = order.CustomerPhone;
             lbAcc.Text = order.AccountId;
 
             var customer = _customerController.GetCustomerById(order.CustomerPhone);
@@ -221,6 +221,42 @@ namespace FertilizerTradingApp.GUI.UserForms
         private void ShowError(string message, Exception ex)
         {
             MessageBox.Show($"{message}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            int paid;
+            if (!int.TryParse(tbPaid.Text, out paid))
+            {
+                MessageBox.Show("Please enter a valid number for the paid amount.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string order_id = lbBill.Text;
+            string cus_id = lbPhone.Text;
+            if(paid < 0 || paid > _orderController.GetOrderById(order_id).TotalPrice) {
+                MessageBox.Show("Giá trị không hợp lệ");
+                return;
+            }
+            var confirmationResult = MessageBox.Show(
+                $"Bạn có chắc chắn muốn chỉnh sửa hóa đơn: {order_id}?",
+                "Confirm Action",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirmationResult == DialogResult.Yes)
+            {
+                try
+                {
+                    _orderController.UpdateTotalPayment(order_id, paid);
+                    _customerController.UpdateDebtById(cus_id, paid);
+                    MessageBox.Show("Cập nhập thành công");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Có lỗi trong quá trình cập nhập");
+                }
+            }
         }
     }
 }

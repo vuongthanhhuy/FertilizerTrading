@@ -158,5 +158,17 @@ namespace FertilizerTradingApp.Repository
                 command.ExecuteNonQuery();
             }
         }
+        public void UpdateDebtById(string customerId, float debtReduction)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "UPDATE _Customer SET _debt = _debt - @debtReduction WHERE customer_phone = @customerId";
+                var command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@debtReduction", debtReduction);
+                command.Parameters.AddWithValue("@customerId", customerId);
+
+                connection.Open();
+            }
+        }
     }
 }

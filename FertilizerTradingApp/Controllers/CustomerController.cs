@@ -37,5 +37,9 @@ namespace FertilizerTradingApp.Controllers
 		{
 			_customerService.UpdateCustomer(customer);
 		}
+		public void UpdateDebtById(string customerId, float debtReduction)
+		{
+			_customerService.UpdateDebtById(customerId, debtReduction);
+		}
     }
 }

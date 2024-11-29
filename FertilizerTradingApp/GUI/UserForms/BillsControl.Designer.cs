@@ -59,7 +59,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lbDeposit = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbPhone = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.lblCusName = new System.Windows.Forms.Label();
@@ -321,7 +321,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.tableLayoutPanel1.Controls.Add(this.label9, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbDeposit, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lbPhone, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label6, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.label13, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblCusName, 1, 1);
@@ -420,17 +420,17 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.lbDeposit.TabIndex = 16;
             this.lbDeposit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
+            // lbPhone
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(143, 0);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(209, 38);
-            this.label3.TabIndex = 26;
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbPhone.AutoSize = true;
+            this.lbPhone.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPhone.Location = new System.Drawing.Point(143, 0);
+            this.lbPhone.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbPhone.Name = "lbPhone";
+            this.lbPhone.Size = new System.Drawing.Size(209, 38);
+            this.lbPhone.TabIndex = 26;
+            this.lbPhone.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label6
             // 
@@ -566,7 +566,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.tbPaid.Name = "tbPaid";
             this.tbPaid.Size = new System.Drawing.Size(281, 29);
             this.tbPaid.TabIndex = 24;
-            this.tbPaid.Text = "0000000000000000";
+            this.tbPaid.Text = "000000000";
             // 
             // panel28
             // 
@@ -759,6 +759,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.btnEdit.TabIndex = 9;
             this.btnEdit.Text = "Sửa";
             this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // panel11
             // 
@@ -790,7 +791,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             this.btnExportExcel.TabIndex = 7;
             this.btnExportExcel.Text = "Xuất";
             this.btnExportExcel.UseVisualStyleBackColor = true;
-            this.btnExportExcel.Click += new System.EventHandler(this.btn_excel);
+            this.btnExportExcel.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnFind
             // 
@@ -960,7 +961,7 @@ namespace FertilizerTradingApp.GUI.UserForms
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lbDeposit;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbPhone;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label lblCusName;

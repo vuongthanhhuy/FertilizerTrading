@@ -1,4 +1,5 @@
 ﻿using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using DocumentFormat.OpenXml.Office2016.Drawing.Command;
 using FertilizerTradingApp.Controllers;
 using System;
 using System.Collections.Generic;
@@ -50,17 +51,21 @@ namespace FertilizerTradingApp.GUI
             if (pnChangePass.Visible == false)
             {
                 pnChangePass.Visible = true;
+                pnPC.Visible = true;
                 btnLogin.Enabled = false;
                 btnConfirm.Visible = true;
                 tbNewPass.Text = "";
+                tbNewPC.Text = "";
                 btnChangePass.Text = "Quay về đăng nhập";
             }
             else
             {
                 pnChangePass.Visible = false;
+                pnPC.Visible = false;
                 btnLogin.Enabled = true;
                 btnConfirm.Visible = false;
                 tbNewPass.Text = "";
+                tbNewPC.Text = "";
                 btnChangePass.Text = "Đổi mật khẩu";
             }
         }
@@ -70,9 +75,14 @@ namespace FertilizerTradingApp.GUI
             string username = txbUsername.Text;
             string curP = txbPassword.Text;
             string newP = tbNewPass.Text;
+            string confirmP = tbNewPC.Text;
             if(curP == null || newP == null) {
                 MessageBox.Show("Hãy nhập mật khẩu");
                 return; }
+            if (!newP.Equals(confirmP)){
+                MessageBox.Show("Mật khẩu không khớp");
+                return;
+            }
             if (_loginController.UpdatePassword(username, curP, newP)){
                 MessageBox.Show("Cập nhập thành công");
             }

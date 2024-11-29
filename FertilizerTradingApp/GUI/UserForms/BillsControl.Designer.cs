@@ -977,7 +977,6 @@ namespace FertilizerTradingApp.GUI.UserForms
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Button btnExportBill;
-        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
     }
 }

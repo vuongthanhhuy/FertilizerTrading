@@ -119,7 +119,7 @@ namespace FertilizerTradingApp.Repository
             {
                 var insertQuery = @"
                     INSERT INTO _Customer 
-                    (customer_phone, _purchase_time, _debt, _total_bought, _name, _email) 
+                    (customer_phone, _purchase_update, _debt, _total_bought, _name, _email) 
                     VALUES 
                     (@customerPhone, @purchaseTime, @debt, @totalBought, @name, '')";
 

@@ -100,9 +100,12 @@ namespace FertilizerTradingApp.GUI.UserForms
             lbTotal.Text = order.TotalPrice.ToString("N0");
             lbPhone.Text = order.CustomerPhone;
             lbAcc.Text = order.AccountId;
-
+            tbPaid.Text = order.TotalPayment.ToString("N0");
+            int price = int.Parse(lbPrice.Text.Replace(",", "")); 
+            int deposit = int.Parse(lbDeposit.Text.Replace(",", ""));
+            lb_paymis.Text = (price - deposit).ToString("N0");
             var customer = _customerController.GetCustomerById(order.CustomerPhone);
-            label2.Text = customer?.Name ?? "Unknown";
+            lblCusName.Text = customer?.Name ?? "Unknown";
         }
 
         private void LoadFertilizerDetails(string orderId)
@@ -282,5 +285,21 @@ namespace FertilizerTradingApp.GUI.UserForms
 				dataGridView1.Columns["AccountId"].HeaderText = "Mã tài khoản nhân viên";
 			}
 		}
-	}
+
+        private void tbPaid_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            string unformattedText = textBox.Text.Replace(",", "").Trim();
+            if (decimal.TryParse(unformattedText, out decimal value))
+            {
+                textBox.Text = string.Format("{0:n0}", value);
+                textBox.SelectionStart = textBox.Text.Length;
+            }
+            else if (!string.IsNullOrEmpty(unformattedText))
+            {
+                MessageBox.Show("Chỉ chấp nhận số");
+                textBox.Text = string.Empty;
+            }
+        }
+    }
 }

@@ -65,6 +65,7 @@
             this.btnDel.TabIndex = 5;
             this.btnDel.Text = "X";
             this.btnDel.UseVisualStyleBackColor = true;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // lbPrice
             // 
@@ -133,6 +134,7 @@
             this.btnSub.TabIndex = 3;
             this.btnSub.Text = "-";
             this.btnSub.UseVisualStyleBackColor = true;
+            this.btnSub.Click += new System.EventHandler(this.btnSub_Click);
             // 
             // btnAdd
             // 
@@ -145,6 +147,7 @@
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "+";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label1
             // 

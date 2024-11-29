@@ -26,9 +26,9 @@ namespace FertilizerTradingApp.Controllers
 		{
 			return _fertilizerService.deleteFertilizer(id);
 		}
-		public List<Fertilizer> GetAllFertilizers()
+		public List<Fertilizer> GetAllFertilizersAvailble()
 		{
-			return _fertilizerService.GetAllFertilizers();
+			return _fertilizerService.GetAllFertilizersAvailble();
 		}
 		public Fertilizer GetFertilizerById(string id)
 		{

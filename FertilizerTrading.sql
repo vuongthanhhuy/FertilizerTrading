@@ -21,11 +21,12 @@ go
 create table _Customer
 (
 	customer_phone varchar(20) primary key,
-	_purchase_time Date,
+	_purchase_update Date,
 	_debt float,
 	_total_bought float,
 	_name nvarchar(500),
-	_email varchar(500)
+	_email varchar(500),
+	purchase_times int default 1,
 )
 go
 
@@ -150,9 +151,7 @@ exec AddFertilizer N'Mô tả 1', N'Tên 1', N'Loại 1', 300000, 3
 exec AddFertilizer N'Mô tả 2', N'Tên 2', N'Loại 2', 300000, 3
 go
 
-delete from _Fertilizer
 go
-
 delete from _Account
 go
 
@@ -163,8 +162,9 @@ go
 delete from _Customer
 go
 
-insert into _Customer values ('0854637748', '11-18-2024', 200000, 1200000, N'Vương Thanh Huy 1', 'vuonggthanhhhuyy1@gmail.com')
-insert into _Customer values ('0854637749', '11-18-2024', 300000, 2300000, N'Vương Thanh Huy 2', 'vuonggthanhhhuyy2@gmail.com')
+
+insert into _Customer(customer_phone,_purchase_update,_debt,_total_bought,_name,_email) values ('0854637748', '11-18-2024', 200000, 1200000, N'Vương Thanh Huy 1', 'vuonggthanhhhuyy1@gmail.com')
+insert into _Customer(customer_phone,_purchase_update,_debt,_total_bought,_name,_email) values ('0854637749', '11-18-2024', 300000, 2300000, N'Vương Thanh Huy 2', 'vuonggthanhhhuyy2@gmail.com')
 go
 
 EXEC AddOrder 5000, '2024-11-17', 3000, '0854637748', 'A0000001';

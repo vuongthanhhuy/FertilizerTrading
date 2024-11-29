@@ -24,32 +24,32 @@ namespace FertilizerTradingApp.GUI.UserForms
         }
         private void CustomerControl_Load(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 var customers = _customerController.GetAllCustomers();
                 var formattedCustomers = customers.Select(c => new
                 {
                     c.CustomerPhone,
                     c.Name,
-                    c.PurchaseTime,
                     TotalBought = c.TotalBought.ToString("N0"), 
                     Debt = c.Debt.ToString("N0"),
-                    c.Email
+                    c.Email,
+                    c.PurchaseTime
                 }).ToList();
 
                 dataGridView1.DataSource = formattedCustomers;
 
                 dataGridView1.Columns["CustomerPhone"].HeaderText = "Số điện thoại";
                 dataGridView1.Columns["Name"].HeaderText = "Tên khách hàng";
-                dataGridView1.Columns["PurchaseTime"].HeaderText = "Số lần mua";
                 dataGridView1.Columns["TotalBought"].HeaderText = "Tổng tiền đã mua";
                 dataGridView1.Columns["Debt"].HeaderText = "Tiền nợ";
                 dataGridView1.Columns["Email"].HeaderText = "Email";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred while loading customers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+                dataGridView1.Columns["PurchaseTime"].HeaderText = "Số lần mua";
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"An error occurred while loading customers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -78,7 +78,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                         label5.Text = customer.Name;
                         label7.Text = customer.CustomerPhone;
                         label8.Text = customer.Email;
-                        label12.Text = customer.PurchaseTime.ToString("N0");
+                        label12.Text = customer.PurchaseUpdate.ToString("N0");
                         label14.Text = customer.Debt.ToString("N0");
                         label15.Text = customer.TotalBought.ToString("N0");
 
@@ -180,7 +180,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                     {
                         customer.CustomerPhone,
                         customer.Name,
-                        customer.PurchaseTime,
+                        customer.PurchaseUpdate,
                         TotalBought = customer.TotalBought.ToString("N0"), 
                         Debt = customer.Debt.ToString("N0"),
                         customer.Email

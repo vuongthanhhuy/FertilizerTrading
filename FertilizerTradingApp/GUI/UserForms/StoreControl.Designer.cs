@@ -43,10 +43,6 @@
             this.panel29 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbAccount = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel23 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tbPhone = new System.Windows.Forms.TextBox();
@@ -75,12 +71,12 @@
             this.btnPre = new System.Windows.Forms.Button();
             this.panel24 = new System.Windows.Forms.Panel();
             this.flpItems = new System.Windows.Forms.FlowLayoutPanel();
-            this.itemStore1 = new FertilizerTradingApp.GUI.List.ItemStore();
             this.panel15 = new System.Windows.Forms.Panel();
             this.txbSearch = new System.Windows.Forms.TextBox();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnFind = new System.Windows.Forms.Button();
             this.pnBill = new System.Windows.Forms.Panel();
+            this.itemStore1 = new FertilizerTradingApp.GUI.List.ItemStore();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel31.SuspendLayout();
@@ -88,7 +84,6 @@
             this.panel3.SuspendLayout();
             this.panel29.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            this.tableLayoutPanel4.SuspendLayout();
             this.panel23.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel28.SuspendLayout();
@@ -279,10 +274,6 @@
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.lbAccount, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.label6, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label5, 0, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(524, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -291,64 +282,6 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(459, 94);
             this.tableLayoutPanel4.TabIndex = 28;
-            // 
-            // lbAccount
-            // 
-            this.lbAccount.AutoSize = true;
-            this.lbAccount.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbAccount.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lbAccount.Location = new System.Drawing.Point(229, 47);
-            this.lbAccount.Margin = new System.Windows.Forms.Padding(0);
-            this.lbAccount.Name = "lbAccount";
-            this.lbAccount.Size = new System.Drawing.Size(230, 47);
-            this.lbAccount.TabIndex = 5;
-            this.lbAccount.Text = "ABC";
-            this.lbAccount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label6.Location = new System.Drawing.Point(229, 0);
-            this.label6.Margin = new System.Windows.Forms.Padding(0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(230, 47);
-            this.label6.TabIndex = 4;
-            this.label6.Text = "ABC";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Margin = new System.Windows.Forms.Padding(0);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(5);
-            this.label2.Size = new System.Drawing.Size(229, 47);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Mã hóa đơn:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label5.Location = new System.Drawing.Point(0, 47);
-            this.label5.Margin = new System.Windows.Forms.Padding(0);
-            this.label5.Name = "label5";
-            this.label5.Padding = new System.Windows.Forms.Padding(5);
-            this.label5.Size = new System.Drawing.Size(229, 47);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Thu ngân:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel23
             // 
@@ -597,7 +530,7 @@
             // 
             this.btnExportBill.AutoSize = true;
             this.btnExportBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportBill.Location = new System.Drawing.Point(36, 13);
+            this.btnExportBill.Location = new System.Drawing.Point(111, 13);
             this.btnExportBill.Margin = new System.Windows.Forms.Padding(2);
             this.btnExportBill.Name = "btnExportBill";
             this.btnExportBill.Size = new System.Drawing.Size(184, 41);
@@ -675,15 +608,6 @@
             this.flpItems.Size = new System.Drawing.Size(660, 720);
             this.flpItems.TabIndex = 0;
             // 
-            // itemStore1
-            // 
-            this.itemStore1.Location = new System.Drawing.Point(4, 4);
-            this.itemStore1.Margin = new System.Windows.Forms.Padding(4);
-            this.itemStore1.Name = "itemStore1";
-            this.itemStore1.Price = null;
-            this.itemStore1.Size = new System.Drawing.Size(223, 144);
-            this.itemStore1.TabIndex = 0;
-            // 
             // panel15
             // 
             this.panel15.Controls.Add(this.txbSearch);
@@ -736,6 +660,15 @@
             this.pnBill.Size = new System.Drawing.Size(1220, 861);
             this.pnBill.TabIndex = 11;
             // 
+            // itemStore1
+            // 
+            this.itemStore1.Location = new System.Drawing.Point(4, 4);
+            this.itemStore1.Margin = new System.Windows.Forms.Padding(4);
+            this.itemStore1.Name = "itemStore1";
+            this.itemStore1.Price = null;
+            this.itemStore1.Size = new System.Drawing.Size(152, 144);
+            this.itemStore1.TabIndex = 0;
+            // 
             // StoreControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -761,8 +694,6 @@
             this.panel3.PerformLayout();
             this.panel29.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel4.ResumeLayout(false);
-            this.tableLayoutPanel4.PerformLayout();
             this.panel23.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -823,10 +754,6 @@
 		private List.ItemStore itemStore1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label lbAccount;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;

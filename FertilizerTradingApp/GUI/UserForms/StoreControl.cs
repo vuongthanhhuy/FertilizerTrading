@@ -31,14 +31,14 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                fertilizers = fertilizers ?? _fertilizerController.GetAllFertilizers();
+                fertilizers = fertilizers ?? _fertilizerController.GetAllFertilizersAvailble();
                 flpItems.Controls.Clear();
                 foreach (var fertilizer in fertilizers)
                 {
                     ItemStore item = new ItemStore
                     {
                         Name = fertilizer.Name,
-                        Price = $"${fertilizer.Price.ToString("N0")}",
+                        Price = $"{fertilizer.Price.ToString("N0")} VND",
 /*                        Image = LoadImage(fertilizer.Image),
 */                        Dock = DockStyle.Top
                     };
@@ -60,13 +60,21 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
+                foreach (Control control in pnBasket.Controls)
+                {
+                    if (control is ItemBasket existingItem && existingItem.Id == fertilizer.Id)
+                    {
+                        MessageBox.Show("Đã có trong hóa đơn, vui lòng cập nhập số lượng trong hóa đơn");
+                        return;
+                    }
+                }
                 ItemBasket itemBasket = new ItemBasket
                 {
                     Name = fertilizer.Name,
                     Num = "1",
                     Id = fertilizer.Id,
-/*                    ImageItem = LoadImage(fertilizer.Image),
-*/                    Dock = DockStyle.Top,
+                    /*          ImageItem = LoadImage(fertilizer.Image), */
+                    Dock = DockStyle.Top,
                     Price = fertilizer.Price.ToString("N0") + "vnd",
                     UnitPrice = fertilizer.Price
                 };
@@ -122,12 +130,12 @@ namespace FertilizerTradingApp.GUI.UserForms
             {
                 if (flag)
                 {
-                    lbAccount.Text = "{name user logged}";
+                    //lbAccount.Text = "{name user logged}";
                     lbTotal.Text = (float.Parse(lbTotal.Text) + fertilizer.Price).ToString("N0");
                 }
                 else
                 {
-                    lbAccount.Text = "{name user logged}";
+                    //lbAccount.Text = "{name user logged}";
                     lbTotal.Text = (float.Parse(lbTotal.Text) - fertilizer.Price).ToString("N0");
                 }
             }
@@ -140,7 +148,9 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                string outputDirectory = @"D:/AppData/output";
+                btnExportBill.Visible = false;
+                btnPay.Visible = false;
+                string outputDirectory = @"D:/FertilizerTrading/output";
                 if (!Directory.Exists(outputDirectory))
                 {
                     Directory.CreateDirectory(outputDirectory);
@@ -164,12 +174,14 @@ namespace FertilizerTradingApp.GUI.UserForms
 
                 document.Save(filePath);
                 File.Delete(tempImagePath);
-
+                btnExportBill.Visible = true;
+                btnPay.Visible = true;
                 MessageBox.Show($"The store bill has been exported to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error exporting bill: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                MessageBox.Show($"Kiểm tra chắc chắn bạn có ổ đĩa D:/; Hoặc tắt file export đang mở");
             }
         }
 
@@ -214,8 +226,9 @@ namespace FertilizerTradingApp.GUI.UserForms
 
                     customer.Debt = updatedDebt < 0 ? 0 : updatedDebt; 
                     customer.TotalBought = updatedTotalBought;
-                    customer.PurchaseTime = DateTime.Now;
+                    customer.PurchaseUpdate = DateTime.Now;
                     customer.Name = tbName.Text;
+                    customer.PurchaseTime = customer.PurchaseTime + 1;
                     if(customer.Name != _customerController.GetCustomerById(customer.CustomerPhone).Name)
                     {
                         MessageBox.Show("Sai tên khách hàng");
@@ -253,24 +266,7 @@ namespace FertilizerTradingApp.GUI.UserForms
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string key = txbSearch.Text.Trim().ToLower();
-                if (!string.IsNullOrEmpty(key))
-                {
-                    List<Fertilizer> filteredFertilizers = _fertilizerController.GetAllFertilizers()
-                        .FindAll(f => f.Name.ToLower().Contains(key));
-                    populateItems(filteredFertilizers);
-                }
-                else
-                {
-                    populateItems();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error searching items: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+
         }
 
         private void tbPaid_KeyPress(object sender, KeyPressEventArgs e)

@@ -24,7 +24,7 @@ namespace FertilizerTradingApp.GUI.UserForms
         {
             try
             {
-                var fertilizers = _fertilizerController.GetAllFertilizers();
+                var fertilizers = _fertilizerController.GetAllFertilizersAvailble();
                 var formattedFertilizers = fertilizers.Select(f => new
                 {
                     f.Id,
@@ -98,7 +98,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 		{
 			try
 			{
-				var data = _fertilizerController.GetAllFertilizers();
+				var data = _fertilizerController.GetAllFertilizersAvailble();
 				dgvFertilizers.DataSource = data;
 			}
 			catch (Exception ex)
@@ -178,7 +178,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void ExportToExcel()
         {
-            string outputDirectory = Path.Combine("D:/AppData/output");
+            string outputDirectory = Path.Combine("D:/FertilizerTrading/output");
             Directory.CreateDirectory(outputDirectory);
 
             string filePath = Path.Combine(outputDirectory, "Fertilizers.xlsx");

@@ -159,7 +159,10 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void ExportToExcel()
         {
-            string outputDirectory = Path.Combine("D:/AppData/output");
+            btnExportBill.Visible = false;
+            btnEdit.Visible = false;
+            btnDelete.Visible = false;  
+            string outputDirectory = Path.Combine("D:/FertilizerTrading/output");
             Directory.CreateDirectory(outputDirectory); // Ensure directory exists
 
             string filePath = Path.Combine(outputDirectory, "OrdersAndFertilizers.xlsx");
@@ -172,6 +175,9 @@ namespace FertilizerTradingApp.GUI.UserForms
                 workbook.SaveAs(filePath);
             }
 
+            btnExportBill.Visible = true;
+            btnEdit.Visible = true;
+            btnDelete.Visible = true;
             MessageBox.Show($"Excel file has been saved to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -191,22 +197,11 @@ namespace FertilizerTradingApp.GUI.UserForms
             }
         }
 
-        private void btnExportBill_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ExportBillToPdf();
-            }
-            catch (Exception ex)
-            {
-                ShowError("An error occurred while exporting the bill", ex);
-            }
-        }
-
         private void ExportBillToPdf()
         {
-            string outputDirectory = Path.Combine("D:/AppData/output");
-            Directory.CreateDirectory(outputDirectory); // Ensure directory exists
+
+            string outputDirectory = Path.Combine("D:/FertilizerTrading/output");
+            Directory.CreateDirectory(outputDirectory); 
             string filePath = Path.Combine(outputDirectory, "BillExport.pdf");
             string tempImagePath = Path.Combine(outputDirectory, "tempImage.png");
             var document = new PdfDocument { Info = { Title = "Exported Bill" } };
@@ -226,20 +221,6 @@ namespace FertilizerTradingApp.GUI.UserForms
         private void ShowError(string message, Exception ex)
         {
             MessageBox.Show($"{message}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void btnFind_Click(object sender, EventArgs e)
-        {
-            if (txbSearch.Text.Length > 0)
-            {
-                dataGridView1.DataSource = _orderController.FindOrder(txbSearch.Text);
-                SetOrderGridColumnHeaders();
-            }
-        }
-
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

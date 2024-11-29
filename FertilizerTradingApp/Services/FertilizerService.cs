@@ -20,9 +20,9 @@ namespace FertilizerTradingApp.Services
 		{
 			return _fertilizerRepository.AddFertilizer( name, price, category, stock, description);
 		}
-		public List<Fertilizer> GetAllFertilizers()
+		public List<Fertilizer> GetAllFertilizersAvailble()
 		{
-			return _fertilizerRepository.GetAllFertilizers();
+            return _fertilizerRepository.GetAllFertilizersAvailble();
 		}
 		public Fertilizer GetFertilizerById(string id)
 		{

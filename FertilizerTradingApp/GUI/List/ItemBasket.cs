@@ -20,7 +20,6 @@ namespace FertilizerTradingApp.GUI.List
         #region Properties
         private string _name;
         private string _num;
-        private Image _img;
         private string _price;
         private string _id;
         private float _unitPrice; // to store the unit price
@@ -51,13 +50,6 @@ namespace FertilizerTradingApp.GUI.List
             set { _num = value; lbNum.Text = value; }
         }
 
-        [Category("Data")]
-        public Image ImageItem
-        {
-            get { return _img; }
-            set { _img = value; pbItem.Image = value; }
-        }
-
         public float UnitPrice
         {
             get { return _unitPrice; }
@@ -84,14 +76,11 @@ namespace FertilizerTradingApp.GUI.List
                 ItemUpdate?.Invoke(this, EventArgs.Empty);
             }
         }
-
         public event EventHandler ItemDeleted;
         private void btnDel_Click(object sender, EventArgs e)
         {
             ItemDeleted?.Invoke(this, EventArgs.Empty);
         }
-
-        // To get the updated price
         public float GetUpdatedPrice()
         {
             return float.Parse(lbNum.Text) * _unitPrice; // updated price = quantity * unit price

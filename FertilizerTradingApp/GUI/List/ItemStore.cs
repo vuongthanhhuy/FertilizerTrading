@@ -15,7 +15,7 @@ namespace FertilizerTradingApp.GUI.List
         #region Properties
         private string _name;
         private string _price;
-        private Image _image;
+        private Image  _image;
 
         [Category("Data")]
         public new string Name
@@ -31,12 +31,6 @@ namespace FertilizerTradingApp.GUI.List
             set { _price = value; lbPrice.Text = value; }
         }
 
-/*        [Category("Data")]
-        public Image Image
-        {
-            get { return _image; }
-            set { _image = value; pbImage.Image = value; }
-        }*/
         #endregion
         public event EventHandler ItemAdded;
         private void btAdd_Click(object sender, EventArgs e)

@@ -66,7 +66,40 @@ namespace FertilizerTradingApp.Repository
 
 			return fertilizers;
 		}
-		public Fertilizer GetFertilizerById(string id)
+        public List<Fertilizer> GetAllFertilizersAvailble()
+        {
+            List<Fertilizer> fertilizers = new List<Fertilizer>();
+
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var query = "SELECT * FROM _Fertilizer where _isdeleted = 0";
+                var command = new SqlCommand(query, connection);
+
+                connection.Open();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        var fertilizer = new Fertilizer
+                        (
+                            reader["fertilizer_id"].ToString(),
+                            reader["_name"].ToString(),
+                            Convert.ToSingle(reader["_price"]),
+                            reader["_category"].ToString(),
+                            Convert.ToInt32(reader["_stock"]),
+                            reader["_description"].ToString(),
+                            Convert.ToBoolean(reader["_isdeleted"])
+                        );
+
+                        fertilizers.Add(fertilizer);
+                    }
+                }
+            }
+
+            return fertilizers;
+        }
+        public Fertilizer GetFertilizerById(string id)
 		{
 			Fertilizer fertilizer = null;
 

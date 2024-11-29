@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-			System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-			System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+			System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+			System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+			System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.label1 = new System.Windows.Forms.Label();
 			this.panel2 = new System.Windows.Forms.Panel();
@@ -46,14 +46,11 @@
 			this.panel4 = new System.Windows.Forms.Panel();
 			this.panel7 = new System.Windows.Forms.Panel();
 			this.panel5 = new System.Windows.Forms.Panel();
-			this.panel10 = new System.Windows.Forms.Panel();
-			this.label10 = new System.Windows.Forms.Label();
-			this.label7 = new System.Windows.Forms.Label();
 			this.panel9 = new System.Windows.Forms.Panel();
-			this.label9 = new System.Windows.Forms.Label();
+			this.txt_order_number = new System.Windows.Forms.Label();
 			this.label6 = new System.Windows.Forms.Label();
 			this.panel8 = new System.Windows.Forms.Panel();
-			this.label8 = new System.Windows.Forms.Label();
+			this.txt_order_price = new System.Windows.Forms.Label();
 			this.label5 = new System.Windows.Forms.Label();
 			this.panel11 = new System.Windows.Forms.Panel();
 			this.panel1.SuspendLayout();
@@ -63,7 +60,6 @@
 			this.flowLayoutPanel1.SuspendLayout();
 			this.panel4.SuspendLayout();
 			this.panel5.SuspendLayout();
-			this.panel10.SuspendLayout();
 			this.panel9.SuspendLayout();
 			this.panel8.SuspendLayout();
 			this.panel11.SuspendLayout();
@@ -76,7 +72,7 @@
 			this.panel1.Location = new System.Drawing.Point(0, 0);
 			this.panel1.Margin = new System.Windows.Forms.Padding(0);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(2539, 75);
+			this.panel1.Size = new System.Drawing.Size(2031, 94);
 			this.panel1.TabIndex = 3;
 			// 
 			// label1
@@ -93,10 +89,10 @@
 			// 
 			this.panel2.BackColor = System.Drawing.Color.DarkSeaGreen;
 			this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel2.Location = new System.Drawing.Point(0, 75);
+			this.panel2.Location = new System.Drawing.Point(0, 94);
 			this.panel2.Margin = new System.Windows.Forms.Padding(0);
 			this.panel2.Name = "panel2";
-			this.panel2.Size = new System.Drawing.Size(2539, 10);
+			this.panel2.Size = new System.Drawing.Size(2031, 13);
 			this.panel2.TabIndex = 5;
 			// 
 			// panel3
@@ -105,10 +101,10 @@
 			this.panel3.Controls.Add(this.panel6);
 			this.panel3.Controls.Add(this.label4);
 			this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.panel3.Location = new System.Drawing.Point(0, 85);
+			this.panel3.Location = new System.Drawing.Point(0, 107);
 			this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(2539, 1060);
+			this.panel3.Size = new System.Drawing.Size(2031, 809);
 			this.panel3.TabIndex = 6;
 			// 
 			// panel6
@@ -124,19 +120,19 @@
 			// 
 			// chart1
 			// 
-			chartArea5.Name = "ChartArea1";
-			this.chart1.ChartAreas.Add(chartArea5);
+			chartArea3.Name = "ChartArea1";
+			this.chart1.ChartAreas.Add(chartArea3);
 			this.chart1.Cursor = System.Windows.Forms.Cursors.No;
 			this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-			legend5.Name = "Legend1";
-			this.chart1.Legends.Add(legend5);
+			legend3.Name = "Legend1";
+			this.chart1.Legends.Add(legend3);
 			this.chart1.Location = new System.Drawing.Point(0, 47);
 			this.chart1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.chart1.Name = "chart1";
-			series5.ChartArea = "ChartArea1";
-			series5.Legend = "Legend1";
-			series5.Name = "Series1";
-			this.chart1.Series.Add(series5);
+			series3.ChartArea = "ChartArea1";
+			series3.Legend = "Legend1";
+			series3.Name = "Series1";
+			this.chart1.Series.Add(series3);
 			this.chart1.Size = new System.Drawing.Size(1767, 700);
 			this.chart1.TabIndex = 0;
 			this.chart1.Text = "chart1";
@@ -224,7 +220,7 @@
 			this.panel4.Location = new System.Drawing.Point(0, 0);
 			this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panel4.Name = "panel4";
-			this.panel4.Size = new System.Drawing.Size(676, 82);
+			this.panel4.Size = new System.Drawing.Size(845, 82);
 			this.panel4.TabIndex = 9;
 			// 
 			// panel7
@@ -233,73 +229,41 @@
 			this.panel7.Location = new System.Drawing.Point(0, 0);
 			this.panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panel7.Name = "panel7";
-			this.panel7.Size = new System.Drawing.Size(674, 80);
+			this.panel7.Size = new System.Drawing.Size(843, 80);
 			this.panel7.TabIndex = 4;
 			// 
 			// panel5
 			// 
 			this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.panel5.Controls.Add(this.panel10);
 			this.panel5.Controls.Add(this.panel9);
 			this.panel5.Controls.Add(this.panel8);
 			this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel5.Location = new System.Drawing.Point(0, 82);
 			this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panel5.Name = "panel5";
-			this.panel5.Size = new System.Drawing.Size(676, 978);
+			this.panel5.Size = new System.Drawing.Size(845, 727);
 			this.panel5.TabIndex = 10;
-			// 
-			// panel10
-			// 
-			this.panel10.Controls.Add(this.label10);
-			this.panel10.Controls.Add(this.label7);
-			this.panel10.Location = new System.Drawing.Point(21, 394);
-			this.panel10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.panel10.Name = "panel10";
-			this.panel10.Size = new System.Drawing.Size(373, 110);
-			this.panel10.TabIndex = 1;
-			// 
-			// label10
-			// 
-			this.label10.AutoSize = true;
-			this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label10.ForeColor = System.Drawing.Color.Red;
-			this.label10.Location = new System.Drawing.Point(139, 57);
-			this.label10.Name = "label10";
-			this.label10.Size = new System.Drawing.Size(36, 38);
-			this.label10.TabIndex = 3;
-			this.label10.Text = "0";
-			// 
-			// label7
-			// 
-			this.label7.AutoSize = true;
-			this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label7.Location = new System.Drawing.Point(13, 15);
-			this.label7.Name = "label7";
-			this.label7.Size = new System.Drawing.Size(216, 25);
-			this.label7.TabIndex = 1;
-			this.label7.Text = "Số lượng khách hàng";
 			// 
 			// panel9
 			// 
-			this.panel9.Controls.Add(this.label9);
+			this.panel9.Controls.Add(this.txt_order_number);
 			this.panel9.Controls.Add(this.label6);
 			this.panel9.Location = new System.Drawing.Point(21, 222);
 			this.panel9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panel9.Name = "panel9";
-			this.panel9.Size = new System.Drawing.Size(373, 110);
+			this.panel9.Size = new System.Drawing.Size(671, 110);
 			this.panel9.TabIndex = 1;
 			// 
-			// label9
+			// txt_order_number
 			// 
-			this.label9.AutoSize = true;
-			this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label9.ForeColor = System.Drawing.Color.Red;
-			this.label9.Location = new System.Drawing.Point(139, 58);
-			this.label9.Name = "label9";
-			this.label9.Size = new System.Drawing.Size(36, 38);
-			this.label9.TabIndex = 2;
-			this.label9.Text = "0";
+			this.txt_order_number.AutoSize = true;
+			this.txt_order_number.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txt_order_number.ForeColor = System.Drawing.Color.Red;
+			this.txt_order_number.Location = new System.Drawing.Point(139, 58);
+			this.txt_order_number.Name = "txt_order_number";
+			this.txt_order_number.Size = new System.Drawing.Size(36, 38);
+			this.txt_order_number.TabIndex = 2;
+			this.txt_order_number.Text = "0";
 			// 
 			// label6
 			// 
@@ -313,24 +277,24 @@
 			// 
 			// panel8
 			// 
-			this.panel8.Controls.Add(this.label8);
+			this.panel8.Controls.Add(this.txt_order_price);
 			this.panel8.Controls.Add(this.label5);
 			this.panel8.Location = new System.Drawing.Point(21, 58);
 			this.panel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.panel8.Name = "panel8";
-			this.panel8.Size = new System.Drawing.Size(373, 110);
+			this.panel8.Size = new System.Drawing.Size(671, 110);
 			this.panel8.TabIndex = 0;
 			// 
-			// label8
+			// txt_order_price
 			// 
-			this.label8.AutoSize = true;
-			this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label8.ForeColor = System.Drawing.Color.Red;
-			this.label8.Location = new System.Drawing.Point(139, 54);
-			this.label8.Name = "label8";
-			this.label8.Size = new System.Drawing.Size(36, 38);
-			this.label8.TabIndex = 1;
-			this.label8.Text = "0";
+			this.txt_order_price.AutoSize = true;
+			this.txt_order_price.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.txt_order_price.ForeColor = System.Drawing.Color.Red;
+			this.txt_order_price.Location = new System.Drawing.Point(139, 54);
+			this.txt_order_price.Name = "txt_order_price";
+			this.txt_order_price.Size = new System.Drawing.Size(36, 38);
+			this.txt_order_price.TabIndex = 1;
+			this.txt_order_price.Text = "0";
 			// 
 			// label5
 			// 
@@ -338,7 +302,7 @@
 			this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label5.Location = new System.Drawing.Point(13, 11);
 			this.label5.Name = "label5";
-			this.label5.Size = new System.Drawing.Size(205, 31);
+			this.label5.Size = new System.Drawing.Size(164, 25);
 			this.label5.TabIndex = 0;
 			this.label5.Text = "Tổng doanh thu";
 			// 
@@ -347,10 +311,10 @@
 			this.panel11.Controls.Add(this.panel5);
 			this.panel11.Controls.Add(this.panel4);
 			this.panel11.Dock = System.Windows.Forms.DockStyle.Right;
-			this.panel11.Location = new System.Drawing.Point(1863, 85);
+			this.panel11.Location = new System.Drawing.Point(1186, 107);
 			this.panel11.Margin = new System.Windows.Forms.Padding(4);
 			this.panel11.Name = "panel11";
-			this.panel11.Size = new System.Drawing.Size(676, 1060);
+			this.panel11.Size = new System.Drawing.Size(845, 809);
 			this.panel11.TabIndex = 11;
 			// 
 			// SystemControl
@@ -363,7 +327,7 @@
 			this.Controls.Add(this.panel1);
 			this.Margin = new System.Windows.Forms.Padding(0);
 			this.Name = "SystemControl";
-			this.Size = new System.Drawing.Size(2539, 1145);
+			this.Size = new System.Drawing.Size(2031, 916);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel3.ResumeLayout(false);
@@ -374,8 +338,6 @@
 			this.flowLayoutPanel1.PerformLayout();
 			this.panel4.ResumeLayout(false);
 			this.panel5.ResumeLayout(false);
-			this.panel10.ResumeLayout(false);
-			this.panel10.PerformLayout();
 			this.panel9.ResumeLayout(false);
 			this.panel9.PerformLayout();
 			this.panel8.ResumeLayout(false);
@@ -400,14 +362,11 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label txt_order_number;
+        private System.Windows.Forms.Label txt_order_price;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel11;

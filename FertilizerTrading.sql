@@ -155,7 +155,7 @@ GO
 --delete from _Account
 --go
 
-insert into _Account values ('A0000001', 'admin', '$2a$12$bTu.FTMnahbftLAvwvJRhuOKvzr0WKClBBKyIN5Lacey87EBe5hPK')
+insert into _Account values ('A0000001', 'admin', '$2a$12$rIfi/AJt3mODlOxbLHHTzutHqHBrni9XdsLcCMPsL71FwhN8xxsFW')
 go
 
 

@@ -21,34 +21,46 @@ namespace FertilizerTradingApp.GUI.UserForms
             DataTable revenueData = _revenueController.GetRevenueByPeriod("Week");
             BindDataToChart(revenueData, "Week");
         }
-        private void BindDataToChart(DataTable dataTable, string period)
-        {
-            chart1.Series.Clear();
+		private void BindDataToChart(DataTable dataTable, string period)
+		{
+			chart1.Series.Clear();
 
-            Series series = new Series
-            {
-                Name = "Revenue",
-                ChartType = SeriesChartType.Column,
-                XValueType = ChartValueType.DateTime,
-                YValueType = ChartValueType.Double
-            };
+			Series series = new Series
+			{
+				Name = "Revenue",
+				ChartType = SeriesChartType.Column,
+				XValueType = ChartValueType.String,
+				YValueType = ChartValueType.Double
+			};
 
-            chart1.Series.Add(series);
+			chart1.Series.Add(series);
+			double total_price = 0;
+			int total_order = 0;
+			if (dataTable != null)
+			{
+				foreach (DataRow row in dataTable.Rows)
+				{
+					string xValue = Convert.ToString(row[0]);
+					double yValue = Convert.ToDouble(row[1]);
+					total_order += Convert.ToInt32(row[2]);
+					total_price += yValue;
+					series.Points.AddXY(xValue, yValue);
+				}
 
-            foreach (DataRow row in dataTable.Rows)
-            {
-                MessageBox.Show(row[0].ToString());
-                DateTime xValue = Convert.ToDateTime(row[0]);
-                double yValue = Convert.ToDouble(row[1]);
-                series.Points.AddXY(xValue, yValue);
-            }
+				chart1.ChartAreas[0].AxisX.Title = period;
+				chart1.ChartAreas[0].AxisY.Title = "Total Revenue";
+				chart1.ChartAreas[0].RecalculateAxesScale();
+				txt_order_number.Text = total_order.ToString();
+				txt_order_price.Text = total_price.ToString("N0") + " VND";
+			}
+			else
+			{
+				MessageBox.Show("Chưa có dữ liệu ngày hôm nay");
+			}
 
-            chart1.ChartAreas[0].AxisX.Title = period;
-            chart1.ChartAreas[0].AxisY.Title = "Total Revenue";
-            chart1.ChartAreas[0].RecalculateAxesScale();
-        }
+		}
 
-        private void button2_Click(object sender, EventArgs e)
+		private void button2_Click(object sender, EventArgs e)
         {
             DataTable revenueData = _revenueController.GetRevenueByPeriod("Month");
             BindDataToChart(revenueData, "Month");

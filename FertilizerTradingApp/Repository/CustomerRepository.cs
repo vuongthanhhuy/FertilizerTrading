@@ -143,14 +143,13 @@ namespace FertilizerTradingApp.Repository
             SET 
                 _debt = @debt, 
                 _total_bought = @totalBought, 
-                _purchase_time = GETDATE(), 
+                _purchase_update = GETDATE(), 
                 _email = @email,
-                _purchase_time = @purchaseTime,
+                purchase_times = @purchaseTime
             WHERE customer_phone = @customerPhone";  
                 var command = new SqlCommand(updateQuery, connection);
                 command.Parameters.AddWithValue("@debt", customer.Debt);
                 command.Parameters.AddWithValue("@totalBought", customer.TotalBought);
-                command.Parameters.AddWithValue("@purchaseTime", customer.PurchaseUpdate);
                 command.Parameters.AddWithValue("@email", customer.Email ?? (object)DBNull.Value);  
                 command.Parameters.AddWithValue("@customerPhone", customer.CustomerPhone);
                 command.Parameters.AddWithValue("@purchaseTime", customer.PurchaseTime);

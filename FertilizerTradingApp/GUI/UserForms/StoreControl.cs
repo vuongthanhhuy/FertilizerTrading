@@ -209,41 +209,40 @@ namespace FertilizerTradingApp.GUI.UserForms
                     MessageBox.Show("Customer phone and payment amount are required.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+
                 float totalPrice = float.Parse(lbTotal.Text);
                 float totalPayment = float.Parse(tbPaid.Text);
                 string customerPhone = tbPhone.Text;
                 string accountId = "{account_logged}";
+
                 var customer = _customerController.GetCustomerById(customerPhone);
                 if (customer == null)
                 {
-                    customer = new Customer(customerPhone, DateTime.Now, totalPrice - totalPayment, totalPrice, tbName.Text, null);
+                    customer = new Customer(customerPhone, DateTime.Now, totalPrice - totalPayment, totalPrice, tbName.Text, "");
                     _customerController.AddCustomer(customer);
                 }
                 else
                 {
-                    float updatedDebt = customer.Debt - totalPayment;
-                    float updatedTotalBought = customer.TotalBought + totalPrice;
-
-                    customer.Debt = updatedDebt < 0 ? 0 : updatedDebt; 
-                    customer.TotalBought = updatedTotalBought;
+                    customer.Debt += totalPrice - totalPayment;
+                    customer.Debt = Math.Max(customer.Debt, 0); 
+                    customer.TotalBought += totalPrice;
                     customer.PurchaseUpdate = DateTime.Now;
-                    customer.Name = tbName.Text;
-                    customer.PurchaseTime = customer.PurchaseTime + 1;
-                    if(customer.Name != _customerController.GetCustomerById(customer.CustomerPhone).Name)
-                    {
-                        MessageBox.Show("Sai tên khách hàng");
-                        return;
-                    }
-                    _customerController.UpdateCustomer(customer); 
+                    customer.Name = tbName.Text; 
+                    customer.PurchaseTime += 1;
+
+                    _customerController.UpdateCustomer(customer);
                 }
+
                 Order order = new Order(null, totalPrice, DateTime.Now, totalPayment, customerPhone, accountId);
                 _orderController.AddOrder(order);
+
                 string orderId = _orderController.getNewestOrderId();
                 if (string.IsNullOrEmpty(orderId))
                 {
                     MessageBox.Show("Failed to create order. Please try again.", "Order Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
                 foreach (Control control in pnBasket.Controls)
                 {
                     if (control is ItemBasket basket)
@@ -254,10 +253,14 @@ namespace FertilizerTradingApp.GUI.UserForms
                         _itemOrderedController.AddItemOrdered(item);
                     }
                 }
+
                 MessageBox.Show("Payment processed successfully. Order and items saved.", "Payment Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Reset UI
                 pnBasket.Controls.Clear();
                 lbTotal.Text = "0.00";
                 tbPaid.Text = "0.00";
+
             }
             catch (Exception ex)
             {
@@ -266,27 +269,10 @@ namespace FertilizerTradingApp.GUI.UserForms
         }
         private void btnFind_Click(object sender, EventArgs e)
         {
-			try
-			{
-			    string key = txbSearch.Text.Trim().ToLower();
-			    if (!string.IsNullOrEmpty(key))
-			    {
-			        List<Fertilizer> filteredFertilizers = _fertilizerController.GetAllFertilizersAvailble()
-			            .FindAll(f => f.Name.ToLower().Contains(key));
-			        populateItems(filteredFertilizers);
-			    }
-			    else
-			    {
-			        populateItems();
-			    }
-			}
-			catch (Exception ex)
-			{
-			    MessageBox.Show($"Error searching items: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-			}
-		}
 
-		private void tbPaid_KeyPress(object sender, KeyPressEventArgs e)
+        }
+
+        private void tbPaid_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBox textBox = sender as TextBox;
             if (!IsValidNumericInput(textBox, e.KeyChar))

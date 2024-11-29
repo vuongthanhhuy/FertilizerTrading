@@ -150,17 +150,10 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void btn_excel(object sender, EventArgs e)
         {
-			try
-			{
-				ExportToExcel();
-			}
-			catch (Exception ex)
-			{
-				ShowError("An error occurred while exporting to Excel", ex);
-			}
-		}
 
-		private void ExportToExcel()
+        }
+
+        private void ExportToExcel()
         {
             
             string outputDirectory = Path.Combine("D:/FertilizerTrading/output");
@@ -226,20 +219,30 @@ namespace FertilizerTradingApp.GUI.UserForms
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            int paid;
-            if (!int.TryParse(tbPaid.Text.ToString().Replace(",", ""), out paid))
+            if (!int.TryParse(tbPaid.Text.ToString().Replace(",", ""), out int paid))
             {
                 MessageBox.Show("Please enter a valid number for the paid amount.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             string order_id = lbBill.Text;
             string cus_id = lbPhone.Text;
-            if(paid < 0 || paid > _orderController.GetOrderById(order_id).TotalPrice) {
-                MessageBox.Show("Giá trị không hợp lệ");
+
+            var order = _orderController.GetOrderById(order_id);
+            if (order == null)
+            {
+                MessageBox.Show("Order not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            if (paid < 0 || paid > order.TotalPrice)
+            {
+                MessageBox.Show("Invalid payment amount.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             var confirmationResult = MessageBox.Show(
-                $"Bạn có chắc chắn muốn chỉnh sửa hóa đơn: {order_id}?",
+                $"Are you sure you want to edit the order: {order_id}?",
                 "Confirm Action",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
@@ -249,25 +252,27 @@ namespace FertilizerTradingApp.GUI.UserForms
             {
                 try
                 {
-                    float currentPayMiss = _orderController.GetOrderById(order_id).TotalPrice - _orderController.GetOrderById(order_id).TotalPayment;
-                    _customerController.GetCustomerById(cus_id).Debt = _customerController.GetCustomerById(cus_id).Debt - currentPayMiss;
-					_orderController.UpdateTotalPayment(order_id, paid);
+                    _orderController.UpdateTotalPayment(order_id, paid);
 
-					float currentPayMissN = _orderController.GetOrderById(order_id).TotalPrice - _orderController.GetOrderById(order_id).TotalPayment;
-					_customerController.UpdateDebtById(cus_id, currentPayMissN + currentPayMiss);                    
+                    var customerOrders = _orderController.GetOrdersByCustomerId(cus_id);
+                    float totalDebt = customerOrders.Sum(o => o.TotalPrice - o.TotalPayment);
 
-                    MessageBox.Show("Cập nhập thành công");
+                    _customerController.UpdateDebtById(cus_id, totalDebt);
+
+                    MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     PopulateOrderGrid();
                     DisplayOrderDetails(_orderController.GetOrderById(order_id));
-				}
+                }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Có lỗi trong quá trình cập nhập");
+                    MessageBox.Show($"An error occurred during the update: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-   
-		private void btnExportBill_Click(object sender, EventArgs e)
+
+
+        private void btnExportBill_Click(object sender, EventArgs e)
 		{
 			try
 			{

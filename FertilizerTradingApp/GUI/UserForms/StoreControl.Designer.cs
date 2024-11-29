@@ -141,7 +141,7 @@
             this.panel4.Controls.Add(this.panel6);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Location = new System.Drawing.Point(22, 18);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1172, 816);
             this.panel4.TabIndex = 7;
@@ -179,7 +179,7 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.tableLayoutPanel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(677, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -206,7 +206,7 @@
             this.panel3.Location = new System.Drawing.Point(1, 1);
             this.panel3.Margin = new System.Windows.Forms.Padding(0);
             this.panel3.Name = "panel3";
-            this.panel3.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel3.Padding = new System.Windows.Forms.Padding(5);
             this.panel3.Size = new System.Drawing.Size(196, 49);
             this.panel3.TabIndex = 21;
             // 
@@ -217,7 +217,7 @@
             this.label53.Location = new System.Drawing.Point(5, 5);
             this.label53.Margin = new System.Windows.Forms.Padding(0);
             this.label53.Name = "label53";
-            this.label53.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.label53.Padding = new System.Windows.Forms.Padding(5);
             this.label53.Size = new System.Drawing.Size(152, 34);
             this.label53.TabIndex = 0;
             this.label53.Text = "Tổng đơn hàng";
@@ -230,7 +230,7 @@
             this.label55.Location = new System.Drawing.Point(1, 51);
             this.label55.Margin = new System.Windows.Forms.Padding(0);
             this.label55.Name = "label55";
-            this.label55.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.label55.Padding = new System.Windows.Forms.Padding(5);
             this.label55.Size = new System.Drawing.Size(196, 41);
             this.label55.TabIndex = 0;
             this.label55.Text = "Đã thanh toán";
@@ -288,7 +288,7 @@
             this.panel23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel23.Controls.Add(this.tableLayoutPanel2);
             this.panel23.Location = new System.Drawing.Point(2, 2);
-            this.panel23.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel23.Margin = new System.Windows.Forms.Padding(2);
             this.panel23.Name = "panel23";
             this.panel23.Size = new System.Drawing.Size(464, 90);
             this.panel23.TabIndex = 20;
@@ -355,7 +355,7 @@
             this.label4.Location = new System.Drawing.Point(0, 44);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.label4.Padding = new System.Windows.Forms.Padding(5);
             this.label4.Size = new System.Drawing.Size(231, 44);
             this.label4.TabIndex = 1;
             this.label4.Text = "SĐT khách hàng:";
@@ -376,7 +376,7 @@
             this.dateTimePicker1.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateTimePicker1.Location = new System.Drawing.Point(801, 12);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(328, 26);
             this.dateTimePicker1.TabIndex = 19;
@@ -531,7 +531,7 @@
             this.btnExportBill.AutoSize = true;
             this.btnExportBill.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportBill.Location = new System.Drawing.Point(111, 13);
-            this.btnExportBill.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExportBill.Margin = new System.Windows.Forms.Padding(2);
             this.btnExportBill.Name = "btnExportBill";
             this.btnExportBill.Size = new System.Drawing.Size(184, 41);
             this.btnExportBill.TabIndex = 10;
@@ -544,7 +544,7 @@
             this.btnPay.AutoSize = true;
             this.btnPay.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPay.Location = new System.Drawing.Point(998, 13);
-            this.btnPay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPay.Margin = new System.Windows.Forms.Padding(2);
             this.btnPay.Name = "btnPay";
             this.btnPay.Size = new System.Drawing.Size(161, 41);
             this.btnPay.TabIndex = 8;
@@ -569,7 +569,7 @@
             this.btnNext.AutoSize = true;
             this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNext.Location = new System.Drawing.Point(603, 799);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(46, 41);
             this.btnNext.TabIndex = 18;
@@ -581,7 +581,7 @@
             this.btnPre.AutoSize = true;
             this.btnPre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPre.Location = new System.Drawing.Point(532, 798);
-            this.btnPre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPre.Margin = new System.Windows.Forms.Padding(2);
             this.btnPre.Name = "btnPre";
             this.btnPre.Size = new System.Drawing.Size(46, 41);
             this.btnPre.TabIndex = 17;
@@ -592,7 +592,7 @@
             // 
             this.panel24.Controls.Add(this.flpItems);
             this.panel24.Location = new System.Drawing.Point(19, 74);
-            this.panel24.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel24.Margin = new System.Windows.Forms.Padding(2);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(660, 720);
             this.panel24.TabIndex = 16;
@@ -611,7 +611,7 @@
             // itemStore1
             // 
             this.itemStore1.Location = new System.Drawing.Point(4, 4);
-            this.itemStore1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.itemStore1.Margin = new System.Windows.Forms.Padding(4);
             this.itemStore1.Name = "itemStore1";
             this.itemStore1.Price = null;
             this.itemStore1.Size = new System.Drawing.Size(152, 144);
@@ -632,7 +632,7 @@
             // 
             this.txbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbSearch.Location = new System.Drawing.Point(23, 16);
-            this.txbSearch.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbSearch.Margin = new System.Windows.Forms.Padding(2);
             this.txbSearch.Name = "txbSearch";
             this.txbSearch.Size = new System.Drawing.Size(314, 31);
             this.txbSearch.TabIndex = 5;
@@ -641,7 +641,7 @@
             // 
             this.btnExportExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportExcel.Location = new System.Drawing.Point(778, 20);
-            this.btnExportExcel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExportExcel.Margin = new System.Windows.Forms.Padding(2);
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(100, 30);
             this.btnExportExcel.TabIndex = 7;
@@ -652,7 +652,7 @@
             // 
             this.btnFind.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFind.Location = new System.Drawing.Point(549, 20);
-            this.btnFind.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnFind.Margin = new System.Windows.Forms.Padding(2);
             this.btnFind.Name = "btnFind";
             this.btnFind.Size = new System.Drawing.Size(100, 30);
             this.btnFind.TabIndex = 4;

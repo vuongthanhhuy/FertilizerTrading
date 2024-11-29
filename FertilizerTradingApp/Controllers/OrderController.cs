@@ -47,5 +47,9 @@ namespace FertilizerTradingApp.Controllers
         {
             _orderService.UpdateTotalPayment(orderId, newTotalPayment);
         }
+        public List<Order> GetOrdersByCustomerId(string customerPhone)
+        {
+            return _orderService.GetOrdersByCustomerId(customerPhone);
+        }
     }
 }

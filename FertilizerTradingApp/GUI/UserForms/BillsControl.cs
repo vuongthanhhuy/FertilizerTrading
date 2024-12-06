@@ -195,7 +195,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 			btnEdit.Visible = false;
 			string outputDirectory = Path.Combine("D:/FertilizerTrading/output");
             Directory.CreateDirectory(outputDirectory); 
-            string filePath = Path.Combine(outputDirectory, "BillExport.pdf");
+            string filePath = Path.Combine(outputDirectory, "HoadonThanhtoan.pdf");
             string tempImagePath = Path.Combine(outputDirectory, "tempImage.png");
             var document = new PdfDocument { Info = { Title = "Exported Bill" } };
             var page = document.AddPage();
@@ -209,19 +209,19 @@ namespace FertilizerTradingApp.GUI.UserForms
             File.Delete(tempImagePath); // Clean up temporary image
 			btnExportBill.Visible = true;
 			btnEdit.Visible = true;
-			MessageBox.Show($"The bill has been exported to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show($"Hóa đơn HoadonThanhtoan.pdf đã lưu ở thư mục {filePath}", "Xuất hóa đơn thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ShowError(string message, Exception ex)
         {
-            MessageBox.Show($"{message}: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show($"{message}: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (!int.TryParse(tbPaid.Text.ToString().Replace(",", ""), out int paid))
             {
-                MessageBox.Show("Please enter a valid number for the paid amount.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Chỉ được nhập số", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -231,18 +231,18 @@ namespace FertilizerTradingApp.GUI.UserForms
             var order = _orderController.GetOrderById(order_id);
             if (order == null)
             {
-                MessageBox.Show("Order not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Không tìm thấy order", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (paid < 0 || paid > order.TotalPrice)
             {
-                MessageBox.Show("Invalid payment amount.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Giá trị không hợp lệ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             var confirmationResult = MessageBox.Show(
-                $"Are you sure you want to edit the order: {order_id}?",
+                $"Bạn có chắc muốn sửa order mã số {order_id} không?",
                 "Confirm Action",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
@@ -259,14 +259,14 @@ namespace FertilizerTradingApp.GUI.UserForms
 
                     _customerController.UpdateDebtById(cus_id, totalDebt);
 
-                    MessageBox.Show("Update successful", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Cập nhập thành công", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     PopulateOrderGrid();
                     DisplayOrderDetails(_orderController.GetOrderById(order_id));
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"An error occurred during the update: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Xảy ra lỗi trong quá trình cập nhập: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -280,7 +280,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 			}
 			catch (Exception ex)
 			{
-				ShowError("An error occurred while exporting to PDF", ex);
+				ShowError("Xảy ra lỗi trong quá trình xuất file", ex);
 			}
 		}
 

@@ -49,7 +49,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading items: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi Database: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private Image LoadImage(string imagePath)
@@ -87,7 +87,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error adding item to basket: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Có lỗi xảy ra khi thêm sản phẩm: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void RemoveFromBasket(ItemBasket itemBasket, Fertilizer fertilizer)
@@ -156,7 +156,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                     Directory.CreateDirectory(outputDirectory);
                 }
 
-                string filePath = Path.Combine(outputDirectory, "StoreBillExport.pdf");
+                string filePath = Path.Combine(outputDirectory, "HoaDon.pdf");
                 string tempImagePath = Path.Combine(outputDirectory, "tempImage.png");
 
                 PdfDocument document = new PdfDocument();
@@ -176,7 +176,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                 File.Delete(tempImagePath);
                 btnExportBill.Visible = true;
                 btnPay.Visible = true;
-                MessageBox.Show($"The store bill has been exported to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Đã xuất file HoaDon.pdf thành công ở thư mục: {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -201,12 +201,12 @@ namespace FertilizerTradingApp.GUI.UserForms
             {
                 if (pnBasket.Controls.Count == 0)
                 {
-                    MessageBox.Show("Basket is empty. Please add items before proceeding to payment.", "Empty Basket", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Không có thông tin trong giỏ hàng", "Empty Basket", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(tbPhone.Text) || string.IsNullOrWhiteSpace(tbPaid.Text))
                 {
-                    MessageBox.Show("Customer phone and payment amount are required.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Thiếu số điện thoại hoặc tiền", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -239,7 +239,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                 string orderId = _orderController.getNewestOrderId();
                 if (string.IsNullOrEmpty(orderId))
                 {
-                    MessageBox.Show("Failed to create order. Please try again.", "Order Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Có lỗi khi tạo hóa đơn, hãy thử lại", "Order Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -254,7 +254,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                     }
                 }
 
-                MessageBox.Show("Payment processed successfully. Order and items saved.", "Payment Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Tạo hóa đơn thành công", "Payment Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Reset UI
                 pnBasket.Controls.Clear();

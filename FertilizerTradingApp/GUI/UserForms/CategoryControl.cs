@@ -48,7 +48,7 @@ namespace FertilizerTradingApp.GUI.UserForms
 			}
 			catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while loading the fertilizers: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi truy vấn sản phẩm: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -86,7 +86,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while selecting the fertilizer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Có lỗi xảy ra với sản phẩm đã chọn: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -119,7 +119,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while opening the AddItem form: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Có lỗi xảy ra với cập nhập: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -145,7 +145,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while opening the AddItem form for editing: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Có lỗi xảy ra với cập nhập: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -172,7 +172,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while exporting to Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Có lỗi xảy ra khi xuất file: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -181,7 +181,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             string outputDirectory = Path.Combine("D:/FertilizerTrading/output");
             Directory.CreateDirectory(outputDirectory);
 
-            string filePath = Path.Combine(outputDirectory, "Fertilizers.xlsx");
+            string filePath = Path.Combine(outputDirectory, "Sanpham.xlsx");
 
             using (var workbook = new ClosedXML.Excel.XLWorkbook())
             {
@@ -190,7 +190,7 @@ namespace FertilizerTradingApp.GUI.UserForms
                 workbook.SaveAs(filePath);
             }
 
-            MessageBox.Show($"Excel file has been saved to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Đã xuất file Sanpham.xlsx ở thư mục {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void ExportGridToExcel(ClosedXML.Excel.IXLWorksheet sheet, DataGridView grid)
         {

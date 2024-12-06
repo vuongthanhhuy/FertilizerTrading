@@ -103,7 +103,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while selecting a customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Đã có lỗi xảy ra: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void button1_Click(object sender, EventArgs e)
@@ -157,7 +157,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while filtering orders: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Đã có lỗi xảy ra: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -172,7 +172,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while validating the date range: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi giá trị nhập vào: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -205,13 +205,13 @@ namespace FertilizerTradingApp.GUI.UserForms
 				}
                 else
                 {
-                    MessageBox.Show("Customer not found!", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Không tìm thấy khách hàng này", "Search Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
 			}
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while searching for the customer: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Có lỗi xảy ra: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btnExportExcel_Click(object sender, EventArgs e)
@@ -220,7 +220,7 @@ namespace FertilizerTradingApp.GUI.UserForms
             {
                 string outputDirectory = Path.Combine("D:/FertilizerTrading/output");
                 Directory.CreateDirectory(outputDirectory);
-                string filePath = Path.Combine(outputDirectory, "Customers.xlsx");
+                string filePath = Path.Combine(outputDirectory, "Khachhang.xlsx");
 
                 using (var workbook = new ClosedXML.Excel.XLWorkbook())
                 {
@@ -228,11 +228,11 @@ namespace FertilizerTradingApp.GUI.UserForms
                     ExportGridToExcel(customersSheet, dataGridView1);
                     workbook.SaveAs(filePath);
                 }
-                MessageBox.Show($"Excel file has been saved to {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Đã xuất file Khachhang.xlsx thành công ở thư mục {filePath}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"An error occurred while exporting to Excel: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Có lỗi trong quá trình xuất: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void ExportGridToExcel(ClosedXML.Excel.IXLWorksheet sheet, DataGridView grid)
